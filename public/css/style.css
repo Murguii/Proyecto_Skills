@@ -1,8 +1,157 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
-a {
-  color: #00B7FF;
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.skill-tree {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.skill-tree-box {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.description {
+  text-align: center;
+  font-size: 1em;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.color-picker {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.color-picker .start-here {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.custom-svg {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.custom-svg label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.custom-svg input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.custom-svg button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.custom-svg button:hover {
+  background-color: #0056b3;
+}
+
+.svg-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.svg-wrapper {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  position: relative;
+}
+
+.hexagon {
+  fill: white;
+  stroke: black;
+  stroke-width: 1px;
+}
+
+.selected .hexagon {
+  fill: var(--selected-color, yellow);
+}
+
+@media print {
+  .color-picker {
+      display: none;
+  }
+  .custom-svg{
+      display: none;
+  }
+  .print-button{
+      display: none; 
+  }
+}
+
+/* Footer styles */
+footer {
+  
+  bottom: 0; /* Stick to the bottom of the viewport */
+  width: 100%;
+  
+  text-align: center;
+  background-color: #f0f0f0; /* Light background color */
+  border-top: 1px solid #ccc; /* Border on top */
+}
+
+
+
+
+/* Estilo general para la tabla */
+table {
+  width: 80%; /* Puedes ajustar el porcentaje según tus preferencias */
+  margin: 20px auto; /* Centra la tabla en la página */
+  border-collapse: collapse; /* Hace que las celdas de la tabla estén más cercanas */
+}
+
+/* Estilo para las celdas de la tabla */
+td, th {
+  padding: 10px;
+  text-align: center; /* Centra el contenido dentro de las celdas */
+  border: 1px solid #ddd; /* Añade un borde ligero a cada celda */
+}
+
+/* Estilo para los títulos (cabecera) */
+th {
+  background-color: #333; /* Fondo oscuro para los títulos */
+  color: white; /* Color blanco para el texto de los títulos */
+  font-size: 18px;
+}
+
+/* Estilo para las filas */
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Añade un color de fondo alternativo en filas pares */
+}
+
+tr:hover {
+  background-color: #ddd; /* Resalta las filas cuando el ratón pasa sobre ellas */
+}
+
+/* Estilo de la imagen */
+td img {
+  width: 50px; /* Ajusta el tamaño de las imágenes, puedes modificar esto */
+  height: 50px;
+  object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
 }
