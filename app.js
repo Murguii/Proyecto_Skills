@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var fs = require('fs'); // Para leer el archivo skills.json
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,8 +20,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Rutas existentes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// Ruta para la página de detalles de cada habilidad
+app.get('/skill/:id', (req, res, next) => {
+  const skillId = parseInt(req.params.id);  // Convertir el ID de la URL a número
+
+  // Leer el archivo skills.json
+  fs.readFile(path.join(__dirname, 'public', 'skills.json'), 'utf8', (err, data) => {
+    if (err) {
+      return next(createError(500, 'Error al cargar el archivo skills.json'));
+    }
+
+    const skills = JSON.parse(data);  // Parsear los datos del JSON
+    const skill = skills.find(s => parseInt(s.id) === skillId);  // Convertir los IDs del JSON a número
+
+    if (skill) {
+      res.render('skillPage', { skill }); // Renderizar la página con el skill encontrado
+    } else {
+      return next(createError(404, 'Skill no encontrado'));  // Error si no se encuentra la habilidad
+    }
+  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -29,14 +53,11 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;

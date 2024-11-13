@@ -35,7 +35,8 @@ async function scrap() {
                 skills.push({
                     id: id,
                     text: text,
-                    icon: icon
+                    icon: icon,
+                    description: description
                 });
             });
             return skills;

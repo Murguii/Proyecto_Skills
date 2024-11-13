@@ -8,34 +8,29 @@ fetch('/skills.json')
 
 function createHexagons(skills) {
   const container = document.getElementById('hexagon-container');
-
+  
   skills.forEach(skill => {
-    // Crear el contenedor para cada hexágono
     const hexagonWrapper = document.createElement('div');
     hexagonWrapper.classList.add('svg-wrapper');
     hexagonWrapper.setAttribute('data-id', skill.id);
-    hexagonWrapper.setAttribute('data-custom', 'false');
+    hexagonWrapper.setAttribute('data-description', skill.description); // Agrega descripción para mostrarla en el hover
 
-    // Crear el SVG
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute('width', '100');
     svg.setAttribute('height', '100');
     svg.setAttribute('viewBox', '0 0 100 100');
-
-    // Crear el hexágono
+  
     const hexagon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     hexagon.setAttribute('points', '50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5');
     hexagon.classList.add('hexagon');
-
-    // Crear el texto
+  
     const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     text.setAttribute('x', '50%');
     text.setAttribute('y', '20%');
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('fill', 'black');
     text.setAttribute('font-size', '10');
-
-    // Crear y agregar las líneas de texto (tspan)
+  
     const lines = skill.text.split("\n\n\n");
     lines.forEach((line, index) => {
       const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
@@ -45,22 +40,62 @@ function createHexagons(skills) {
       tspan.textContent = line;
       text.appendChild(tspan);
     });
-
-    // Crear la imagen del ícono
+  
     const icon = document.createElementNS("http://www.w3.org/2000/svg", "image");
     icon.setAttribute('x', '35%');
     icon.setAttribute('y', '60%');
     icon.setAttribute('width', '30');
     icon.setAttribute('height', '30');
     icon.setAttribute('href', skill.icon);
-
-    // Agregar los elementos al SVG
+  
+    // Crear contenedor para los íconos adicionales (lápiz y cuaderno)
+    const iconsContainer = document.createElement('div');
+    iconsContainer.classList.add('icons');
+    
+    const pencilIcon = document.createElement('span');
+    pencilIcon.classList.add('icon-pencil');
+    pencilIcon.textContent = '✏️';
+  
+    const notebookIcon = document.createElement('span');
+    notebookIcon.classList.add('icon-notebook');
+    notebookIcon.textContent = '📒';
+    
+    // Evento para redirigir a la página del cuaderno
+    notebookIcon.addEventListener('click', () => {
+      window.location.href = `/skill/${skill.id}`;  // Redirige a la página de la habilidad
+    });
+  
+    iconsContainer.appendChild(pencilIcon);
+    iconsContainer.appendChild(notebookIcon);
+  
     svg.appendChild(hexagon);
     svg.appendChild(text);
     svg.appendChild(icon);
-
-    // Agregar el SVG al contenedor del hexágono
+  
+    // Añadir el contenedor de íconos al wrapper
     hexagonWrapper.appendChild(svg);
+    hexagonWrapper.appendChild(iconsContainer);
+    
     container.appendChild(hexagonWrapper);
   });
+  
+  const descriptionBox = document.getElementById('description-box');
+  const descriptionTitle = document.getElementById('description-title');
+  const descriptionText = document.getElementById('description-text');
+  
+  document.querySelectorAll('.svg-wrapper').forEach(hexagon => {
+    hexagon.addEventListener('mouseenter', () => {
+      const skill = skills.find(s => s.id === hexagon.getAttribute('data-id'));
+      descriptionTitle.textContent = skill.text;  // Título de la habilidad
+      descriptionText.textContent = skill.description;  // Descripción de la habilidad
+  
+      descriptionBox.style.display = 'block'; // Muestra la caja en una posición fija
+    });
+  
+    hexagon.addEventListener('mouseleave', () => {
+      descriptionBox.style.display = 'none'; // Oculta la caja cuando el ratón se retira del hexágono
+    });
+  });
+
+
 }

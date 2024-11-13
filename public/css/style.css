@@ -87,6 +87,34 @@ h1 {
   fill: white;
   stroke: black;
   stroke-width: 1px;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto de hover en el wrapper que agranda el hexágono */
+.svg-wrapper:hover .hexagon {
+  transform: scale(1.1);
+}
+
+/* Estilo de íconos (lápiz y cuaderno) */
+.icons {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Muestra los íconos al pasar el ratón */
+.svg-wrapper:hover .icons {
+  display: flex;
+  gap: 40px;
+}
+
+.svg-wrapper {
+  position: relative; /* Necesario para que los íconos se posicionen correctamente */
 }
 
 .selected .hexagon {
@@ -154,4 +182,27 @@ td img {
   width: 50px; /* Ajusta el tamaño de las imágenes, puedes modificar esto */
   height: 50px;
   object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
+}
+
+.description-box {
+  position: fixed; /* Posición fija en la pantalla */
+  bottom: 0; /* Ajusta la distancia desde la parte inferior */
+  left: 0; /* Alinea la caja al borde izquierdo */
+  width: 100%; /* Hace que la caja abarque toda la pantalla */
+  background-color: #ffeb3b; /* Amarillo claro */
+  border: 1px solid #fbc02d; /* Borde amarillo oscuro */
+  padding: 12px;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.3); /* Sombra ajustada para la parte inferior */
+  display: none; /* Oculta la caja inicialmente */
+  z-index: 10;
+  color: #333; /* Color del texto */
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.description-box h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
 }

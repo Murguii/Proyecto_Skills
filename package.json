@@ -15,5 +15,10 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "puppeteer": "^23.7.1"
-  }
+  },
+  "main": "app.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
