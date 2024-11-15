@@ -243,7 +243,6 @@ p {
   border-radius: 5px;      /* Bordes redondeados */
   box-sizing: border-box;  /* Asegura que el padding no afecte al ancho total */
   margin-top: 10px;        /* Añade espacio arriba del cuadro de texto */
-  margin-left: 500px;
   width: 600px;
 }
 

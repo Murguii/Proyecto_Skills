@@ -5,39 +5,205 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= skill.text %></title>
   <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <style>
+    /* Simulación de un contenedor A4 */
+    .a4-container {
+      width: 210mm;
+      height: 297mm;
+      margin: auto;
+      background-color: #f9f9f9;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20mm;
+      overflow: auto;
+    }
+
+    /* Ajuste del hexágono */
+    .hexagon-container {
+      display: flex;
+      align-items: center;
+      margin: 20px auto;
+    }
+
+    .hexagon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+      width: 120px; /* Puedes ajustar el tamaño según sea necesario */
+      background-color: #ffffff;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border: 2px solid #000000; /* Borde del hexágono */
+      margin-right: 15px; /* Espacio entre el hexágono y el texto */
+    }
+
+    .hexagon-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      background: transparent; /* Fondo transparente para no tapar el borde */
+    }
+
+    .icon {
+      width: 40px; /* Ajusta el tamaño del icono según sea necesario */
+      height: auto;
+      margin-bottom: 5px;
+    }
+
+    /* Alineación de Tasks to Complete */
+    .task-to-complete-header {
+      text-align: left;
+      margin-left: 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .checkbox-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .checkbox-item {
+      margin: 5px 0;
+    }
+
+    /* Alineación de la sección de Evidence */
+    .provide-evidence-header {
+      text-align: left;
+      margin-left: 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .submit-evidence {
+      margin-top: 10px;
+    }
+
+    /* Contenedor de evidencia centrado */
+    #evidenceSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #evidenceSection input {
+      width: 100%;  /* El input se adapta al ancho del contenedor */
+      max-width: 600px;  /* Limita el ancho máximo a 600px */
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    #evidenceSection button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1><%= skill.text %></h1>
-  </header>
-  <main>
-    <img src="<%= skill.icon %>" alt="<%= skill.text %> icon" />
-    <h2 class="description-header">Description</h2>
-    <!--<p><%= skill.description %></p>-->
-    <p>Texto de la descripción a añadir aquí</p>
-    <h2 class="task-to-complete-header">Tasks to Complete</h2>
-    <ul class="checkbox-list">
-      <li class="checkbox-item">
-        <input type="checkbox" id="task1" name="tasks" value="task1">
-        <label for="task1">Texto de la tarea 1</label>
-      </li>
-      <li class="checkbox-item">
-        <input type="checkbox" id="task2" name="tasks" value="task2">
-        <label for="task2">Texto de la tarea 2</label>
-      </li>
-      <li class="checkbox-item">
-        <input type="checkbox" id="task3" name="tasks" value="task3">
-        <label for="task3">Texto de la tarea 3</label>
-      </li>
-    </ul>
+  <div class="a4-container">
+    <header>
+      <h1>Skill: <%= skill.text %></h1>
+      <!-- Skill Score Subtítulo justo debajo del título principal -->
+      <h3 class="skill-score">Skill Score: 1 point</h3>
+    </header>
+    <main>
+      <!-- Contenedor del Hexágono con el icono -->
+      <div class="hexagon-container">
+        <div class="hexagon">
+          <div class="hexagon-text">
+            <img class="icon" src="<%= skill.icon %>" alt="Skill icon">
+            <div><%= skill.text %></div>
+          </div>
+        </div>
+        <!-- Texto relacionado con el hexágono -->
+      </div>
 
-    <h2 class="provide-evidence-header">Provide evidence</h2>
-    <input type="text" id="skillEvidence" name="userInput" placeholder="Enter a URL or explanation as evidence for completing this skill">
+      <h2 class="description-header">Description</h2>
+      <p>Texto de la descripción a añadir aquí</p>
 
-    <button class="submit-evidence">Submit Evidence</button>
-  </main>
-  <footer>
-    <a href="/">Back to Home</a>
-  </footer>
+      <h2 class="task-to-complete-header">Tasks to Complete</h2>
+      <ul class="checkbox-list">
+        <li class="checkbox-item">
+          <input type="checkbox" id="task1" name="tasks" value="task1">
+          <label for="task1">Texto de la tarea 1</label>
+        </li>
+        <li class="checkbox-item">
+          <input type="checkbox" id="task2" name="tasks" value="task2">
+          <label for="task2">Texto de la tarea 2</label>
+        </li>
+        <li class="checkbox-item">
+          <input type="checkbox" id="task3" name="tasks" value="task3">
+          <label for="task3">Texto de la tarea 3</label>
+        </li>
+      </ul>
+
+      <!-- Sección de Evidence -->
+      <div id="evidenceSection" style="display:none;">
+        <h2 class="provide-evidence-header">Provide evidence</h2>
+        <input type="text" id="skillEvidence" name="userInput" placeholder="Enter a URL or explanation as evidence for completing this skill">
+        <button class="submit-evidence">Submit Evidence</button>
+      </div>
+
+      <!-- Sección de Resources -->
+      <div class="resources">
+        <h2 class="resources-header">Resources Used</h2>
+        <ul>
+          <li>Online Course: "Mastering JavaScript Basics" - Udemy</li>
+          <li>Book: "Eloquent JavaScript" by Marijn Haverbeke</li>
+          <li>API: MDN Web Docs (JavaScript)</li>
+          <li>Library: canvas-confetti for animation</li>
+        </ul>
+      </div>
+    </main>
+    <footer>
+      <a href="/">Back to Home</a>
+    </footer>
+  </div>
+
+  <script>
+    // Detectar cambios en los checkboxes
+    const checkboxes = document.querySelectorAll('.checkbox-item input');
+    const evidenceSection = document.getElementById('evidenceSection');
+
+    function checkAllTasksCompleted() {
+      const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+      if (allChecked) {
+        // Mostrar la sección de evidencia
+        evidenceSection.style.display = 'block';
+        // Iniciar la animación de confetti que cubra toda la página
+        confetti({
+          particleCount: 200,  // Número de partículas
+          spread: 360,         // Ángulo de dispersión
+          origin: { y: 0.5 },  // Partículas desde el centro vertical
+          zIndex: 1000,        // Asegura que el confetti esté por encima de otros elementos
+          ticks: 100,          // Duración del confetti
+          gravity: 0.5,        // Gravedad de las partículas
+          scalar: 1.2          // Tamaño de las partículas
+        });
+      } else {
+        // Ocultar la sección de evidencia
+        evidenceSection.style.display = 'none';
+      }
+    }
+
+    // Agregar eventos de cambio a cada checkbox
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', checkAllTasksCompleted);
+    });
+  </script>
 </body>
 </html>
