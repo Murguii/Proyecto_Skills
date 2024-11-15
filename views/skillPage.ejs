@@ -11,9 +11,30 @@
     <h1><%= skill.text %></h1>
   </header>
   <main>
-    <h2>Description</h2>
-    <p><%= skill.description %></p>
     <img src="<%= skill.icon %>" alt="<%= skill.text %> icon" />
+    <h2 class="description-header">Description</h2>
+    <!--<p><%= skill.description %></p>-->
+    <p>Texto de la descripción a añadir aquí</p>
+    <h2 class="task-to-complete-header">Tasks to Complete</h2>
+    <ul class="checkbox-list">
+      <li class="checkbox-item">
+        <input type="checkbox" id="task1" name="tasks" value="task1">
+        <label for="task1">Texto de la tarea 1</label>
+      </li>
+      <li class="checkbox-item">
+        <input type="checkbox" id="task2" name="tasks" value="task2">
+        <label for="task2">Texto de la tarea 2</label>
+      </li>
+      <li class="checkbox-item">
+        <input type="checkbox" id="task3" name="tasks" value="task3">
+        <label for="task3">Texto de la tarea 3</label>
+      </li>
+    </ul>
+
+    <h2 class="provide-evidence-header">Provide evidence</h2>
+    <input type="text" id="skillEvidence" name="userInput" placeholder="Enter a URL or explanation as evidence for completing this skill">
+
+    <button class="submit-evidence">Submit Evidence</button>
   </main>
   <footer>
     <a href="/">Back to Home</a>

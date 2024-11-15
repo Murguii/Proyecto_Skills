@@ -206,3 +206,69 @@ td img {
   font-weight: bold;
   color: #333;
 }
+
+/* Centrar el texto del encabezado */
+.description-header {
+  text-align: center; /* Centra el texto  */
+  font-size: 24px; /* Tamaño de la fuente */
+  margin-top: 20px; /* Espaciado superior */
+  margin-bottom: 10px; /* Espaciado inferior */
+}
+
+/* Centrar el contenido del párrafo*/
+p {
+  text-align: center; /* Centra el texto */
+  font-size: 16px; /* Tamaño del texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+}
+
+/* Centrar el texto del encabezado */
+.task-to-complete-header {
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-left: 500px; /* Margen izquierdo para separar del borde */
+  margin-top: 10px;
+}
+
+.provide-evidence-header {
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-left: 500px; /* Margen izquierdo para separar del borde */
+  margin-top: 10px;
+}
+
+#skillEvidence {
+  width: 600px;
+  padding: 30px;           /* Añade espacio dentro del cuadro de texto */
+  font-size: 12px;         /* Tamaño de la fuente dentro del cuadro de texto */
+  border: 1px solid #ccc;  /* Borde suave */
+  border-radius: 5px;      /* Bordes redondeados */
+  box-sizing: border-box;  /* Asegura que el padding no afecte al ancho total */
+  margin-top: 10px;        /* Añade espacio arriba del cuadro de texto */
+  margin-left: 500px;
+  width: 600px;
+}
+
+.checkbox-item {
+  margin-bottom: 10px;   /* Espacio entre los checkboxes */
+  font-size: 16px;       /* Tamaño del texto */
+  display: flex;         /* Flexbox para alinear el checkbox y el texto */
+  align-items: center;   /* Alineación vertical */
+  margin-left: 480px;
+}
+
+
+.submit-evidence {
+  background-color: #28a745; /* Verde */
+  color: white; /* Texto blanco */
+  padding: 10px 20px; /* Relleno del botón */
+  font-size: 16px; /* Tamaño de la fuente */
+  border: none; /* Elimina el borde predeterminado */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s ease; /* Efecto de transición al pasar el ratón */
+  display: block; /* Hace que el botón sea un elemento bloque */
+  margin: 20px auto; /* Centra el botón horizontalmente y añade un margen superior */
+}
+
+.submit-evidence:hover {
+  background-color: #218838; /* Verde más oscuro cuando se pasa el ratón */
+}
