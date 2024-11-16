@@ -123,22 +123,22 @@ h1 {
 
 @media print {
   .color-picker {
-      display: none;
+    display: none;
   }
   .custom-svg{
-      display: none;
+    display: none;
   }
   .print-button{
-      display: none; 
+    display: none;
   }
 }
 
 /* Footer styles */
 footer {
-  
+
   bottom: 0; /* Stick to the bottom of the viewport */
   width: 100%;
-  
+
   text-align: center;
   background-color: #f0f0f0; /* Light background color */
   border-top: 1px solid #ccc; /* Border on top */
@@ -233,6 +233,7 @@ p {
   text-align: left; /* Alinea el texto a la izquierda */
   margin-left: 500px; /* Margen izquierdo para separar del borde */
   margin-top: 10px;
+  display: none;
 }
 
 #skillEvidence {
@@ -243,7 +244,9 @@ p {
   border-radius: 5px;      /* Bordes redondeados */
   box-sizing: border-box;  /* Asegura que el padding no afecte al ancho total */
   margin-top: 10px;        /* Añade espacio arriba del cuadro de texto */
+  margin-left: 500px;
   width: 600px;
+  display: none;
 }
 
 .checkbox-item {
@@ -266,8 +269,20 @@ p {
   transition: background-color 0.3s ease; /* Efecto de transición al pasar el ratón */
   display: block; /* Hace que el botón sea un elemento bloque */
   margin: 20px auto; /* Centra el botón horizontalmente y añade un margen superior */
+  display: none;
 }
 
 .submit-evidence:hover {
   background-color: #218838; /* Verde más oscuro cuando se pasa el ratón */
+}
+
+.skill-score{
+
+}
+
+.resources{
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-left: 500px; /* Margen izquierdo para separar del borde */
+  margin-top: 10px;
+
 }
