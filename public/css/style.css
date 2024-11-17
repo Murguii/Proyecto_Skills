@@ -284,5 +284,50 @@ p {
   text-align: left; /* Alinea el texto a la izquierda */
   margin-left: 500px; /* Margen izquierdo para separar del borde */
   margin-top: 10px;
+}
 
+
+
+.acceptButton{
+  background-color: #28a745; /* Verde */
+  color: white; /* Texto blanco */
+  padding: 10px 10px; /* Relleno del botón */
+  font-size: 16px; /* Tamaño de la fuente */
+  border: none; /* Elimina el borde predeterminado */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s ease; /* Efecto de transición al pasar el ratón */
+  display: block; /* Hace que el botón sea un elemento bloque */
+  margin-right: 10px;
+}
+
+.acceptButton:hover {
+  background-color: #218838; /* Verde más oscuro cuando se pasa el ratón */
+}
+
+.rejectButton{
+  background-color: #ff4c4c; /* Verde */
+  color: white; /* Texto blanco */
+  padding: 10px 10px; /* Relleno del botón */
+  font-size: 16px; /* Tamaño de la fuente */
+  border: none; /* Elimina el borde predeterminado */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s ease; /* Efecto de transición al pasar el ratón */
+  display: block; /* Hace que el botón sea un elemento bloque */
+}
+
+.rejectButton:hover {
+  background-color: #cc0000; /* Verde más oscuro cuando se pasa el ratón */
+}
+
+.buttonTd {
+  display: flex;          /* Utiliza flexbox para que los botones estén en una fila */
+  justify-content: center; /* Centra los botones horizontalmente dentro de la celda */
+}
+
+.tableEvidences {
+  width: 100%; /* La tabla ocupará todo el ancho disponible */
+  margin: 20px 0; /* Espacio arriba y abajo */
+  border-collapse: collapse; /* Hace que las celdas de la tabla estén más cercanas */
 }

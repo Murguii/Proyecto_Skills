@@ -51,6 +51,23 @@
       <li>Library: canvas-confetti for animation</li>
     </ul>
   </div>
+
+  <!-- Contenedor de la tabla de evidencias -->
+  <div id="tablaContainer">
+    <h2>Unverified Evidence Submissions</h2>
+    <table class="tableEvidences">
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>Evidence</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody id="evidenceTableBody">
+      <!-- Aquí se añadirán las filas dinámicamente -->
+      </tbody>
+    </table>
+  </div>
 </main>
 <footer>
   <a href="/">Back to Home</a>
@@ -62,7 +79,51 @@
   const evidenceSection = document.getElementById('provideEvidenceHeader');
   const skillEvidence = document.getElementById('skillEvidence');
   const submitButton = document.getElementById('submitEvidenceButton');
+  const tableBody = document.getElementById('evidenceTableBody');
 
+  submitButton.addEventListener('click', () => {
+    let textEvidence = skillEvidence.value;
+    console.log(textEvidence);
+    if(textEvidence){
+      //crear una nueva fila
+      let row = document.createElement('tr');
+
+      //crear la celda con el nombre del usuario
+      let userData = document.createElement('td');
+      userData.textContent = 'nombre del usuario';
+
+      //crear la celda con el texto de la evidencia
+      let evidenceData = document.createElement('td');
+      evidenceData.textContent = textEvidence;
+
+      //crear la celda donde estarán los botones de aceptar y rechazar
+      let actionData = document.createElement('td');
+      actionData.className = 'buttonTd';
+
+      let acceptButton = document.createElement('button');
+      acceptButton.textContent = 'Approve';
+      acceptButton.className = 'acceptButton';
+
+      let rejectButton = document.createElement('button');
+      rejectButton.textContent = 'Reject';
+      rejectButton.className = 'rejectButton';
+
+      //añadimos los botones a la celda anterior
+      actionData.appendChild(acceptButton);
+      actionData.appendChild(rejectButton);
+
+      //añadimos las celdas a la fila
+      row.appendChild(userData);
+      row.appendChild(evidenceData);
+      row.appendChild(actionData);
+
+      //añadimos la fila a la tabla
+      tableBody.appendChild(row);
+
+      //dejamos vacio el input text de las evidencias
+      skillEvidence.value = '';
+    }
+  });
 
   // Función para comprobar si todos los checkboxes están seleccionados
   checkboxes.forEach(checkbox => {

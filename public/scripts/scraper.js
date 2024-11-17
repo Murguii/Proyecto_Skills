@@ -43,7 +43,7 @@ async function scrap() {
         }, baseUrl);
 
         // Guardar la información en un archivo JSON
-        fs.writeFileSync('../../skills.json', JSON.stringify(data, null, 2));
+        fs.writeFileSync('../skills.json', JSON.stringify(data, null, 2));
 
         console.log('Data saved to skills.json');
 

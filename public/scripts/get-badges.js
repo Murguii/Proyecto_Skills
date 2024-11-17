@@ -18,7 +18,7 @@ axios.get('https://github.com/Obijuan/digital-electronics-with-open-FPGAs-tutori
 
         // Selecciona las tablas 6, 7, 8, 9 y 10
         const selectedTables = [6, 7, 8, 9, 10];
-        min=0;
+        let min=0;
         selectedTables.forEach(tableIndex => {
             $('table').eq(tableIndex).find('tr').each((index, element) => {
                 const rango = $(element).find('td').eq(2).text().trim();
