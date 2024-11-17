@@ -30,6 +30,28 @@ function createHexagons(skills) {
     text.setAttribute('text-anchor', 'middle');
     text.setAttribute('fill', 'black');
     text.setAttribute('font-size', '10');
+
+    if (skill.pendingEvidences >= 0){
+      const evidenceCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      evidenceCircle.setAttribute('cx', '15'); // Coordenada x del centro
+      evidenceCircle.setAttribute('cy', '15'); // Coordenada y del centro
+      evidenceCircle.setAttribute('r', '10'); // Radio del círculo
+      evidenceCircle.setAttribute('fill', 'red'); // Color rojo
+
+      // Añadir el texto dentro del círculo
+      const evidenceText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      evidenceText.setAttribute('x', '15');
+      evidenceText.setAttribute('y', '20'); // Ajusta la posición vertical
+      evidenceText.setAttribute('text-anchor', 'middle');
+      evidenceText.setAttribute('fill', 'white'); // Texto blanco
+      evidenceText.setAttribute('font-size', '10');
+      evidenceText.setAttribute('font-weight', 'bold');
+      evidenceText.textContent = skill.pendingEvidences;
+
+      svg.appendChild(evidenceCircle); // Añadir el círculo al SVG
+      svg.appendChild(evidenceText);  // Añadir el texto dentro del círculo
+    }
+
   
     const lines = skill.text.split("\n\n\n");
     lines.forEach((line, index) => {

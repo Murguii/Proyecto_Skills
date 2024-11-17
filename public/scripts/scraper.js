@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+    const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 // URL de la página web y del dominio base
