@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .auth-view {
+            text-align: center;
+        }
+        .auth-view a {
+            color: #007bff;
+        }
+    </style>
+    <script>
+        async function loginUser(){
+            const name = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const errorMessage = document.getElementById('error-message');
+
+                const response = await fetch('/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: name, password: password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok){
+                    errorMessage.textContent = data.message || 'Ha ocurrido un error durante el login intentalo de nuevo';
+                } else {
+                    window.location.href = '/';
+                }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div id="login-view" class="auth-view">
+        <h2>Login</h2>
+        <form id="login-form" onsubmit="event.preventDefault(); loginUser();">
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="/users/register">Register here</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

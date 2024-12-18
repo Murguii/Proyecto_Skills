@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .auth-view {
+            text-align: center;
+        }
+        .auth-view a {
+            color: #007bff;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+        .success-message {
+            color: green;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        async function registerUser(){
+            const name = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Las contraseñas no coinciden';
+            }
+            else{
+                const response = await fetch('/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: name, password: password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    successMessage.textContent = '¡Registro completado!';
+                } else {
+                    errorMessage.textContent = data.message || 'Ha ocurrido un error en el registro. Intentalo de nuevo.';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div id="register-view" class="auth-view">
+        <h2>Register</h2>
+        <form id="register-form" onsubmit="event.preventDefault(); registerUser();">
+            <div class="form-group">
+                <label for="register-username">Username</label>
+                <input type="text" id="register-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="register-confirm-password">Confirm Password</label>
+                <input type="password" id="register-confirm-password" name="confirmPassword" required>
+            </div>
+            <div id="error-message" class="error-message"></div>
+            <div id="success-message" class="success-message"></div>
+            <button type="submit">Register</button>
+            <p>Already have an account? <a href="/users/login">Login here</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

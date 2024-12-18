@@ -4,11 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var fs = require('fs'); // Para leer el archivo skills.json
+const connectDB = require('./config/database');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Conexión a MongoDB
+connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
