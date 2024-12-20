@@ -10,9 +10,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    role: { //definiremos si el usuario es un usuario común o un admin
-        type: String,
-        default: 'standard' //por defecto usuario estándar
+    score: {
+        type: Number,
+        default: 0
+    },
+    admin: { //definiremos si el usuario es un usuario común o un admin
+        type: Boolean,
+        default: false //por defecto usuario estándar
+    },
+    completedSkills: {
+        type: [] //falta como referenciar a las skills ¿¿(mongoose.Schema.Types.ObjectId, href = 'Skill')??
     }
 });
 

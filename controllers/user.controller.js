@@ -12,7 +12,7 @@ exports.registerUser = async (req, res, next) => {
             const users = await User.find();
             const hashedPassword = await bcrypt.hash(password, 10);
             if (users.length === 0){ //no hay usuarios registrados por lo tanto es un admin
-                const role = "admin";
+                const role = true;
                 const user = new User({ username,  password: hashedPassword, role });
                 const savedUser = await user.save();
                 res.status(201).json(savedUser);
