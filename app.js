@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var fs = require('fs'); // Para leer el archivo skills.json
 const connectDB = require('./config/database');
+const session = require('express-session');
 
 
 var indexRouter = require('./routes/index');
@@ -24,6 +25,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Rutas existentes
 app.use('/', indexRouter);
