@@ -6,6 +6,9 @@ var logger = require('morgan');
 var fs = require('fs'); // Para leer el archivo skills.json
 const connectDB = require('./config/database');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
+const User = require('./models/user.model');
 
 
 var indexRouter = require('./routes/index');
@@ -25,11 +28,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+/*
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
   saveUninitialized: true
+}));
+*/
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: 'mongodb://localhost:27017/skillsbd'
+  })
 }));
 
 // Rutas existentes

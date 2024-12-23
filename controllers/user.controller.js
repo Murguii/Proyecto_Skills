@@ -15,13 +15,11 @@ exports.registerUser = async (req, res, next) => {
                 //const role = true;
                 const user = new User({ username,  password: hashedPassword, admin: true });
                 const savedUser = await user.save();
-                req.session.user = username;
                 res.status(201).json(savedUser);
             }
             else { //ya hay usuarios registrados por lo tanto es un usuario standard
                 const user = new User({ username,  password: hashedPassword });
                 const savedUser = await user.save();
-                req.session.user = username;
                 res.status(201).json(savedUser);
             }
         }
@@ -46,12 +44,8 @@ exports.loginUser = async (req, res, next) => {
         }
 
         //return res.redirect('/');
+        req.session.user = user;
         return res.status(201).json({ message: 'Login exitoso' });
-
-        /*
-        req.session.user = username;
-        res.redirect('/dashboard');
-        */
 
     } catch (error) {
         next(error);
