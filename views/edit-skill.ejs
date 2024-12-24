@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Competencia</title>
+</head>
+<body>
+    <h1>Editar Competencia en el Árbol: <%= skillTreeName %></h1>
+    <form action="/skills/<%= skillTreeName %>/edit/<%= skill.id %>" method="POST">
+        <label for="text">Nombre de la Competencia:</label>
+        <input type="text" id="text" name="text" value="<%= skill.text %>" required><br><br>
+
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required><%= skill.description %></textarea><br><br>
+
+        <label for="icon">URL del Ícono:</label>
+        <input type="text" id="icon" name="icon" value="<%= skill.icon %>"><br><br>
+
+        <label for="score">Puntuación:</label>
+        <input type="number" id="score" name="score" value="<%= skill.score %>" required><br><br>
+
+        <label for="tasks">Tareas (una por línea):</label>
+        <textarea id="tasks" name="tasks" required><%= skill.tasks.join('\n') %></textarea><br><br>
+
+        <label for="resources">Recursos (uno por línea):</label>
+        <textarea id="resources" name="resources" required><%= skill.resources.join('\n') %></textarea><br><br>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Competencia</title>
+</head>
+<body>
+    <h1>Añadir Competencia al Árbol: <%= skillTreeName %></h1>
+    <form action="/skills/<%= skillTreeName %>/add" method="POST">
+        <label for="text">Nombre de la Competencia:</label>
+        <input type="text" id="text" name="text" required><br><br>
+
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="icon">URL del Ícono:</label>
+        <input type="text" id="icon" name="icon"><br><br>
+
+        <label for="score">Puntuación:</label>
+        <input type="number" id="score" name="score" required><br><br>
+
+        <label for="tasks">Tareas (una por línea):</label>
+        <textarea id="tasks" name="tasks" required></textarea><br><br>
+
+        <label for="resources">Recursos (uno por línea):</label>
+        <textarea id="resources" name="resources" required></textarea><br><br>
+
+        <button type="submit">Añadir Competencia</button>
+    </form>
+</body>
+</html>

@@ -2,15 +2,24 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
+    <link rel="stylesheet" href="/css/style.css" />
     <script type="module" src="/js/main.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
-    <h1>ELECTRONICS</h1>
+    <% if (user) { %>
+      <h1>Bienvenido, <%= user.username %>!</h1>
+    <% } else { %>
+      <h1>Bienvenido a Skills App</h1>
+    <% } %>
+
     <div id="hexagon-container" class="svg-container" adminValue="<%= isAdmin %>">
       <!-- Los hexágonos se generarán aquí -->
     </div>
+    
     <!-- Caja de descripción para mostrar información al pasar el mouse sobre un hexágono -->
     <div id="description-box" class="description-box">
       <h3 id="description-title"></h3>

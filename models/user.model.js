@@ -14,22 +14,22 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    admin: { //definiremos si el usuario es un usuario común o un admin
+    admin: { // define si el usuario es un admin o no
         type: Boolean,
-        default: false //por defecto usuario estándar
+        default: false // por defecto es usuario estándar
     },
-    completedSkills: {
-        type: [] //falta como referenciar a las skills ¿¿(mongoose.Schema.Types.ObjectId, href = 'Skill')??
-    }
+    completedSkills: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Skill' // Referencia al modelo 'Skill'
+    }]
+}, {
+    timestamps: true // Agrega createdAt y updatedAt automáticamente
 });
 
-// Middlewares
-/*
-estudianteSchema.pre('save', function(next) {
-    this.nombre = this.nombre.charAt(0).toUpperCase() + this.nombre.slice(1);
+// Middleware para transformar datos o aplicar lógica antes de guardar
+userSchema.pre('save', function(next) {
+    this.username = this.username.trim(); // Elimina espacios al inicio y al final
     next();
-}); */
-
-
+});
 
 module.exports = mongoose.model('User', userSchema);

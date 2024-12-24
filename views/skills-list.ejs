@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competencias - <%= skillTreeName %></title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 40px;
+            max-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Árbol de Competencias: <%= skillTreeName %></h1>
+    <a href="/skills/">Regresar a Competencias</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Ícono</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Puntuación</th>
+                <th>Tareas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (skills.length === 0) { %>
+                <tr>
+                    <td colspan="5" style="text-align: center;">No hay competencias registradas</td>
+                </tr>
+            <% } else { %>
+                <% skills.forEach(skill => { %>
+                    <tr>
+                        <td>
+                            <% if (skill.icon) { %>
+                                <img src="<%= skill.icon %>" alt="<%= skill.text %>">
+                            <% } else { %>
+                                Sin Ícono
+                            <% } %>
+                        </td>
+                        <td><%= skill.text %></td>
+                        <td><%= skill.description %></td>
+                        <td><%= skill.score %></td>
+                        <td>
+                            <ul>
+                                <% skill.tasks.forEach(task => { %>
+                                    <li><%= task %></li>
+                                <% }) %>
+                            </ul>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+    <td>
+        <form action="/skills/<%= skillTreeName %>/delete/<%= skill.id %>" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('¿Estás seguro de eliminar esta competencia?')">Eliminar</button>
+        </form>
+    </td>    
+</body>
+</html>

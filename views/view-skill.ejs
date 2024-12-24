@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Competencia</title>
+</head>
+<body>
+    <h1>Detalles de la Competencia</h1>
+    <h2><%= skill.text %></h2>
+    <p><strong>Descripción:</strong> <%= skill.description %></p>
+    <p><strong>Puntuación:</strong> <%= skill.score %></p>
+    <p><strong>Tareas:</strong></p>
+    <ul>
+        <% skill.tasks.forEach(task => { %>
+            <li><%= task %></li>
+        <% }) %>
+    </ul>
+    <p><strong>Recursos:</strong></p>
+    <ul>
+        <% skill.resources.forEach(resource => { %>
+            <li><a href="<%= resource %>" target="_blank"><%= resource %></a></li>
+        <% }) %>
+    </ul>
+    <h3>Evidencias:</h3>
+    <% if (evidences.length === 0) { %>
+        <p>No hay evidencias para esta competencia.</p>
+    <% } else { %>
+        <ul>
+            <% evidences.forEach(evidence => { %>
+                <li>
+                    Usuario: <%= evidence.user.username %> - Evidencia: <%= evidence.evidence %> - Estado: <%= evidence.status %>
+                    <% if (evidence.status === 'pending') { %>
+                        <form action="/skills/<%= skillTreeName %>/<%= skill.id %>/verify" method="POST" style="display:inline;">
+                            <input type="hidden" name="userSkillId" value="<%= evidence._id %>">
+                            <button type="submit" name="approved" value="true">Aprobar</button>
+                            <button type="submit" name="approved" value="false">Rechazar</button>
+                        </form>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+    <h3>Enviar Evidencia</h3>
+    <form action="/skills/<%= skillTreeName %>/submit-evidence" method="POST">
+        <input type="hidden" name="skillId" value="<%= skill.id %>">
+        <textarea name="evidence" placeholder="Describe tu evidencia" required></textarea><br><br>
+        <button type="submit">Enviar Evidencia</button>
+    </form>
+    <a href="/skills/<%= skillTreeName %>">Regresar al Árbol</a>
+</body>
+</html>

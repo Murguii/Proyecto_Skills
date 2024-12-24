@@ -1,0 +1,92 @@
+const Badge = require('../models/badge.model');
+
+exports.getEditBadge = async (req, res) => {
+    try {
+        const badgeId = req.params.id;
+        const badge = await Badge.findById(badgeId);
+
+        if (!badge) {
+            return res.status(404).send('Insignia no encontrada');
+        }
+
+        res.render('edit-badge', { badge });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al cargar la insignia');
+    }
+};
+
+exports.postEditBadge = async (req, res) => {
+    try {
+        const badgeId = req.params.id;
+        const { name, range, bitpoints_min, bitpoints_max, image_url } = req.body;
+
+        const badge = await Badge.findByIdAndUpdate(
+            badgeId,
+            {
+                name,
+                range,
+                bitpoints_min,
+                bitpoints_max,
+                image_url,
+            },
+            { new: true }
+        );
+
+        if (!badge) {
+            return res.status(404).send('Insignia no encontrada');
+        }
+
+        res.redirect('/admin/badges');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al actualizar la insignia');
+    }
+};
+
+exports.postDeleteBadge = async (req, res) => {
+    try {
+        const badgeId = req.params.id;
+
+        const result = await Badge.findByIdAndDelete(badgeId);
+
+        if (!result) {
+            return res.status(404).send('Insignia no encontrada');
+        }
+
+        res.redirect('/admin/badges');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al eliminar la insignia');
+    }
+};
+
+exports.changePassword = async (req, res) => {
+    const { userId, newPassword } = req.body;
+
+    if (!userId || !newPassword) {
+        return res.status(400).json({ message: 'Se requieren userId y newPassword' });
+    }
+
+    try {
+        // Hashea la nueva contraseña
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Actualiza el usuario
+        const user = await User.findByIdAndUpdate(userId, { password: hashedPassword });
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        res.json({ message: 'Contraseña actualizada con éxito' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al cambiar la contraseña' });
+    }
+};
+
+exports.dashboard = (req, res) => {
+    res.render('admin-dashboard', { username: req.user.username || 'Admin' });
+};
+

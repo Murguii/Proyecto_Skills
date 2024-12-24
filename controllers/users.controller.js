@@ -43,12 +43,49 @@ exports.loginUser = async (req, res, next) => {
             return res.status(400).json({ message: 'Contraseña incorrecta' });
         }
 
-        //return res.redirect('/');
+        // Guardar usuario en la sesión
         req.session.user = user;
-        return res.status(201).json({ message: 'Login exitoso' });
 
+        // Redirigir según el rol del usuario
+        if (user.admin) {
+            return res.status(200).json({ redirect: '/admin/dashboard' }); // Página de admin
+        } else {
+            return res.status(200).json({ redirect: '/skills' }); // Página estándar
+        }
     } catch (error) {
         next(error);
     }
 };
+
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+            .select('username score admin completedSkills') // Selecciona solo los campos necesarios
+            .populate('completedSkills', 'text'); // Opcional: Si quieres mostrar el nombre de las habilidades completadas
+
+        // Prepara los datos para la vista
+        const userList = users.map(user => ({
+            username: user.username,
+            score: user.score,
+            admin: user.admin,
+            completedSkillsCount: user.completedSkills ? user.completedSkills.length : 0
+        }));
+
+        res.render('admin-users', { users: userList });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al obtener la lista de usuarios');
+    }
+};
+
+exports.getRegisterForm = (req, res) => {
+    res.render('register');
+};
+
+exports.getLoginForm = (req, res) => {
+    res.render('login'); // Renderiza la vista `login.ejs`
+};
+
+
+
 

@@ -41,14 +41,36 @@
         }
         .auth-view a {
             color: #007bff;
+            display: inline-block;
+            margin: 10px 0;
+            text-decoration: none;
+        }
+        .auth-view .social-login {
+            margin-top: 20px;
+        }
+        .social-login a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .social-login .btn-google {
+            background-color: #db4437;
+        }
+        .social-login .btn-github {
+            background-color: #333;
         }
     </style>
     <script>
-        async function loginUser(){
+        async function loginUser() {
             const name = document.getElementById('login-username').value;
             const password = document.getElementById('login-password').value;
             const errorMessage = document.getElementById('error-message');
 
+            try {
                 const response = await fetch('/users/login', {
                     method: 'POST',
                     headers: {
@@ -59,15 +81,20 @@
 
                 const data = await response.json();
 
-                if (!response.ok){
-                    errorMessage.textContent = data.message || 'Ha ocurrido un error durante el login intentalo de nuevo';
+                if (!response.ok) {
+                    errorMessage.textContent = data.message || 'Ha ocurrido un error durante el login. Inténtalo de nuevo.';
                 } else {
-                    window.location.href = '/';
+                    // Redirige a la URL especificada por el servidor
+                    window.location.href = data.redirect;
                 }
+            } catch (error) {
+                errorMessage.textContent = 'Error de conexión con el servidor.';
+            }
         }
     </script>
 </head>
 <body>
+<p id="error-message" style="color: red;"></p>
 <div class="container">
     <div id="login-view" class="auth-view">
         <h2>Login</h2>
@@ -83,6 +110,11 @@
             <button type="submit">Login</button>
             <p>Don't have an account? <a href="/users/register">Register here</a></p>
         </form>
+        <div class="social-login">
+            <h3>Or Login with:</h3>
+            <a href="/auth/google" class="btn-google">Login with Google</a>
+            <a href="/auth/github" class="btn-github">Login with GitHub</a>
+        </div>
     </div>
 </div>
 </body>
