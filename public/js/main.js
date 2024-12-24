@@ -8,6 +8,8 @@ fetch('/skills.json')
 
 function createHexagons(skills) {
   const container = document.getElementById('hexagon-container');
+  const isAdmin = container.getAttribute('adminValue'); //devuelve un string en vez de un booleano
+  console.log('Admin value: ', isAdmin);
   
   skills.forEach(skill => {
     const hexagonWrapper = document.createElement('div');
@@ -73,11 +75,14 @@ function createHexagons(skills) {
     // Crear contenedor para los íconos adicionales (lápiz y cuaderno)
     const iconsContainer = document.createElement('div');
     iconsContainer.classList.add('icons');
-    
-    const pencilIcon = document.createElement('span');
-    pencilIcon.classList.add('icon-pencil');
-    pencilIcon.textContent = '✏️';
-  
+
+    if (isAdmin === 'true'){
+      const pencilIcon = document.createElement('span');
+      pencilIcon.classList.add('icon-pencil');
+      pencilIcon.textContent = '✏️';
+      iconsContainer.appendChild(pencilIcon);
+    }
+
     const notebookIcon = document.createElement('span');
     notebookIcon.classList.add('icon-notebook');
     notebookIcon.textContent = '📒';
@@ -86,8 +91,7 @@ function createHexagons(skills) {
     notebookIcon.addEventListener('click', () => {
       window.location.href = `/skill/${skill.id}`;  // Redirige a la página de la habilidad
     });
-  
-    iconsContainer.appendChild(pencilIcon);
+
     iconsContainer.appendChild(notebookIcon);
   
     svg.appendChild(hexagon);
@@ -118,6 +122,5 @@ function createHexagons(skills) {
       descriptionBox.style.display = 'none'; // Oculta la caja cuando el ratón se retira del hexágono
     });
   });
-
 
 }
