@@ -1,4 +1,8 @@
 const Badge = require('../models/badge.model');
+const fs = require('fs');
+const path = require('path');
+const bcrypt = require("bcrypt");
+const User = require('../models/user.model');
 
 exports.getEditBadge = async (req, res) => {
     try {
@@ -88,7 +92,7 @@ exports.changePassword = async (req, res) => {
 
 exports.getBadges = (req, res) => {
     try {
-        const badgesPath = path.join(__dirname, '../medals.json');
+        const badgesPath = path.join(__dirname, '../public/medals.json');
         const badges = JSON.parse(fs.readFileSync(badgesPath, 'utf8'));
         res.render('admin-badges', { badges });
     } catch (error) {
