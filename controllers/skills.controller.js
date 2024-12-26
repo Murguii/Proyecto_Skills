@@ -203,3 +203,21 @@ exports.deleteSkill = async (req, res) => {
 exports.getSkills = (req, res) => {
     res.render('skills', { user: req.user }); // Renderiza las habilidades disponibles
 };
+
+//para cargar la página de la skill concreta
+exports.viewSkill = async (req, res) => {
+    const { skillTreeName, skillID } = req.params;
+
+    try {
+        // Buscar la habilidad en la base de datos en vez del ¿¿json??
+        const skill = await Skill.findOne({ set: skillTreeName, id: skillID });
+
+        if (!skill) {
+            return res.status(404).json({ message: 'Skill not found' });
+        }
+
+        res.render('skillPage', { skill });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
+};

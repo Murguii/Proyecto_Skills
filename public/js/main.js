@@ -80,16 +80,22 @@ function createHexagons(skills) {
       const pencilIcon = document.createElement('span');
       pencilIcon.classList.add('icon-pencil');
       pencilIcon.textContent = '✏️';
+
+      pencilIcon.addEventListener('click', () => {
+        window.location.href = `/skills/${skill.set}/edit/${skill.id}`;  // Redirige a la página para editar la habilidad
+      });
+
       iconsContainer.appendChild(pencilIcon);
     }
 
     const notebookIcon = document.createElement('span');
     notebookIcon.classList.add('icon-notebook');
     notebookIcon.textContent = '📒';
-    
+
     // Evento para redirigir a la página del cuaderno
     notebookIcon.addEventListener('click', () => {
-      window.location.href = `/skill/${skill.id}`;  // Redirige a la página de la habilidad
+      //window.location.href = `/skill/${skill.id}`;  // Redirige a la página de la habilidad
+      window.location.href = `/skills/${skill.set}/view/${skill.id}`;  // Redirige a la página de la habilidad
     });
 
     iconsContainer.appendChild(notebookIcon);
