@@ -3,9 +3,6 @@ const router = express.Router();
 const { isAdmin } = require('../middlewares/isAuthenticated');
 const adminController = require('../controllers/admin.controller');
 
-console.log('isAdmin:', isAdmin);
-console.log('adminController:', adminController);
-
 // GET /admin/badges
 router.get('/badges', isAdmin, adminController.getBadges);
 

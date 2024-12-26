@@ -1,4 +1,4 @@
-    const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 // URL de la página web y del dominio base
@@ -20,30 +20,41 @@ async function scrap() {
             let skills = [];
 
             skillDivs.forEach(div => {
-                const id = div.getAttribute('data-id');
+                const id = parseInt(div.getAttribute('data-id'), 10);
                 const textTspan = div.querySelectorAll('text tspan');
                 const arr = [];
                 textTspan.forEach(tspan => arr.push(tspan.textContent));
                 const text = arr.join('\n\n\n');
-                
+
                 // Obtener el icono y construir la URL completa
                 const iconRelativePath = div.querySelector('image').getAttribute('href');
                 const icon = iconRelativePath.startsWith('http')
                     ? iconRelativePath
                     : `${baseUrl}${iconRelativePath.replace(/^\.\.\//, '/')}`;
 
+                // Campos predeterminados
+                const set = "electronics"; // Ajustar según tus necesidades
+                const tasks = []; // Lista vacía por defecto
+                const resources = []; // Lista vacía por defecto
+                const description = "Descripción generada automáticamente"; // Ajustar según tus necesidades
+                const score = 1; // Valor predeterminado
+
                 skills.push({
                     id: id,
                     text: text,
                     icon: icon,
-                    description: description
+                    set: set,
+                    tasks: tasks,
+                    resources: resources,
+                    description: description,
+                    score: score
                 });
             });
             return skills;
         }, baseUrl);
 
         // Guardar la información en un archivo JSON
-        fs.writeFileSync('../skills.json', JSON.stringify(data, null, 2));
+        fs.writeFileSync('./public/skills.json', JSON.stringify(data, null, 2));
 
         console.log('Data saved to skills.json');
 

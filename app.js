@@ -6,6 +6,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const connectDB = require('./config/database');
+const seedBadges = require('./utils/seedBadges');
+const seedSkills = require('./utils/seedSkills'); // Importa la función
 
 // Importación de routers
 const adminRouter = require('./routes/admin');
@@ -18,7 +20,11 @@ require('./config/passport');
 const app = express();
 
 // Conexión a MongoDB
-connectDB();
+connectDB().then(() => {
+    // Inicializa las insignias y habilidades al conectar a la base de datos
+    seedBadges();
+    //seedSkills();
+});
 
 // Configuración de vistas
 app.set('views', path.join(__dirname, 'views'));
@@ -43,6 +49,14 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Middleware para manejar mensajes flash
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 // Rutas
 app.use('/', indexRouter); // Siempre muestra el login
