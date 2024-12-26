@@ -3,6 +3,9 @@ const router = express.Router();
 const { isAdmin } = require('../middlewares/isAuthenticated');
 const adminController = require('../controllers/admin.controller');
 
+console.log('isAdmin:', isAdmin);
+console.log('adminController:', adminController);
+
 // GET /admin/badges
 router.get('/badges', isAdmin, adminController.getBadges);
 
@@ -18,7 +21,15 @@ router.post('/badges/delete/:id', isAdmin, adminController.postDeleteBadge);
 // POST /admin/change-password
 router.post('/change-password', isAdmin, adminController.changePassword);
 
-// GET /admin/dashboard
 router.get('/dashboard', adminController.dashboard);
+
+router.get('/users', isAdmin, adminController.getUsers);
+
+
+// GET /admin/dashboard
+exports.dashboard = (req, res) => {
+    res.render('admin-dashboard', { username: req.user?.username || 'Admin' });
+};
+
 
 module.exports = router;

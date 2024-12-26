@@ -331,3 +331,77 @@ p {
   margin: 20px 0; /* Espacio arriba y abajo */
   border-collapse: collapse; /* Hace que las celdas de la tabla estén más cercanas */
 }
+
+/* Estilos para la cabecera */
+.header {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.header nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para los mensajes */
+.alert {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+/* Botón azul */
+#add-skill-button {
+  background-color: #007bff; /* Azul */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block; /* Asegura que esté en una nueva línea */
+  margin: 0 auto; /* Centra el botón */
+}
+
+#add-skill-button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+.header {
+  background-color: #ffeb3b; /* Amarillo */
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.header nav a:hover {
+  text-decoration: underline;
+}

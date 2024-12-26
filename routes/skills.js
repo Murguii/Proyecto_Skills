@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { isAuthenticated } = require('../middlewares/isAuthenticated'); // Middleware de autenticación
+const { isAdmin } = require('../middlewares/isAuthenticated');
 const skillsController = require('../controllers/skills.controller'); // Importa el controlador
 
 // Editar Skill

@@ -66,29 +66,27 @@
     </style>
     <script>
         async function loginUser() {
-            const name = document.getElementById('login-username').value;
+            const username = document.getElementById('login-username').value;
             const password = document.getElementById('login-password').value;
             const errorMessage = document.getElementById('error-message');
 
             try {
                 const response = await fetch('/users/login', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username: name, password: password })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
                 });
 
                 const data = await response.json();
 
                 if (!response.ok) {
-                    errorMessage.textContent = data.message || 'Ha ocurrido un error durante el login. Inténtalo de nuevo.';
+                    errorMessage.textContent = data.message || 'Error durante el inicio de sesión.';
                 } else {
                     // Redirige a la URL especificada por el servidor
                     window.location.href = data.redirect;
                 }
             } catch (error) {
-                errorMessage.textContent = 'Error de conexión con el servidor.';
+                errorMessage.textContent = 'Error al conectar con el servidor.';
             }
         }
     </script>

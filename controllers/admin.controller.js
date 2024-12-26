@@ -86,7 +86,28 @@ exports.changePassword = async (req, res) => {
     }
 };
 
-exports.dashboard = (req, res) => {
-    res.render('admin-dashboard', { username: req.user.username || 'Admin' });
+exports.getBadges = (req, res) => {
+    try {
+        const badgesPath = path.join(__dirname, '../medals.json');
+        const badges = JSON.parse(fs.readFileSync(badgesPath, 'utf8'));
+        res.render('admin-badges', { badges });
+    } catch (error) {
+        console.error('Error al cargar las insignias:', error);
+        res.status(500).send('Error al cargar las insignias.');
+    }
 };
 
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await User.find(); // Consulta todos los usuarios
+        res.render('admin-users', { users }); // Renderiza admin-users.ejs
+    } catch (error) {
+        console.error('Error al obtener usuarios:', error);
+        res.status(500).send('Error al cargar los usuarios');
+    }
+};
+
+
+exports.dashboard = (req, res) => {
+    res.render('admin-dashboard', { username: req.user?.username || 'Admin' });
+};

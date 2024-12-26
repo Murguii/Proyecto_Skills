@@ -46,16 +46,13 @@ exports.loginUser = async (req, res, next) => {
         // Guardar usuario en la sesión
         req.session.user = user;
 
-        // Redirigir según el rol del usuario
-        if (user.admin) {
-            return res.status(200).json({ redirect: '/admin/dashboard' }); // Página de admin
-        } else {
-            return res.status(200).json({ redirect: '/skills' }); // Página estándar
-        }
+        // Redirigir a /index después del login
+        return res.status(200).json({ redirect: '/index' });
     } catch (error) {
         next(error);
     }
 };
+
 
 exports.getUsers = async (req, res) => {
     try {

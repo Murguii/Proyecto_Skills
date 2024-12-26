@@ -3,11 +3,11 @@ const Evidence = require('../models/evidence.model');
 
 exports.redirectToDefaultSkill = (req, res) => {
     try {
-        // Cambia "electronics" por la categoría predeterminada de competencias
-        res.redirect('/skills/electronics');
+        // Renderiza directamente la vista index.ejs
+        res.render('index', { user: req.user }); // Pasa información del usuario si es necesario
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error al redirigir a las competencias');
+        res.status(500).send('Error al cargar la página de inicio');
     }
 };
 
@@ -198,4 +198,8 @@ exports.deleteSkill = async (req, res) => {
         console.error(error);
         res.status(500).send('Error al eliminar la competencia');
     }
+};
+
+exports.getSkills = (req, res) => {
+    res.render('skills', { user: req.user }); // Renderiza las habilidades disponibles
 };

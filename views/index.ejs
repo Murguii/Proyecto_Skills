@@ -8,18 +8,44 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/6.0.0-beta3/css/all.min.css"
     />
+    <style>
+      #add-skill-button {
+        background-color: #007bff; /* Azul */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block; /* Asegura que esté en una nueva línea */
+        margin: 0 auto; /* Centra el botón */
+      }
+
+      #add-skill-button:hover {
+        background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+      }
+    </style>
   </head>
   <body>
-    <% if (user) { %>
-      <h1>Bienvenido, <%= user.username %>!</h1>
-    <% } else { %>
-      <h1>Bienvenido a Skills App</h1>
+    <!-- Cabecera -->
+    <%- include('partials/username-display', { user: user }) %>
+
+    <!-- Mensajes -->
+    <%- include('partials/messages') %>
+
+    <!-- Contenido principal -->
+    <h1>ELECTRONICS</h1>
+
+    <% if (isAdmin) { %>
+    <!-- Botón azul para añadir skills -->
+    <button id="add-skill-button" onclick="window.location.href='/skills/add'">Add New Skill</button>
     <% } %>
 
+    <!-- Contenedor de los hexágonos -->
     <div id="hexagon-container" class="svg-container" adminValue="<%= isAdmin %>">
       <!-- Los hexágonos se generarán aquí -->
     </div>
-    
+
     <!-- Caja de descripción para mostrar información al pasar el mouse sobre un hexágono -->
     <div id="description-box" class="description-box">
       <h3 id="description-title"></h3>

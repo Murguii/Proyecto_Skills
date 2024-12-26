@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Bienvenido al panel de administración</h1>
+    <h1>Bienvenido al Panel de Administración</h1>
     <p>Usuario: <%= username %></p>
-    <a href="/admin/badges">Gestionar Insignias</a>
-    <a href="/admin/users">Gestionar Usuarios</a>
+    
+    <div class="admin-options">
+        <a href="/admin/badges" class="btn btn-primary">Gestionar Insignias</a>
+        <a href="/admin/users" class="btn btn-primary">Gestionar Usuarios</a>
+    </div>
 </body>
 </html>

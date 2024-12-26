@@ -7,11 +7,11 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const connectDB = require('./config/database');
 
+// Importación de routers
 const adminRouter = require('./routes/admin');
-const authRouter = require('./routes/auth');
-const indexRouter = require('./routes/index');
-const skillsRouter = require('./routes/skills');
+const indexRouter = require('./routes/index'); // Maneja el login
 const usersRouter = require('./routes/users');
+const skillsRouter = require('./routes/skills');
 
 require('./config/passport');
 
@@ -20,20 +20,22 @@ const app = express();
 // Conexión a MongoDB
 connectDB();
 
-// Configuración de vista
+// Configuración de vistas
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configuración de sesiones
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false, // No crea sesiones vacías
     store: MongoStore.create({
         mongoUrl: 'mongodb://localhost:27017/skillsbd'
     })
@@ -43,25 +45,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Rutas
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
-app.use('/skills', skillsRouter);
+app.use('/', indexRouter); // Siempre muestra el login
+app.use('/users', usersRouter); // Rutas relacionadas con usuarios
+app.use('/admin', adminRouter); // Rutas de administración
+app.use('/skills', skillsRouter); // Rutas relacionadas con habilidades
 
-// Manejo de errores
+// Manejo de errores 404
 app.use((req, res, next) => {
-    const error = new Error('Not Found');
-    error.status = 404;
-    next(error);
+    res.status(404).render('error', {
+        message: 'Página no encontrada',
+        error: {}
+    });
 });
 
-app.use(function(err, req, res, next) {
-  res.locals.message = err.message; // Pasa el mensaje del error
-  res.locals.error = req.app.get('env') === 'development' ? err : {}; // Solo muestra el stack en modo desarrollo
-
-  res.status(err.status || 500);
-  res.render('error', { message: err.message, error: err });
+// Manejo de errores generales
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.render('error', { message: err.message, error: req.app.get('env') === 'development' ? err : {} });
 });
-
 
 module.exports = app;
