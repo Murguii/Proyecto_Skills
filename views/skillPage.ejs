@@ -19,21 +19,15 @@
   <!-- <img src="<%= skill.icon %>" alt="<%= skill.text %> icon" /> -->
   <h2 class="description-header">Description</h2>
   <!--<p><%= skill.description %></p>-->
-  <p>Texto de la descripción a añadir aquí</p>
+  <p><%= skill.description %></p>
   <h2 class="task-to-complete-header">Tasks to Complete</h2>
   <ul class="checkbox-list">
-    <li class="checkbox-item">
-      <input type="checkbox" id="task1" name="tasks" value="task1">
-      <label for="task1">Texto de la tarea 1</label>
-    </li>
-    <li class="checkbox-item">
-      <input type="checkbox" id="task2" name="tasks" value="task2">
-      <label for="task2">Texto de la tarea 2</label>
-    </li>
-    <li class="checkbox-item">
-      <input type="checkbox" id="task3" name="tasks" value="task3">
-      <label for="task3">Texto de la tarea 3</label>
-    </li>
+    <% skill.tasks.forEach(function(task) { %>
+      <li class="checkbox-item">
+        <input type="checkbox" id="<%= task %>" name="tasks" value="<%= task %>">
+        <label for="<%= task %>"><%= task %></label>
+      </li>
+    <% }); %>
   </ul>
 
   <h2 class="provide-evidence-header" id="provideEvidenceHeader">Provide evidence</h2>
@@ -45,10 +39,11 @@
   <div class="resources">
     <h2 class="resources-header">Resources Used</h2>
     <ul>
-      <li>Online Course: "Mastering JavaScript Basics" - Udemy</li>
-      <li>Book: "Eloquent JavaScript" by Marijn Haverbeke</li>
-      <li>API: MDN Web Docs (JavaScript)</li>
-      <li>Library: canvas-confetti for animation</li>
+      <% skill.resources.forEach(function(re) { %>
+        <li>
+          <label for="<%= re %>"><%= re %></label>
+        </li>
+      <% }); %>
     </ul>
   </div>
 
