@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Editar Insignia</h1>
-    <form action="/admin/badges/edit/<%= badge._id %>" method="POST">
+    <form action="/admin/badges/edit/<%= badge.name %>" method="POST">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" value="<%= badge.name %>" required><br>
 

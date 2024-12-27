@@ -6,8 +6,8 @@ const User = require('../models/user.model');
 
 exports.getEditBadge = async (req, res) => {
     try {
-        const name = req.params.name;
-        const badge = await Badge.findById(name);
+        const nameV = req.params.name;
+        const badge = await Badge.find({name:nameV});
 
         if (!badge) {
             return res.status(404).send('Insignia no encontrada');
