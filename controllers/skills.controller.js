@@ -30,13 +30,13 @@ exports.getSkillsBySet = async (req, res) => {
 };
 
 exports.getAddSkillForm = (req, res) => {
-    const { skillTreeName } = req.params;
+    //const { skillTreeName } = req.params;
 
-    res.render('add-skill', { skillTreeName });
+    res.render('add-skill');
 };
 
 exports.addSkill = async (req, res) => {
-    const { skillTreeName } = req.params;
+    //const { skillTreeName } = req.params;
     const { text, description, icon, score, tasks, resources } = req.body;
 
     try {
@@ -49,13 +49,13 @@ exports.addSkill = async (req, res) => {
             score: parseInt(score, 10), // Convertir puntuación a número
             tasks: tasks.split('\n').map(task => task.trim()), // Dividir tareas por línea
             resources: resources.split('\n').map(resource => resource.trim()), // Dividir recursos por línea
-            set: skillTreeName, // Asociar al conjunto (árbol)
+            set: "electronics", // Asociar al conjunto (árbol)
         });
 
         await newSkill.save();
 
         // Redirigir a la lista de competencias del árbol
-        res.redirect(`/skills/${skillTreeName}`);
+        res.redirect(`/index`);
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al añadir la competencia');

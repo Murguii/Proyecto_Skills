@@ -23,13 +23,13 @@ router.get('/:skillTreeName/add', isAuthenticated, (req, res) => {
 router.get('/', isAuthenticated, skillsController.redirectToDefaultSkill);
 
 // GET /skills/:skillTreeName
-router.get('/:skillTreeName', isAuthenticated, skillsController.getSkillsBySet);
+//router.get('/:skillTreeName', isAuthenticated, skillsController.getSkillsBySet);
 
 // GET /skills/:skillTreeName/add
-router.get('/:skillTreeName/add', isAdmin, skillsController.getAddSkillForm);
+router.get('/add', isAdmin, skillsController.getAddSkillForm);
 
 // POST /skills/:skillTreeName/add
-router.post('/:skillTreeName/add', isAdmin, skillsController.addSkill);
+router.post('/add', isAdmin, skillsController.addSkill);
 
 // GET /skills/:skillTreeName/view/:skillID
 router.get('/:skillTreeName/view/:skillID', isAuthenticated, skillsController.viewSkillDetails);
