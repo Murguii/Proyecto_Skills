@@ -5,6 +5,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon1.svg",
     "description": "Learn the basics of electronics by building a simple circuit to light up an LED for the first time.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Gather necessary components (LED, resistor, battery, wires)",
       "Learn about LED polarity and how to identify anode/cathode",
@@ -25,6 +26,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon2.svg",
     "description": "Master the skill of using wire strippers to prepare wires for various electrical projects.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn about different wire gauges and their uses",
       "Practice stripping different types of wires without damaging the conductor",
@@ -44,6 +46,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon3.svg",
     "description":"Build and complete a beginner-friendly electronics kit while learning about components and circuit assembly.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Choose an appropriate beginner electronics kit",
       "Identify all components in the kit",
@@ -64,6 +67,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
     "description": "Master the basics of soldering, from safety and iron maintenance to creating strong, reliable joints.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn proper soldering iron safety and maintenance",
       "Practice tinning the soldering iron",
@@ -85,6 +89,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon5.svg",
     "description": "Learn to use a breadboard for prototyping circuits, from layout to transferring schematics into physical builds.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Understand breadboard layout and connections",
       "Learn about power rails and distribution",
@@ -106,6 +111,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon6.svg",
     "description":"Build a basic circuit, identify problems, troubleshoot using tools like a multimeter, and document solutions.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Build a basic circuit and identify what's wrong",
       "Learn common circuit troubleshooting techniques", 
@@ -127,6 +133,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon7.svg",
     "description":"Practice diagnosing and fixing errors in circuits, learning from mistakes to improve your troubleshooting skills.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Study the basic principles of Ohm's Law",
       "Practice calculating voltage, current, and resistance",
@@ -148,6 +155,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon8.svg",
     "description": "Learn the process of diagnosing and repairing a broken electronic device, documenting your steps and solutions.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Select a broken electronic device to repair",
       "Research common issues for the device",
@@ -169,6 +177,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
     "description":"Learn how to safely measure voltage in circuits using a multimeter, practicing both DC and AC measurements.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn basic multimeter safety",
       "Practice setting up voltage measurement ranges",
@@ -190,6 +199,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
     "description":"Learn to interpret and create electronic schematics by understanding common symbols and circuit representations.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn common schematic symbols",
       "Practice drawing basic circuit schematics",
@@ -211,6 +221,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon11.svg",
     "description":"Learn to read and understand datasheets, focusing on key sections such as electrical characteristics and pin configurations.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Identify key sections of a datasheet (e.g., electrical characteristics, pin configurations).",
       "Practice reading the datasheet for a simple component (e.g., 555 timer)."
@@ -227,6 +238,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon12.svg",
     "description": "Learn how to control LED brightness using Pulse Width Modulation (PWM) by building a circuit and programming a microcontroller like Arduino.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn about Pulse Width Modulation (PWM).",
       "Build a circuit to control LED brightness using a potentiometer.",
@@ -241,9 +253,10 @@
   {
     "id": 13,
     "text": "Learn to \n\n\ndesolder a   \n\n\nthrough hole\n\n\ncomponent",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon13.svg",
+    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
     "description": "Learn how to desolder through-hole components using tools like solder wick and a desoldering pump by practicing on a scrap PCB.",
     "set": "electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn about desoldering tools (e.g., solder wick, desoldering pump).",
       "Practice removing a resistor from a scrap PCB using solder wick."
@@ -260,6 +273,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
     "description":"Create a circuit that produces sound using a piezo buzzer and a 555 timer, or generate tones with a microcontroller.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn how piezo buzzers work and how to drive them.",
       "Create a circuit that plays a simple tone using a 555 timer.",
@@ -274,9 +288,10 @@
   {
     "id": 15,
     "text": "Turn a  \n\n\nbreadboard \n\n\ncircuit into a  \n\n\nschematic",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon15.svg",
+    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
     "description":"Learn to convert a breadboard circuit into a schematic using schematic drawing software like Fritzing or KiCad.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn to use schematic drawing software (e.g., Fritzing, KiCad).",
       "Translate a simple LED circuit from a breadboard to a schematic."
@@ -290,9 +305,10 @@
   {
     "id": 16,
     "text": "Measure \n\n\ncurrent with a  \n\n\nmultimeter  ",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon16.svg",
+    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
     "description":"Learn how to measure current with a multimeter by practicing soldering headers and using the multimeter to verify connectivity.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Understand the purpose of headers in electronics projects.",
       "Practice soldering a row of male or female headers onto a practice PCB.",
@@ -310,6 +326,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon17.svg",
     "description":"Learn to create a voltage divider circuit and understand op-amps for lowering voltage in your projects.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn about operational amplifiers (op-amps) and their basic configurations (e.g., inverting, non-inverting).",
       "Build a simple op-amp voltage follower or amplifier circuit.",
@@ -327,6 +344,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon18.svg",
     "description":"Learn to use a sensor to activate a circuit and control devices, integrating sensors with your projects.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Understand the basic controls of an oscilloscope (e.g., time base, voltage scale).",
       "Measure a sine wave from a signal generator or an Arduino.",
@@ -344,6 +362,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon19.svg",
     "description":"Learn how to use a diode to protect your circuit from reverse voltages and ensure safe operation.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn how infrared (IR) signals work.",
       "Build a simple IR transmitter using an LED and a microcontroller.",
@@ -358,9 +377,10 @@
   {
     "id": 20,
     "text": "Make an \n\n\noscillator that\n\n\nmakes noise",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon20.svg",
+    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
     "description":"Build an oscillator circuit that generates sound and explore different components to create noise.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn about thermistors, LM35, or DS18B20 temperature sensors.",
       "Build a circuit to read temperature data using a microcontroller.",
@@ -378,6 +398,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon21.svg",
     "description":"Learn how to use a relay to control a high-voltage circuit and practice designing a PCB for your project.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn to use PCB design software (e.g., KiCad, Eagle).",
       "Design a simple circuit (e.g., LED with resistor) and lay it out in the software.",
@@ -395,6 +416,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon22.svg",
     "description":"Learn how to create a capacitor-based rocket by understanding voltage buildup and its effects, while exploring high-voltage safety.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn how ultrasonic sensors work (e.g., HC-SR04).",
       "Connect an ultrasonic sensor to a microcontroller and write code to measure distance.",
@@ -412,6 +434,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon23.svg",
     "description":"Learn to solder surface-mount components by mastering soldering techniques and understanding the challenges of working with small, delicate parts.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Understand the basics of programming microcontrollers in C.",
       "Write a simple program to blink an LED using bare-metal code (no libraries).",
@@ -429,6 +452,7 @@
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon24.svg",
     "description":"Learn to use a 555 timer in a circuit to generate specific timing or oscillation functions, and explore how it can control motors or other components.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn how DC motors and motor drivers work.",
       "Assemble a robot car chassis with motors and a motor driver (e.g., L298N).",
@@ -443,9 +467,10 @@
   {
     "id": 25,
     "text": "Make a sound \n\n\n louder with an\n\n\namplifier",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon25.svg",
+    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
     "description":"Learn how to amplify sound using oscillators and amplifiers, and experiment with frequency generation to create louder audio outputs.",
     "set":"electronics",
+    "pendingEvidences": 0,
     "tasks": [
       "Learn about oscillators and how to generate audio frequencies.",
       "Build a simple sound synthesizer using a 555 timer or op-amp.",

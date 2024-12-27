@@ -21,7 +21,8 @@ exports.getSkillsBySet = async (req, res) => {
             return res.status(404).send('No se encontraron competencias en este conjunto');
         }
 
-        res.render('skills-list', { skillTreeName, skills });
+        res.redirect(`/index`);
+        /*res.render('skills-list', { skillTreeName, skills });*/
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al obtener las competencias');
