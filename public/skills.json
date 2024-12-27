@@ -1,7 +1,7 @@
 [
   {
     "taskID": 1,
-    "text": ["Light up a", "LED for the first", "time"],
+    "text": "Light up an\n\n\nLED for the first \n\n\ntime",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon1.svg",
     "tasks": [
       "Gather necessary components (LED, resistor, battery, wires)",
@@ -19,7 +19,7 @@
   },
   {
     "taskID": 2,
-    "text": ["Learn to", "use wire strippers"],
+    "text": "Learn to\n\n\nuse wire strippers ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon2.svg",
     "tasks": [
       "Learn about different wire gauges and their uses",
@@ -36,7 +36,7 @@
   },
   {
     "taskID": 3,
-    "text": ["Complete", "an electronics kit"],
+    "text": "Complete\n\n\nan electronics kit  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon3.svg",
     "tasks": [
       "Choose an appropriate beginner electronics kit",
@@ -54,7 +54,7 @@
   },
   {
     "taskID": 4,
-    "text": ["Learn to Solder"],
+    "text": "Learn to Solder",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
     "tasks": [
       "Learn proper soldering iron safety and maintenance",
@@ -73,7 +73,7 @@
   },
   {
     "taskID": 5,
-    "text": ["Learn to use", "a breadboard"],
+    "text": "Learn to use\n\n\na breadboard",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon5.svg",
     "tasks": [
       "Understand breadboard layout and connections",
@@ -92,7 +92,7 @@
   },
   {
     "taskID": 6,
-    "text": ["Get a circuit", "wrong and try", "again"],
+    "text": "Get a circuit\n\n\nwrong and try\n\n\nagain",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon6.svg",
     "tasks": [
       "Build a basic circuit and identify what's wrong",
@@ -111,7 +111,7 @@
   },
   {
     "taskID": 7,
-    "text": ["Learn Ohm's", "Law"],
+    "text": "Learn Ohm’s\n\n\nLaw",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon7.svg",
     "tasks": [
       "Study the basic principles of Ohm's Law",
@@ -130,7 +130,7 @@
   },
   {
     "taskID": 8,
-    "text": ["Fix something", "something", "that's broken"],
+    "text": "Fix something\n\n\nsomething\n\n\nthat’s broken",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon8.svg",
     "tasks": [
       "Select a broken electronic device to repair",
@@ -149,7 +149,7 @@
   },
   {
     "taskID": 9,
-    "text": ["Measure", "voltage with", "a multimeter"],
+    "text": "Measure \n\n\nvoltage with \n\n\na multimeter",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
     "tasks": [
       "Learn basic multimeter safety",
@@ -168,7 +168,7 @@
   },
   {
     "taskID": 10,
-    "text": ["Learn to", "read a schematic"],
+    "text": "Learn to\n\n\nread a schematic",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
     "tasks": [
       "Learn common schematic symbols",
@@ -187,7 +187,7 @@
   },
   {
     "taskID": 11,
-    "text": ["Learn to read a", "datasheet"],
+    "text": "Learn to read\n\n\na datasheet",
     "icon": "icon11.svg",
     "tasks": [
       "Identify key sections of a datasheet (e.g., electrical characteristics, pin configurations).",
@@ -201,7 +201,7 @@
   },
   {
     "taskID": 12,
-    "text": ["Learn to control the", "brightness of an", "LED"],
+    "text": "Learn to\n\n\ncontrol the \n\n\nbrightness of\n\n\n an LED",
     "icon": "icon12.svg",
     "tasks": [
       "Learn about Pulse Width Modulation (PWM).",
@@ -216,7 +216,7 @@
   },
   {
     "taskID": 13,
-    "text": ["Learn to desolder a", "through-hole", "component"],
+    "text": "Learn to \n\n\ndesolder a   \n\n\nthrough hole\n\n\ncomponent",
     "icon": "icon13.svg",
     "tasks": [
       "Learn about desoldering tools (e.g., solder wick, desoldering pump).",
@@ -230,7 +230,7 @@
   },
   {
     "taskID": 14,
-    "text": ["Make something that", "makes noise"],
+    "text": "Make  \n\n\nsomething that \n\n\nmakes noise ",
     "icon": "icon14.svg",
     "tasks": [
       "Learn how piezo buzzers work and how to drive them.",
@@ -245,7 +245,7 @@
   },
   {
     "taskID": 15,
-    "text": ["Turn a breadboard", "circuit into a", "schematic"],
+    "text": "Turn a  \n\n\nbreadboard \n\n\ncircuit into a  \n\n\nschematic",
     "icon": "icon15.svg",
     "tasks": [
       "Learn to use schematic drawing software (e.g., Fritzing, KiCad).",
@@ -259,7 +259,7 @@
   },
   {
     "taskID": 16,
-    "text": ["Learn to solder", "a header onto a", "PCB"],
+    "text": "Measure \n\n\ncurrent with a  \n\n\nmultimeter  ",
     "icon": "icon16.svg",
     "tasks": [
       "Understand the purpose of headers in electronics projects.",
@@ -274,7 +274,7 @@
   },
   {
     "taskID": 17,
-    "text": ["Build your first", "op-amp circuit"],
+    "text": "Make a voltage \n\n\ndivider to lower  \n\n\nthe voltage  \n\n\nfor a project  ",
     "icon": "icon17.svg",
     "tasks": [
       "Learn about operational amplifiers (op-amps) and their basic configurations (e.g., inverting, non-inverting).",
@@ -289,7 +289,7 @@
   },
   {
     "taskID": 18,
-    "text": ["Learn to use an", "oscilloscope"],
+    "text": "Turn \n\n\nsomething  \n\n\non using  \n\n\na sensor  ",
     "icon": "icon18.svg",
     "tasks": [
       "Understand the basic controls of an oscilloscope (e.g., time base, voltage scale).",
@@ -304,7 +304,7 @@
   },
   {
     "taskID": 19,
-    "text": ["Build an", "infrared remote", "control"],
+    "text": "Use a diode \n\n\nprotect your  \n\n\ncircuit from  \n\n\nreverse voltages  ",
     "icon": "icon19.svg",
     "tasks": [
       "Learn how infrared (IR) signals work.",
@@ -319,7 +319,7 @@
   },
   {
     "taskID": 20,
-    "text": ["Build a basic", "temperature sensor", "circuit"],
+    "text": "Make an \n\n\noscillator that\n\n\nmakes noise",
     "icon": "icon20.svg",
     "tasks": [
       "Learn about thermistors, LM35, or DS18B20 temperature sensors.",
@@ -334,7 +334,7 @@
   },
   {
     "taskID": 21,
-    "text": ["Learn to design a", "simple PCB"],
+    "text": "Use a relay \n\n\nto switch\n\n\nsomething on at\n\n\na higher voltage",
     "icon": "icon21.svg",
     "tasks": [
       "Learn to use PCB design software (e.g., KiCad, Eagle).",
@@ -349,7 +349,7 @@
   },
   {
     "taskID": 22,
-    "text": ["Build an", "ultrasonic range", "finder"],
+    "text": "Make a \n\n\n capacitor rocket\n\n\n (too much voltage)",
     "icon": "icon22.svg",
     "tasks": [
       "Learn how ultrasonic sensors work (e.g., HC-SR04).",
@@ -364,7 +364,7 @@
   },
   {
     "taskID": 23,
-    "text": ["Learn to program", "a microcontroller", "with C"],
+    "text": "Learn to \n\n\n solder surfcace\n\n\n mount parts",
     "icon": "icon23.svg",
     "tasks": [
       "Understand the basics of programming microcontrollers in C.",
@@ -379,7 +379,7 @@
   },
   {
     "taskID": 24,
-    "text": ["Build a simple", "robot car"],
+    "text": "Use a \n\n\n  555 timer\n\n\n in a circuit",
     "icon": "icon24.svg",
     "tasks": [
       "Learn how DC motors and motor drivers work.",
@@ -394,7 +394,7 @@
   },
   {
     "taskID": 25,
-    "text": ["Create a sound", "synthesizer circuit"],
+    "text": "Make a sound \n\n\n louder with an\n\n\namplifier",
     "icon": "icon25.svg",
     "tasks": [
       "Learn about oscillators and how to generate audio frequencies.",
@@ -411,258 +411,737 @@
     "id": "26",
     "text": "Use  \n\n\naddressable \n\n\n RGB LEDs in a \n\n\nproject",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon12.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how addressable RGB LEDs work.",
+      "Choose the right type of addressable RGB LEDs for your project.",
+      "Design a circuit incorporating addressable RGB LEDs.",
+      "Write code to control the LEDs (e.g., using Arduino or Raspberry Pi).",
+      "Build and test your project."
+    ],
+    "resources": [
+      "Adafruit Guide to NeoPixel LEDs: https://learn.adafruit.com/adafruit-neopixel-uberguide",
+      "YouTube tutorials on addressable RGB LED projects.",
+      "Datasheets and documentation for the specific RGB LEDs you are using."
+    ]
   },
   {
     "id": "27",
     "text": "Make a  \n\n\nproject \n\n\n with a  \n\n\nRaspberry Pi",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon27.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Set up your Raspberry Pi with the latest OS.",
+      "Choose a project idea suitable for Raspberry Pi.",
+      "Gather all necessary components and materials.",
+      "Write and test the code for your project.",
+      "Document and share your project online."
+    ],
+    "resources": [
+      "Official Raspberry Pi Documentation: https://www.raspberrypi.org/documentation/",
+      "YouTube tutorials on Raspberry Pi projects.",
+      "Community forums and project examples on sites like Instructables and Hackster.io."
+    ]
   },
   {
     "id": "28",
     "text": "Let the \n\n\nsmoke out \n\n\n accidentally  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon28.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Identify the component that failed.",
+      "Understand why the component failed (e.g., overvoltage, incorrect wiring).",
+      "Learn how to prevent similar failures in the future.",
+      "Replace the failed component and repair the circuit.",
+      "Document the incident and your learning experience."
+    ],
+    "resources": [
+      "Common Electronics Mistakes and How to Avoid Them: https://www.electronics-tutorials.ws/blog/common-mistakes.html",
+      "YouTube videos on troubleshooting and repairing electronics."
+    ]
   },
   {
     "id": "29",
     "text": "Use fritzing \n\n\nor TinkerCAD \n\n\n to create a  \n\n\n circuit diagram  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon29.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how to use Fritzing or TinkerCAD for circuit design.",
+      "Design a simple circuit using the software.",
+      "Create a detailed circuit diagram with all components and connections.",
+      "Share your circuit diagram with others for feedback.",
+      "Use the diagram to build and test the physical circuit."
+    ],
+    "resources": [
+      "Fritzing Documentation: https://fritzing.org/learning/tutorials",
+      "TinkerCAD Circuit Tutorials: https://www.tinkercad.com/learn/circuits",
+      "YouTube tutorials on using Fritzing and TinkerCAD for circuit design."
+    ]
   },
   {
     "id": "30",
     "text": "Make \n\n\nsomething \n\n\n with Arduino  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon30.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Set up your Arduino development environment.",
+      "Choose a project idea suitable for Arduino.",
+      "Gather all necessary components and materials.",
+      "Write and test the code for your project.",
+      "Build and test your project, then document and share it online."
+    ],
+    "resources": [
+      "Official Arduino Documentation: https://www.arduino.cc/en/Guide/HomePage",
+      "YouTube tutorials on Arduino projects.",
+      "Community forums and project examples on sites like Instructables and Hackster.io."
+    ]
   },
   {
     "id": "31",
     "text": "Let the smoke \n\n\nout of an Arduino \n\n\n accidentally  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon31.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Identify the component that failed on the Arduino.",
+      "Understand why the component failed (e.g., overvoltage, incorrect wiring).",
+      "Learn how to prevent similar failures in the future.",
+      "Replace the failed component or Arduino board.",
+      "Document the incident and your learning experience."
+    ],
+    "resources": [
+      "Common Electronics Mistakes and How to Avoid Them: https://www.electronics-tutorials.ws/blog/common-mistakes.html",
+      "YouTube videos on troubleshooting and repairing electronics."
+    ]
   },
   {
     "id": "32",
     "text": "Measure \n\n\nfrequency with a \n\n\n multimeter  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how to use your multimeter to measure frequency.",
+      "Understand the limitations and accuracy of your multimeter's frequency measurement function.",
+      "Measure the frequency of various signals (e.g., square wave, sine wave).",
+      "Compare the measured frequency with the expected value.",
+      "Document your measurements and share your findings."
+    ],
+    "resources": [
+      "How to Use a Multimeter: https://www.electronics-tutorials.ws/blog/how-to-use-a-multimeter.html",
+      "YouTube tutorials on measuring frequency with a multimeter."
+    ]
   },
   {
     "id": "33",
     "text": "Use an \n\n\nOp-Amp  in\n\n\n  a circuit  ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon33.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basic operation of operational amplifiers (Op-Amps).",
+      "Choose the right Op-Amp for your circuit.",
+      "Design a simple circuit using an Op-Amp (e.g., amplifier, filter).",
+      "Build and test your Op-Amp circuit.",
+      "Document your circuit design and share your findings."
+    ],
+    "resources": [
+      "Op-Amp Basics: https://www.electronics-tutorials.ws/opamp/opamp_1.html",
+      "YouTube tutorials on using Op-Amps in circuits."
+    ]
   },
   {
     "id": "34",
     "text": "Use a crowbar\n\n\ncircuit to protect\n\n\n against over voltage ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon17.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the function and design of crowbar circuits.",
+      "Choose the right components for your crowbar circuit.",
+      "Design and build a crowbar circuit for overvoltage protection.",
+      "Test the crowbar circuit to ensure it works as intended.",
+      "Document your circuit design and share your findings."
+    ],
+    "resources": [
+      "Crowbar Circuit Tutorial: https://www.electronics-tutorials.ws/power/crowbar-circuit.html",
+      "YouTube tutorials on designing and testing crowbar circuits."
+    ]
   },
   {
     "id": "35",
     "text": "Use a surge\n\n\ndiode to protect\n\n\n a circuit ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon19.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the function and types of surge diodes (e.g., TVS diodes).",
+      "Learn how to select a surge diode based on the circuit requirements.",
+      "Design a circuit with surge protection using a surge diode.",
+      "Simulate the circuit to verify the effectiveness of surge protection.",
+      "Build and test the circuit on a breadboard or PCB."
+    ],
+    "resources": [
+      "Transient Voltage Suppression (TVS) Diodes Tutorial: https://www.electronics-tutorials.ws/diode/diode_7.html",
+      "Surge Protection Basics: https://www.littelfuse.com/technical-resources/technical-centers/surge-protection-design.aspx",
+      "YouTube tutorials on surge protection circuits.",
+      "Simulation software for circuit design."
+    ]
   },
   {
     "id": "36",
     "text": "Make\n\n\nsomething\n\n\n for a friend ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon36.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Discuss project ideas with your friend to understand their needs.",
+      "Choose a project idea that aligns with your friend's interests and requirements.",
+      "Gather all necessary components and materials.",
+      "Build and test the project.",
+      "Present the project to your friend and document the process."
+    ],
+    "resources": [
+      "Instructables: Electronics Projects for Friends: https://www.instructables.com/",
+      "YouTube tutorials on making personalized electronics projects."
+    ]
   },
   {
     "id": "37",
     "text": "Make a motor\n\n\ncontroller with\n\n\n a H Bridge ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon37.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the relationship between voltage, current, and resistance.",
+      "Learn the mathematical formula of Ohm's Law (V = IR).",
+      "Apply Ohm's Law to solve basic circuit problems.",
+      "Perform experiments to verify Ohm's Law.",
+      "Document your experiments and share your findings."
+    ],
+    "resources": [
+      "Ohm's Law Tutorial: https://www.electronics-tutorials.ws/dccircuits/dcp_2.html",
+      "YouTube tutorials on Ohm's Law and its applications."
+    ]
   },
   {
     "id": "38",
     "text": "Make a\n\n\ncounter with\n\n\n logic gates ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon38.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the importance of designing circuits on paper before building.",
+      "Create a detailed circuit diagram on paper.",
+      "List all components and their specifications.",
+      "Plan the layout of the circuit on a breadboard or PCB.",
+      "Review and refine your design before starting the build."
+    ],
+    "resources": [
+      "How to Design a Circuit: https://www.electronics-tutorials.ws/",
+      "YouTube tutorials on circuit design and planning."
+    ]
   },
   {
     "id": "39",
     "text": "Apply solder\n\n\npaste to a PCB\n\n\n with a stencil",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon39.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the purpose and types of solder paste.",
+      "Learn how to properly align a stencil on a PCB.",
+      "Practice applying solder paste evenly using a squeegee.",
+      "Inspect the applied solder paste for consistency and coverage.",
+      "Clean the stencil and PCB after application."
+    ],
+    "resources": [
+      "Solder Paste Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on applying solder paste with stencils."
+    ]
   },
   {
     "id": "40",
     "text": "Teach a\n\n\nfriend an\n\n\n electronics skill ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon40.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Choose an electronics skill that you are proficient in.",
+      "Prepare teaching materials and resources.",
+      "Explain the concepts clearly and demonstrate the skill.",
+      "Assist your friend in practicing the skill.",
+      "Provide feedback and answer any questions they have."
+    ],
+    "resources": [
+      "Teaching Electronics: https://www.teachingelectronics.com/",
+      "YouTube tutorials on teaching electronics."
+    ]
   },
   {
     "id": "41",
     "text": "Make something\n\n\nwith a 7\n\n\n segment display ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon41.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how 7-segment displays work.",
+      "Choose a project that incorporates a 7-segment display.",
+      "Design the circuit and write the necessary code.",
+      "Assemble the components and test the display.",
+      "Troubleshoot any issues and refine your project."
+    ],
+    "resources": [
+      "7-Segment Display Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on 7-segment display projects."
+    ]
   },
   {
     "id": "42",
     "text": "Measure\n\n\nvoltage with an\n\n\n oscilloscope ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon42.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the basics of using an oscilloscope.",
+      "Learn how to properly connect probes to a circuit.",
+      "Measure and interpret voltage waveforms.",
+      "Adjust oscilloscope settings for accurate readings.",
+      "Document your measurements and findings."
+    ],
+    "resources": [
+      "Oscilloscope Basics: https://www.electronics-tutorials.ws/",
+      "YouTube videos on using an oscilloscope."
+    ]
   },
   {
     "id": "43",
     "text": "Measure\n\n\ncapacitor equivalent\n\n\n series resistance ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon43.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn what equivalent series resistance (ESR) is and its importance.",
+      "Understand how to use an ESR meter.",
+      "Measure the ESR of various capacitors.",
+      "Interpret the measurements and compare with specifications.",
+      "Document your results and observations."
+    ],
+    "resources": [
+      "ESR Measurement Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on measuring ESR."
+    ]
   },
   {
     "id": "44",
     "text": "Make an\n\n\nInternet of Things\n\n\n  (IoT) project ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon44.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basics of IoT and its applications.",
+      "Choose an IoT platform (e.g., Arduino, Raspberry Pi).",
+      "Design a simple IoT project and gather components.",
+      "Write code to connect and control devices over the internet.",
+      "Test your project and document the process."
+    ],
+    "resources": [
+      "IoT Project Ideas: https://www.iotforall.com/",
+      "YouTube videos on IoT projects."
+    ]
   },
   {
     "id": "45",
     "text": "Make \n\n\nsomething with\n\n\n solar panels ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon45.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basics of solar panels and their applications.",
+      "Choose a project that incorporates solar panels.",
+      "Design the circuit and calculate the required power.",
+      "Assemble the components and test the system.",
+      "Document your project and share your results."
+    ],
+    "resources": [
+      "Solar Panel Projects: https://www.solar-energy.com/",
+      "YouTube videos on solar panel projects."
+    ]
   },
   {
     "id": "46",
     "text": "Look at an \n\n\n audio input\n\n\non an oscilloscope",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon46.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how to use an oscilloscope to measure audio signals.",
+      "Connect an audio source to the oscilloscope.",
+      "Visualize and analyze the waveform of the audio signal.",
+      "Adjust the oscilloscope settings for clear measurements.",
+      "Document your observations and findings."
+    ],
+    "resources": [
+      "Oscilloscope Audio Analysis: https://www.electronics-tutorials.ws/",
+      "YouTube videos on audio signal analysis."
+    ]
   },
   {
     "id": "47",
     "text": "Make a \n\n\n regulated\n\n\npower supply",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon47.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the basics of regulated power supplies.",
+      "Design a circuit for a regulated power supply.",
+      "Choose appropriate components (e.g., voltage regulators, capacitors).",
+      "Assemble the power supply and test its output.",
+      "Document the design and testing process."
+    ],
+    "resources": [
+      "Regulated Power Supply Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on building power supplies."
+    ]
   },
   {
     "id": "48",
     "text": "Use a MOSFET \n\n\n instead of a relay\n\n\nin a project",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon48.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the differences between MOSFETs and relays.",
+      "Understand the advantages of using MOSFETs.",
+      "Choose a project that can benefit from using a MOSFET.",
+      "Design and implement the MOSFET circuit.",
+      "Test and document the performance of the circuit."
+    ],
+    "resources": [
+      "MOSFET vs Relay: https://www.electronics-tutorials.ws/",
+      "YouTube videos on using MOSFETs in projects."
+    ]
   },
   {
     "id": "49",
     "text": "Make your \n\n\n own\n\n\nUSB cable",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon49.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the pinout and specifications of USB connectors.",
+      "Gather the necessary materials (cable, connectors, tools).",
+      "Cut, strip, and solder the wires to the connectors.",
+      "Test the cable for functionality and reliability.",
+      "Document the process and share your experience."
+    ],
+    "resources": [
+      "USB Cable Making Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on making USB cables."
+    ]
   },
   {
     "id": "50",
     "text": "Use an LED \n\n\n matrix in\n\n\na project",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon50.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how LED matrices work and their applications.",
+      "Choose a project that uses an LED matrix.",
+      "Design the circuit and write the necessary code.",
+      "Assemble the components and test the LED matrix.",
+      "Document the project and share your results."
+    ],
+    "resources": [
+      "LED Matrix Projects: https://www.electronics-tutorials.ws/",
+      "YouTube videos on LED matrix projects."
+    ]
   },
   {
     "id": "51",
     "text": "Filter \n\n\n  unwanted noise\n\n\nfrom a signal",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon46.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the sources of noise in electronic signals.",
+      "Learn about different types of filters (low-pass, high-pass, etc.).",
+      "Design and implement a filter circuit.",
+      "Test the filter's effectiveness at removing noise.",
+      "Document your design and testing process."
+    ],
+    "resources": [
+      "Signal Filtering Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on filtering noise from signals."
+    ]
   },
   {
     "id": "52",
     "text": "Use a freqency \n\n\n  analyser\n\n\nfor a project",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how to use a frequency analyser.",
+      "Choose a project that requires frequency analysis.",
+      "Connect the analyser and interpret the results.",
+      "Adjust the settings for accurate measurements.",
+      "Document your observations and findings."
+    ],
+    "resources": [
+      "Frequency Analyser Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on using frequency analysers."
+    ]
   },
   {
     "id": "53",
     "text": "Order a \n\n\nPCB with\n\n\nyour design",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon47.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how to design a PCB using software tools.",
+      "Create a PCB layout for your project.",
+      "Choose a manufacturer and prepare the files for ordering.",
+      "Place the order and review the specifications.",
+      "Assemble and test the received PCB."
+    ],
+    "resources": [
+      "PCB Design Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on ordering PCBs."
+    ]
   },
   {
     "id": "54",
     "text": "Repair a \n\n\nbroken trace\n\n\non a PCB",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon54.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn how to identify a broken trace on a PCB.",
+      "Gather the necessary tools and materials for repair.",
+      "Clean the affected area and prepare for soldering.",
+      "Bridge the broken trace with solder or a wire.",
+      "Test the repaired PCB for functionality."
+    ],
+    "resources": [
+      "PCB Trace Repair Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on repairing PCB traces."
+    ]
   },
   {
     "id": "55",
     "text": "Use  \n\n\nautomatic\n\n\ngain control",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the principles of automatic gain control (AGC).",
+      "Choose a project that can benefit from AGC.",
+      "Design and implement an AGC circuit.",
+      "Test the circuit and adjust the settings as needed.",
+      "Document your design and testing process."
+    ],
+    "resources": [
+      "AGC Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on automatic gain control."
+    ]
   },
   {
     "id": "56",
     "text": "Make a  \n\n\nPID circuit\n\n\nwith Op-Amps",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon33.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basics of Proportional-Integral-Derivative (PID) control.",
+      "Design a PID circuit using operational amplifiers (Op-Amps).",
+      "Assemble the components and test the circuit.",
+      "Adjust the PID parameters for optimal performance.",
+      "Document your design and testing process."
+    ],
+    "resources": [
+      "PID Control Tutorial: https://www.electronics-tutorials.ws/",
+      "YouTube videos on PID circuits with Op-Amps."
+    ]
   },
   {
     "id": "57",
     "text": "Teach a   \n\n\n class on\n\n\nElectronics",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon40.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Choose a topic to teach in your electronics class.",
+      "Prepare lesson plans and teaching materials.",
+      "Deliver the class and engage with students.",
+      "Provide hands-on activities and demonstrations.",
+      "Collect feedback and reflect on your teaching experience."
+    ],
+    "resources": [
+      "Teaching Electronics: https://www.teachingelectronics.com/",
+      "YouTube videos on teaching electronics."
+    ]
   },
   {
     "id": "58",
     "text": "Learn  \n\n\n PCB Design\n\n\nSoftware",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon47.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Choose a PCB design software (e.g., KiCad, Eagle).",
+      "Learn the basic features and functions of the software.",
+      "Practice designing simple PCBs.",
+      "Explore advanced features and techniques.",
+      "Create a complete PCB design for a project."
+    ],
+    "resources": [
+      "PCB Design Software Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on PCB design software tutorials."
+    ]
   },
   {
     "id": "59",
     "text": "Use an  \n\n\n e-paper display\n\n\nin a project",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon59.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the principles of e-paper displays.",
+      "Choose an e-paper display for your project.",
+      "Design the circuit and write the necessary code.",
+      "Assemble the components and test the display.",
+      "Document your project and share your results."
+    ],
+    "resources": [
+      "E-Paper Display Projects: https://www.electronics-tutorials.ws/",
+      "YouTube videos on e-paper display projects."
+    ]
   },
   {
     "id": "60",
     "text": "Build a  \n\n\n Radio Frequency\n\n\n(RF)Project",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon60.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basics of Radio Frequency (RF) technology.",
+      "Choose an RF project (e.g., transmitter, receiver).",
+      "Design the circuit and select appropriate components.",
+      "Assemble the project and test its functionality.",
+      "Document your project and share your results."
+    ],
+    "resources": [
+      "RF Project Ideas: https://www.electronics-tutorials.ws/",
+      "YouTube videos on RF projects."
+    ]
   },
   {
     "id": "61",
     "text": "Make an  \n\n\n open source\n\n\nproject",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon61.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Choose a project to develop as open source.",
+      "Set up a repository on a platform like GitHub.",
+      "Write clear and comprehensive documentation.",
+      "Collaborate with others and manage contributions.",
+      "Release the project and promote it within the community."
+    ],
+    "resources": [
+      "Open Source Project Guide: https://opensource.guide/",
+      "YouTube videos on making open source projects."
+    ]
   },
   {
     "id": "62",
     "text": "Use capacitive  \n\n\n touch in a PCB\n\n\ndesign",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon62.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the principles of capacitive touch technology.",
+      "Choose a project that uses capacitive touch.",
+      "Design the PCB with capacitive touch sensors.",
+      "Assemble and test the capacitive touch functionality.",
+      "Document your project and share your results."
+    ],
+    "resources": [
+      "Capacitive Touch PCB Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on capacitive touch projects."
+    ]
   },
   {
     "id": "63",
     "text": "Make  \n\n\n something \n\n\nwith PCB Art",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon63.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn about PCB art and its applications.",
+      "Choose a design and create a PCB layout.",
+      "Incorporate artistic elements into the PCB design.",
+      "Order the PCB and assemble the project.",
+      "Document and share your PCB art creation."
+    ],
+    "resources": [
+      "PCB Art Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on PCB art projects."
+    ]
   },
   {
     "id": "64",
     "text": "Make an  \n\n\n electronic \n\n\nsculpture",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon64.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Explore examples of electronic sculptures.",
+      "Choose a design and plan your sculpture.",
+      "Gather the necessary components and materials.",
+      "Assemble and program the electronic elements.",
+      "Document your process and showcase your sculpture."
+    ],
+    "resources": [
+      "Electronic Sculpture Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on electronic sculptures."
+    ]
   },
   {
     "id": "65",
     "text": "Make a switch  \n\n\n mode power \n\n\nsupply",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon21.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Understand the principles of switch mode power supplies.",
+      "Design a switch mode power supply circuit.",
+      "Choose appropriate components and materials.",
+      "Assemble and test the power supply.",
+      "Document your design and testing process."
+    ],
+    "resources": [
+      "Switch Mode Power Supply Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on switch mode power supplies."
+    ]
   },
   {
     "id": "66",
     "text": "Release a   \n\n\n tutorial on a \n\n\nproject you've made",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon66.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Choose a project to create a tutorial for.",
+      "Plan and outline the tutorial content.",
+      "Create step-by-step instructions with visuals.",
+      "Publish the tutorial on a platform like YouTube or a blog.",
+      "Promote the tutorial and gather feedback."
+    ],
+    "resources": [
+      "Tutorial Creation Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on creating tutorials."
+    ]
   },
   {
     "id": "67",
     "text": "Create an   \n\n\n FPGA Project ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon67.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basics of Field-Programmable Gate Arrays (FPGAs).",
+      "Choose an FPGA development board and toolchain.",
+      "Design and implement a project using FPGA technology.",
+      "Test and debug your FPGA project.",
+      "Document your design and share your results."
+    ],
+    "resources": [
+      "FPGA Project Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on FPGA projects."
+    ]
   },
   {
     "id": "68",
     "text": "Write your  \n\n\n own C/C++ library \n\n\n for a sensor \n\n\n from scratch ",
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/../../web_skill_trees_resources/svg/electronics_icons/icon68.svg",
-    "pendingEvidences": 0
+    "pendingEvidences": 0,
+    "tasks": [
+      "Learn the basics of writing C/C++ libraries.",
+      "Choose a sensor to create a library for.",
+      "Develop the library with clear and efficient code.",
+      "Test the library with different microcontrollers.",
+      "Document the library and share it with the community."
+    ],
+    "resources": [
+      "C/C++ Library Writing Guide: https://www.electronics-tutorials.ws/",
+      "YouTube videos on creating C/C++ libraries."
+    ]
   }
 ]
