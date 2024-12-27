@@ -1,153 +1,411 @@
 [
   {
-    "id": "1",
-    "text": "Light up an\n\n\nLED for the first \n\n\ntime",
+    "taskID": 1,
+    "text": ["Light up a", "LED for the first", "time"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon1.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Gather necessary components (LED, resistor, battery, wires)",
+      "Learn about LED polarity and how to identify anode/cathode",
+      "Calculate appropriate resistor value for your LED and power source",
+      "Build a simple circuit on a breadboard to light the LED",
+      "Test the circuit and troubleshoot if needed",
+      "Document your process with photos"
+    ],
+    "resources": [
+      "Basic Electronics Tutorial: https://learn.sparkfun.com/tutorials/what-is-electricity",
+      "LED Circuit Calculator: https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-led-series-resistor",
+      "Video Tutorial: 'Getting Started with LEDs'"
+    ]
   },
   {
-    "id": "2",
-    "text": "Learn to\n\n\nuse wire strippers ",
+    "taskID": 2,
+    "text": ["Learn to", "use wire strippers"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon2.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Learn about different wire gauges and their uses",
+      "Practice stripping different types of wires without damaging the conductor",
+      "Learn to strip multiple wires quickly and consistently",
+      "Practice stripping wire ends for different connector types",
+      "Learn proper wire preparation for soldering"
+    ],
+    "resources": [
+      "Wire Gauge Guide: https://www.powerstream.com/Wire_Size.htm",
+      "Tool Selection Guide: 'Choosing the Right Wire Strippers'",
+      "Video: 'Professional Wire Stripping Techniques'"
+    ]
   },
   {
-    "id": "3",
-    "text": "Complete\n\n\nan electronics kit  ",
+    "taskID": 3,
+    "text": ["Complete", "an electronics kit"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon3.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Choose an appropriate beginner electronics kit",
+      "Identify all components in the kit",
+      "Follow assembly instructions step by step",
+      "Test the completed circuit",
+      "Document any challenges and how you overcame them",
+      "Create a working log of your build process"
+    ],
+    "resources": [
+      "Beginner Kit Recommendations: https://learn.adafruit.com/guides/beginner",
+      "Component Identification Guide",
+      "Troubleshooting Common Kit Problems"
+    ]
   },
   {
-    "id": "4",
-    "text": "Learn to Solder",
+    "taskID": 4,
+    "text": ["Learn to Solder"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Learn proper soldering iron safety and maintenance",
+      "Practice tinning the soldering iron",
+      "Create practice solder joints on perfboard",
+      "Learn to identify good vs bad solder joints",
+      "Practice desoldering techniques",
+      "Complete a simple soldering project"
+    ],
+    "resources": [
+      "Soldering Guide: https://learn.sparkfun.com/tutorials/how-to-solder",
+      "NASA's Soldering Guidelines",
+      "Video Series: 'Soldering Masterclass'",
+      "Safety Guidelines for Electronics Assembly"
+    ]
   },
   {
-    "id": "5",
-    "text": "Learn to use\n\n\na breadboard",
+    "taskID": 5,
+    "text": ["Learn to use", "a breadboard"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon5.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Understand breadboard layout and connections",
+      "Learn about power rails and distribution",
+      "Practice component placement and wire management",
+      "Build a simple LED circuit on breadboard",
+      "Learn to transfer circuits from schematic to breadboard",
+      "Document your first breadboard project"
+    ],
+    "resources": [
+      "Breadboard Basics: https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard",
+      "Component Placement Best Practices",
+      "Interactive Breadboard Simulator",
+      "Video: 'From Schematic to Breadboard'"
+    ]
   },
   {
-    "id": "6",
-    "text": "Get a circuit\n\n\nwrong and try\n\n\nagain",
+    "taskID": 6,
+    "text": ["Get a circuit", "wrong and try", "again"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon6.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Build a basic circuit and identify what's wrong",
+      "Learn common circuit troubleshooting techniques", 
+      "Practice using a multimeter to diagnose issues",
+      "Document common mistakes and their solutions",
+      "Create a troubleshooting checklist",
+      "Share your learning experience with others"
+    ],
+    "resources": [
+      "Circuit Troubleshooting Guide: https://learn.adafruit.com/troubleshooting-basic-circuits",
+      "Common Circuit Problems and Solutions",
+      "Video: 'Learning from Electronics Mistakes'",
+      "Interactive Circuit Debugging Scenarios"
+    ]
   },
   {
-    "id": "7",
-    "text": "Learn Ohm’s\n\n\nLaw",
+    "taskID": 7,
+    "text": ["Learn Ohm's", "Law"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon7.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Study the basic principles of Ohm's Law",
+      "Practice calculating voltage, current, and resistance",
+      "Build circuits to verify Ohm's Law calculations",
+      "Use a multimeter to measure and verify calculations",
+      "Complete Ohm's Law practice problems",
+      "Create a reference sheet for future use"
+    ],
+    "resources": [
+      "Interactive Ohm's Law Calculator",
+      "Khan Academy: Basic Circuit Theory",
+      "Video Series: 'Understanding Ohm's Law'",
+      "Practice Problems and Solutions"
+    ]
   },
   {
-    "id": "8",
-    "text": "Fix something\n\n\nsomething\n\n\nthat’s broken",
+    "taskID": 8,
+    "text": ["Fix something", "something", "that's broken"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon8.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Select a broken electronic device to repair",
+      "Research common issues for the device",
+      "Create a repair plan and gather tools",
+      "Document the repair process with photos",
+      "Test the repaired device thoroughly",
+      "Write up a repair guide for others"
+    ],
+    "resources": [
+      "iFixit Repair Guides: https://www.ifixit.com/Guide",
+      "Electronic Repair Safety Guidelines",
+      "Troubleshooting Flowcharts",
+      "Video: 'Basic Electronics Repair Techniques'"
+    ]
   },
   {
-    "id": "9",
-    "text": "Measure \n\n\nvoltage with \n\n\na multimeter",
+    "taskID": 9,
+    "text": ["Measure", "voltage with", "a multimeter"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Learn basic multimeter safety",
+      "Practice setting up voltage measurement ranges",
+      "Measure DC voltage in various circuits",
+      "Learn to measure AC voltage safely",
+      "Create a voltage measurement log",
+      "Practice measuring voltage across components"
+    ],
+    "resources": [
+      "Multimeter Basics: https://learn.sparkfun.com/tutorials/how-to-use-a-multimeter",
+      "Voltage Measurement Safety Guide",
+      "Video: 'Mastering Your Multimeter'",
+      "Practice Exercises with Solutions"
+    ]
   },
   {
-    "id": "10",
-    "text": "Learn to\n\n\nread a schematic",
+    "taskID": 10,
+    "text": ["Learn to", "read a schematic"],
     "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
-    "pendingEvidences": 0
+    "tasks": [
+      "Learn common schematic symbols",
+      "Practice drawing basic circuit schematics",
+      "Convert simple circuits to schematics",
+      "Learn to read component values from schematics",
+      "Practice with increasingly complex schematics",
+      "Create your own circuit schematic"
+    ],
+    "resources": [
+      "Schematic Symbols Reference Guide",
+      "Interactive Schematic Tutorial",
+      "Video Series: 'Reading Electronic Schematics'",
+      "Practice Schematic Exercises"
+    ]
   },
   {
-    "id": "11",
-    "text": "Learn to read\n\n\na datasheet",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon11.svg",
-    "pendingEvidences": 0
+    "taskID": 11,
+    "text": ["Learn to read a", "datasheet"],
+    "icon": "icon11.svg",
+    "tasks": [
+      "Identify key sections of a datasheet (e.g., electrical characteristics, pin configurations).",
+      "Practice reading the datasheet for a simple component (e.g., 555 timer)."
+    ],
+    "resources": [
+      "Adafruit's 'All About Datasheets' tutorial: https://learn.adafruit.com/all-about-datasheets",
+      "Texas Instruments' '555 Timer Datasheet': https://www.ti.com/product/NE555",
+      "Example datasheets from Digikey or Mouser."
+    ]
   },
   {
-    "id": "12",
-    "text": "Learn to\n\n\ncontrol the \n\n\nbrightness of\n\n\n an LED",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon12.svg",
-    "pendingEvidences": 0
+    "taskID": 12,
+    "text": ["Learn to control the", "brightness of an", "LED"],
+    "icon": "icon12.svg",
+    "tasks": [
+      "Learn about Pulse Width Modulation (PWM).",
+      "Build a circuit to control LED brightness using a potentiometer.",
+      "Write code for a microcontroller (e.g., Arduino) to implement PWM for LED control."
+    ],
+    "resources": [
+      "Arduino's 'Fade LED with PWM' tutorial: https://www.arduino.cc/en/Tutorial/BuiltInExamples/Fade",
+      "SparkFun's 'PWM Basics' guide: https://www.sparkfun.com/tutorials/526",
+      "Potentiometer datasheet and example circuit diagrams."
+    ]
   },
   {
-    "id": "13",
-    "text": "Learn to \n\n\ndesolder a   \n\n\nthrough hole\n\n\ncomponent",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
-    "pendingEvidences": 0
+    "taskID": 13,
+    "text": ["Learn to desolder a", "through-hole", "component"],
+    "icon": "icon13.svg",
+    "tasks": [
+      "Learn about desoldering tools (e.g., solder wick, desoldering pump).",
+      "Practice removing a resistor from a scrap PCB using solder wick."
+    ],
+    "resources": [
+      "iFixit's 'How to Desolder Through-Hole Components' guide: https://www.ifixit.com/Guide/How+to+Desolder+Through-Hole+Components/75088",
+      "Soldering tutorial videos on YouTube.",
+      "Spare PCB board for practice."
+    ]
   },
   {
-    "id": "14",
-    "text": "Make  \n\n\nsomething that \n\n\nmakes noise ",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
-    "pendingEvidences": 0
+    "taskID": 14,
+    "text": ["Make something that", "makes noise"],
+    "icon": "icon14.svg",
+    "tasks": [
+      "Learn how piezo buzzers work and how to drive them.",
+      "Create a circuit that plays a simple tone using a 555 timer.",
+      "Write code to generate different tones with a microcontroller."
+    ],
+    "resources": [
+      "Piezo buzzer datasheet and circuit diagrams.",
+      "555 Timer datasheet: https://www.ti.com/product/NE555",
+      "Arduino's 'Tone Library' documentation: https://www.arduino.cc/reference/en/libraries/tone/"
+    ]
   },
   {
-    "id": "15",
-    "text": "Turn a  \n\n\nbreadboard \n\n\ncircuit into a  \n\n\nschematic",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
-    "pendingEvidences": 0
+    "taskID": 15,
+    "text": ["Turn a breadboard", "circuit into a", "schematic"],
+    "icon": "icon15.svg",
+    "tasks": [
+      "Learn to use schematic drawing software (e.g., Fritzing, KiCad).",
+      "Translate a simple LED circuit from a breadboard to a schematic."
+    ],
+    "resources": [
+      "Fritzing software: https://fritzing.org/",
+      "KiCad EDA: https://www.kicad.org/",
+      "Breadboard setup examples and circuit drawing tutorials."
+    ]
   },
   {
-    "id": "16",
-    "text": "Measure \n\n\ncurrent with a  \n\n\nmultimeter  ",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
-    "pendingEvidences": 0
+    "taskID": 16,
+    "text": ["Learn to solder", "a header onto a", "PCB"],
+    "icon": "icon16.svg",
+    "tasks": [
+      "Understand the purpose of headers in electronics projects.",
+      "Practice soldering a row of male or female headers onto a practice PCB.",
+      "Verify connectivity using a multimeter."
+    ],
+    "resources": [
+      "Adafruit's 'Guide to Excellent Soldering': https://learn.adafruit.com/adafruit-guide-excellent-soldering",
+      "YouTube tutorials on soldering techniques.",
+      "Practice PCBs with pre-drilled holes for headers."
+    ]
   },
   {
-    "id": "17",
-    "text": "Make a voltage \n\n\ndivider to lower  \n\n\nthe voltage  \n\n\nfor a project  ",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon17.svg",
-    "pendingEvidences": 0
+    "taskID": 17,
+    "text": ["Build your first", "op-amp circuit"],
+    "icon": "icon17.svg",
+    "tasks": [
+      "Learn about operational amplifiers (op-amps) and their basic configurations (e.g., inverting, non-inverting).",
+      "Build a simple op-amp voltage follower or amplifier circuit.",
+      "Test the circuit using a multimeter or oscilloscope."
+    ],
+    "resources": [
+      "TI's 'Op Amps for Everyone' eBook: https://www.ti.com/lit/sg/sloa030a/sloa030a.pdf",
+      "Example op-amp circuit diagrams from Electronics Hub.",
+      "LM358 datasheet or similar op-amp datasheets."
+    ]
   },
   {
-    "id": "18",
-    "text": "Turn \n\n\nsomething  \n\n\non using  \n\n\na sensor  ",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon18.svg",
-    "pendingEvidences": 0
+    "taskID": 18,
+    "text": ["Learn to use an", "oscilloscope"],
+    "icon": "icon18.svg",
+    "tasks": [
+      "Understand the basic controls of an oscilloscope (e.g., time base, voltage scale).",
+      "Measure a sine wave from a signal generator or an Arduino.",
+      "Practice triggering and capturing a stable waveform."
+    ],
+    "resources": [
+      "Tektronix Oscilloscope Basics Guide: https://www.tek.com/document/introduction/oscilloscope-abc-primer",
+      "Oscilloscope tutorial videos on YouTube.",
+      "Arduino or signal generator to create test waveforms."
+    ]
   },
   {
-    "id": "19",
-    "text": "Use a diode \n\n\nprotect your  \n\n\ncircuit from  \n\n\nreverse voltages  ",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon19.svg",
-    "pendingEvidences": 0
+    "taskID": 19,
+    "text": ["Build an", "infrared remote", "control"],
+    "icon": "icon19.svg",
+    "tasks": [
+      "Learn how infrared (IR) signals work.",
+      "Build a simple IR transmitter using an LED and a microcontroller.",
+      "Decode IR signals with an IR receiver module."
+    ],
+    "resources": [
+      "Arduino's 'IR Remote Library' documentation: https://github.com/Arduino-IRremote/Arduino-IRremote",
+      "Datasheets for IR LED and receiver components.",
+      "Practical IR remote projects for inspiration."
+    ]
   },
   {
-    "id": "20",
-    "text": "Make an \n\n\noscillator that\n\n\nmakes noise",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
-    "pendingEvidences": 0
+    "taskID": 20,
+    "text": ["Build a basic", "temperature sensor", "circuit"],
+    "icon": "icon20.svg",
+    "tasks": [
+      "Learn about thermistors, LM35, or DS18B20 temperature sensors.",
+      "Build a circuit to read temperature data using a microcontroller.",
+      "Display the temperature data on an LCD or serial monitor."
+    ],
+    "resources": [
+      "Datasheets for LM35 or DS18B20 sensors.",
+      "Arduino temperature sensor tutorials.",
+      "SparkFun's guide to thermistors: https://learn.sparkfun.com/tutorials/thermistors/all"
+    ]
   },
   {
-    "id": "21",
-    "text": "Use a relay \n\n\nto switch\n\n\nsomething on at\n\n\na higher voltage",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon21.svg",
-    "pendingEvidences": 0
+    "taskID": 21,
+    "text": ["Learn to design a", "simple PCB"],
+    "icon": "icon21.svg",
+    "tasks": [
+      "Learn to use PCB design software (e.g., KiCad, Eagle).",
+      "Design a simple circuit (e.g., LED with resistor) and lay it out in the software.",
+      "Export the Gerber files for manufacturing."
+    ],
+    "resources": [
+      "KiCad tutorial series: https://kicad-pcb.org/help/tutorials/",
+      "SparkFun's Eagle PCB tutorials: https://learn.sparkfun.com/tutorials/using-eagle/all",
+      "PCB manufacturing services (e.g., JLCPCB, PCBWay)."
+    ]
   },
   {
-    "id": "22",
-    "text": "Make a \n\n\n capacitor rocket\n\n\n (too much voltage)",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon22.svg",
-    "pendingEvidences": 0
+    "taskID": 22,
+    "text": ["Build an", "ultrasonic range", "finder"],
+    "icon": "icon22.svg",
+    "tasks": [
+      "Learn how ultrasonic sensors work (e.g., HC-SR04).",
+      "Connect an ultrasonic sensor to a microcontroller and write code to measure distance.",
+      "Test the range finder with different objects and distances."
+    ],
+    "resources": [
+      "HC-SR04 datasheet and example code.",
+      "Arduino distance sensor tutorials.",
+      "Electronics Hub's 'Ultrasonic Sensor Projects' guide."
+    ]
   },
   {
-    "id": "23",
-    "text": "Learn to \n\n\n solder surfcace\n\n\n mount parts",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon23.svg",
-    "pendingEvidences": 0
+    "taskID": 23,
+    "text": ["Learn to program", "a microcontroller", "with C"],
+    "icon": "icon23.svg",
+    "tasks": [
+      "Understand the basics of programming microcontrollers in C.",
+      "Write a simple program to blink an LED using bare-metal code (no libraries).",
+      "Learn to configure timers and GPIO pins manually."
+    ],
+    "resources": [
+      "Microchip's 'Embedded C Programming' guide.",
+      "Datasheets for microcontroller pin and timer configurations.",
+      "YouTube tutorials on bare-metal C programming."
+    ]
   },
   {
-    "id": "24",
-    "text": "Use a \n\n\n  555 timer\n\n\n in a circuit",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon24.svg",
-    "pendingEvidences": 0
+    "taskID": 24,
+    "text": ["Build a simple", "robot car"],
+    "icon": "icon24.svg",
+    "tasks": [
+      "Learn how DC motors and motor drivers work.",
+      "Assemble a robot car chassis with motors and a motor driver (e.g., L298N).",
+      "Write code to control the car’s movement using a microcontroller."
+    ],
+    "resources": [
+      "Pololu's 'Robot Car Chassis' tutorial: https://www.pololu.com/category/11/robot-chassis",
+      "L298N motor driver datasheet and wiring guides.",
+      "Arduino motor control tutorials."
+    ]
   },
   {
-    "id": "25",
-    "text": "Make a sound \n\n\n louder with an\n\n\namplifier",
-    "icon": "https://tinkererway.dev/../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
-    "pendingEvidences": 0
+    "taskID": 25,
+    "text": ["Create a sound", "synthesizer circuit"],
+    "icon": "icon25.svg",
+    "tasks": [
+      "Learn about oscillators and how to generate audio frequencies.",
+      "Build a simple sound synthesizer using a 555 timer or op-amp.",
+      "Experiment with different resistor and capacitor values to change sound pitch."
+    ],
+    "resources": [
+      "555 Timer oscillator tutorials.",
+      "Examples of DIY synthesizers from Hackaday.",
+      "Datasheets for 555 timer and op-amp components."
+    ]
   },
   {
     "id": "26",
