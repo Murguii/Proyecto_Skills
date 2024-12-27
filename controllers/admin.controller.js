@@ -7,7 +7,7 @@ const User = require('../models/user.model');
 exports.getEditBadge = async (req, res) => {
     try {
         const nameV = req.params.name;
-        const badge = await Badge.find({name:nameV});
+        const badge = await Badge.findOne({name:nameV});
 
         if (!badge) {
             return res.status(404).send('Insignia no encontrada');
@@ -22,11 +22,12 @@ exports.getEditBadge = async (req, res) => {
 
 exports.postEditBadge = async (req, res) => {
     try {
-        const badgeId = req.params.id;
+        const nameV = req.params.name;
+        const badge2 = await Badge.findOne({name:nameV});
         const { name, range, bitpoints_min, bitpoints_max, image_url } = req.body;
 
-        const badge = await Badge.findByIdAndUpdate(
-            badgeId,
+        const badge = await Badge.findOneAndUpdate(
+            badge2,
             {
                 name,
                 range,
@@ -50,9 +51,10 @@ exports.postEditBadge = async (req, res) => {
 
 exports.postDeleteBadge = async (req, res) => {
     try {
-        const badgeId = req.params.id;
+        const nameV = req.params.name;
+        const badge2 = await Badge.findOne({name:nameV});
 
-        const result = await Badge.findByIdAndDelete(badgeId);
+        const result = await Badge.findOneAndDelete(badge2);
 
         if (!result) {
             return res.status(404).send('Insignia no encontrada');
