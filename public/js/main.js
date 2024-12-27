@@ -1,5 +1,5 @@
 // main.js
-fetch('/skills.json')
+fetch('/skills/api')
   .then(response => response.json())
   .then(data => {
     createHexagons(data);  // Llamamos a la función que creará los hexágonos

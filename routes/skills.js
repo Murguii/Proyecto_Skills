@@ -52,4 +52,5 @@ router.post('/:skillTreeName/delete/:id', isAdmin, skillsController.deleteSkill)
 router.get('/:skillTreeName/view/:id', skillsController.viewSkill); //para cargar la página de la skill concreta
 
 
+router.get('/api', skillsController.getAllSkills);
 module.exports = router;

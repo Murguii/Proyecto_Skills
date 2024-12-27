@@ -225,3 +225,12 @@ exports.viewSkill = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+exports.getAllSkills = async (req, res) => {
+    try {
+        const skills = await Skill.find();
+        res.json(skills);
+    } catch (error) {
+        res.status(500).send('Error al obtener los datos de las habilidades');
+    }
+};
