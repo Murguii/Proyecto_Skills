@@ -69,14 +69,14 @@
         <tbody>
             <% badges.forEach(badge => { %>
             <tr>
-                <td><img src="/badges/<%= badge.png %>" alt="<%= badge.rango %>"></td>
-                <td><%= badge.rango %></td>
-                <td><%= badge.rango %></td>
+                <td><img src="<%= badge.image_url %>" alt="<%= badge.range %>"></td>
+                <td><%= badge.name %></td>
+                <td><%= badge.range %></td>
                 <td><%= badge.bitpoints_min %></td>
                 <td><%= badge.bitpoints_max %> </td>
                 <td>
-                    <a href="/admin/badges/edit/<%= badge._id %>" class="btn btn-primary">Edit</a>
-                    <form action="/admin/badges/delete/<%= badge._id %>" method="POST" style="display:inline;">
+                    <a href="/admin/badges/edit/<%= badge.name %>" class="btn btn-primary">Edit</a>
+                    <form action="/admin/badges/delete/<%= badge.name %>" method="POST" style="display:inline;">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>

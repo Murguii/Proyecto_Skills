@@ -6,14 +6,14 @@ const User = require('../models/user.model');
 
 exports.getEditBadge = async (req, res) => {
     try {
-        const badgeId = req.params.id;
-        const badge = await Badge.findById(badgeId);
+        const name = req.params.name;
+        const badge = await Badge.findById(name);
 
         if (!badge) {
             return res.status(404).send('Insignia no encontrada');
         }
 
-        res.render('edit-badge', { badge });
+        res.render('edit-badges', { badge });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al cargar la insignia');
@@ -90,10 +90,9 @@ exports.changePassword = async (req, res) => {
     }
 };
 
-exports.getBadges = (req, res) => {
+exports.getBadges = async(req, res) => {
     try {
-        const badgesPath = path.join(__dirname, '../public/medals.json');
-        const badges = JSON.parse(fs.readFileSync(badgesPath, 'utf8'));
+        const badges= await Badge.find(); 
         res.render('admin-badges', { badges });
     } catch (error) {
         console.error('Error al cargar las insignias:', error);

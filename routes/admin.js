@@ -7,13 +7,13 @@ const adminController = require('../controllers/admin.controller');
 router.get('/badges', isAdmin, adminController.getBadges);
 
 // GET /admin/badges/edit/:id
-router.get('/badges/edit/:id', isAdmin, adminController.getEditBadge);
+router.get('/badges/edit/:name', isAdmin, adminController.getEditBadge);
 
 // POST /admin/badges/edit/:id
-router.post('/badges/edit/:id', isAdmin, adminController.postEditBadge);
+router.post('/badges/edit/:name', isAdmin, adminController.postEditBadge);
 
 // POST /admin/badges/delete/:id
-router.post('/badges/delete/:id', isAdmin, adminController.postDeleteBadge);
+router.post('/badges/delete/:name', isAdmin, adminController.postDeleteBadge);
 
 // POST /admin/change-password
 router.post('/change-password', isAdmin, adminController.changePassword);
