@@ -4,13 +4,15 @@ const { isAuthenticated } = require('../middlewares/isAuthenticated'); // Middle
 const { isAdmin } = require('../middlewares/isAuthenticated');
 const skillsController = require('../controllers/skills.controller'); // Importa el controlador
 
+/*
 // Editar Skill
 router.get('/:skillTree/edit/:id', isAuthenticated, (req, res) => {
     const { skillTree, id } = req.params;
+    console.log(skillTree)
     // Aquí puedes buscar el Skill en la base de datos por ID
     res.render('edit-skill', { skillTree, skill: { id, name: 'Skill Name', description: 'Description', tasks: [], score: 1 } });
 });
-
+*/
 // Agregar Skill
 router.get('/:skillTree/add', isAuthenticated, (req, res) => {
     const { skillTree } = req.params;
@@ -36,18 +38,18 @@ router.get('/:skillTreeName/view/:skillID', isAuthenticated, skillsController.vi
 router.post('/:skillTreeName/:skillID/verify', isAdmin, skillsController.verifyEvidence);
 
 // GET /skills/:skillTreeName/edit/:skillID
-router.get('/:skillTreeName/edit/:skillID', isAdmin, skillsController.getEditSkillForm);
+router.get('/:skillTreeName/edit/:id', isAdmin, skillsController.getEditSkillForm);
 
 // POST /skills/:skillTreeName/edit/:skillID
-router.post('/:skillTreeName/edit/:skillID', isAdmin, skillsController.updateSkill);
+router.post('/:skillTreeName/edit/:id', isAdmin, skillsController.updateSkill);
 
 // POST /skills/:skillTreeName/submit-evidence
 router.post('/:skillTreeName/submit-evidence', isAuthenticated, skillsController.submitEvidence);
 
 // POST /skills/:skillTreeName/delete/:skillID
-router.post('/:skillTreeName/delete/:skillID', isAdmin, skillsController.deleteSkill);
+router.post('/:skillTreeName/delete/:id', isAdmin, skillsController.deleteSkill);
 
-router.get('/skills/:skillTreeName/view/:skillID', skillsController.viewSkill); //para cargar la página de la skill concreta
+router.get('/skills/:skillTreeName/view/:id', skillsController.viewSkill); //para cargar la página de la skill concreta
 
 
 module.exports = router;

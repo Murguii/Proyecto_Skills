@@ -106,17 +106,18 @@ exports.verifyEvidence = async (req, res) => {
 };
 
 exports.getEditSkillForm = async (req, res) => {
-    const { skillTreeName, skillID } = req.params;
+    const { skillTreeName, id } = req.params;
+    console.log('SkillTreeName:', skillTreeName);
+    console.log('Skill ID:', id);
 
     try {
         // Obtener la competencia
-        const skill = await Skill.findOne({ id: skillID, set: skillTreeName });
+        const skill = await Skill.findOne({ id: id, set: skillTreeName });
 
         if (!skill) {
             return res.status(404).send('Competencia no encontrada');
         }
-
-        res.render('edit-skill', { skillTreeName, skill });
+        res.render('edit-skill', { skillTreeName:skillTreeName, skill:skill });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al obtener los datos de la competencia');
@@ -124,13 +125,13 @@ exports.getEditSkillForm = async (req, res) => {
 };
 
 exports.updateSkill = async (req, res) => {
-    const { skillTreeName, skillID } = req.params;
+    const { skillTreeName, id } = req.params;
     const { text, description, icon, score, tasks, resources } = req.body;
 
     try {
         // Buscar y actualizar la competencia
         const skill = await Skill.findOneAndUpdate(
-            { id: skillID, set: skillTreeName },
+            { id: id, set: skillTreeName },
             {
                 text,
                 description,

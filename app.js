@@ -23,7 +23,7 @@ const app = express();
 connectDB().then(() => {
     // Inicializa las insignias y habilidades al conectar a la base de datos
     seedBadges();
-    //seedSkills();
+    seedSkills();
 });
 
 // Configuración de vistas
@@ -50,6 +50,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+/*
 // Middleware para manejar mensajes flash
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 });
-
+*/
 // Rutas
 app.use('/', indexRouter); // Siempre muestra el login
 app.use('/users', usersRouter); // Rutas relacionadas con usuarios

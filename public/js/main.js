@@ -82,8 +82,11 @@ function createHexagons(skills) {
       pencilIcon.textContent = '✏️';
 
       pencilIcon.addEventListener('click', () => {
+        console.log(skill.set)
+        console.log(skill.id)
         window.location.href = `/skills/${skill.set}/edit/${skill.id}`;  // Redirige a la página para editar la habilidad
       });
+      
 
       iconsContainer.appendChild(pencilIcon);
     }

@@ -6,7 +6,7 @@
     <title>Editar Competencia</title>
 </head>
 <body>
-    <h1>Editar Competencia en el Árbol: <%= skillTreeName %></h1>
+    <h1>Editar Competencia en el Árbol: <%= skillTreeName %></h1> <!-- Aquí utilizas skillTreeName -->
     <form action="/skills/<%= skillTreeName %>/edit/<%= skill.id %>" method="POST">
         <label for="text">Nombre de la Competencia:</label>
         <input type="text" id="text" name="text" value="<%= skill.text %>" required><br><br>
