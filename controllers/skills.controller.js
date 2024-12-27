@@ -148,7 +148,9 @@ exports.updateSkill = async (req, res) => {
         }
 
         // Redirigir a la lista de competencias
-        res.redirect(`/skills/${skillTreeName}`);
+        //res.redirect(`/skills/${skillTreeName}`);
+        res.redirect('/index');
+        //res.render('skills-list', { skillTreeName:skillTreeName, skills:skill });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al actualizar la competencia');

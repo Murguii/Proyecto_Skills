@@ -14,7 +14,7 @@ router.get('/:skillTree/edit/:id', isAuthenticated, (req, res) => {
 });
 */
 // Agregar Skill
-router.get('/:skillTree/add', isAuthenticated, (req, res) => {
+router.get('/:skillTreeName/add', isAuthenticated, (req, res) => {
     const { skillTree } = req.params;
     res.render('addSkill', { skillTree });
 });
