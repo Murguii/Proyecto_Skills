@@ -32,7 +32,7 @@ router.get('/add', isAdmin, skillsController.getAddSkillForm);
 router.post('/add', isAdmin, skillsController.addSkill);
 
 // GET /skills/:skillTreeName/view/:skillID
-router.get('/:skillTreeName/view/:skillID', isAuthenticated, skillsController.viewSkillDetails);
+//router.get('/:skillTreeName/view/:skillID', isAuthenticated, skillsController.viewSkillDetails);
 
 // POST /skills/:skillTreeName/:skillID/verify
 router.post('/:skillTreeName/:skillID/verify', isAdmin, skillsController.verifyEvidence);
@@ -49,7 +49,7 @@ router.post('/:skillTreeName/submit-evidence', isAuthenticated, skillsController
 // POST /skills/:skillTreeName/delete/:skillID
 router.post('/:skillTreeName/delete/:id', isAdmin, skillsController.deleteSkill);
 
-router.get('/skills/:skillTreeName/view/:id', skillsController.viewSkill); //para cargar la página de la skill concreta
+router.get('/:skillTreeName/view/:id', skillsController.viewSkill); //para cargar la página de la skill concreta
 
 
 module.exports = router;

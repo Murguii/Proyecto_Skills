@@ -210,11 +210,11 @@ exports.getSkills = (req, res) => {
 
 //para cargar la página de la skill concreta
 exports.viewSkill = async (req, res) => {
-    const { skillTreeName, skillID } = req.params;
+    const { skillTreeName, id } = req.params;
 
     try {
         // Buscar la habilidad en la base de datos en vez del ¿¿json??
-        const skill = await Skill.findOne({ set: skillTreeName, id: skillID });
+        const skill = await Skill.findOne({id: id });
 
         if (!skill) {
             return res.status(404).json({ message: 'Skill not found' });
