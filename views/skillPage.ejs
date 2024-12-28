@@ -120,9 +120,32 @@
     }
   });
 
+  // Cargar el estado de las checkboxes al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    checkboxes.forEach(checkbox => {
+      const taskId = checkbox.id;
+      const savedState = localStorage.getItem(taskId);
+      if (savedState !== null) {
+        checkbox.checked = savedState === 'true';
+      }
+    });
+
+    // Comprobar si todos están seleccionados después de cargar
+    if (areAllCheckboxesChecked()) {
+      evidenceSection.style.display = 'block';
+      skillEvidence.style.display = 'block';
+      submitButton.style.display = 'block';
+    }
+  });
+
+
   // Función para comprobar si todos los checkboxes están seleccionados
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
+      // Guardar estado del checkbox
+      const taskId = checkbox.id;
+      localStorage.setItem(taskId, checkbox.checked);
+
       if (areAllCheckboxesChecked()) {
         // Mostrar los elementos
         evidenceSection.style.display = 'block';
@@ -156,6 +179,7 @@
   fetch('/skills.json')
           .then(response => response.json())
           .then(data => {
+            console.log(data); //Verificar los datos cargados
             createOneHexagon(data, '<%= skill.id %>');  // Llamamos a la función que buscará y creará el hexágono
           })
           .catch(error => console.error("Error al cargar el JSON", error));
