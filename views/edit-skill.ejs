@@ -3,30 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Competencia</title>
+    <title>Edit Skill: <%= skill.text %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 600px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #ffd700;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .save-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .cancel-btn {
+            background-color: #aaa;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Editar Competencia en el Árbol: <%= skillTreeName %></h1> <!-- Aquí utilizas skillTreeName -->
-    <form action="/skills/<%= skillTreeName %>/edit/<%= skill.id %>" method="POST">
-        <label for="text">Nombre de la Competencia:</label>
-        <input type="text" id="text" name="text" value="<%= skill.text %>" required><br><br>
-
-        <label for="description">Descripción:</label>
-        <textarea id="description" name="description" required><%= skill.description %></textarea><br><br>
-
-        <label for="icon">URL del Ícono:</label>
-        <input type="text" id="icon" name="icon" value="<%= skill.icon %>"><br><br>
-
-        <label for="score">Puntuación:</label>
-        <input type="number" id="score" name="score" value="<%= skill.score %>" required><br><br>
-
-        <label for="tasks">Tareas (una por línea):</label>
-        <textarea id="tasks" name="tasks" required><%= skill.tasks.join('\n') %></textarea><br><br>
-
-        <label for="resources">Recursos (uno por línea):</label>
-        <textarea id="resources" name="resources" required><%= skill.resources.join('\n') %></textarea><br><br>
-
-        <button type="submit">Guardar Cambios</button>
-    </form>
+    <div class="container">
+        <div class="header">Edit Skill: <%= skill.text %></div>
+        <form action="/skills/<%= skillTreeName %>/edit/<%= skill.id %>" method="POST">
+            <div class="form-group">
+                <label for="text">Skill Text:</label>
+                <input type="text" id="text" name="text" value="<%= skill.text %>" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required><%= skill.description %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tasks">Tasks to Complete (one per line):</label>
+                <textarea id="tasks" name="tasks" required><%= skill.tasks.join('\n') %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="resources">Resources (one per line):</label>
+                <textarea id="resources" name="resources" required><%= skill.resources.join('\n') %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="score">Skill Score:</label>
+                <input type="number" id="score" name="score" value="<%= skill.score %>" required>
+            </div>
+            <div class="form-group">
+                <label for="icon">Upload Icon (30x30 png):</label>
+                <input type="file" id="icon" name="icon">
+            </div>
+            <div class="buttons">
+                <button type="submit" class="save-btn">Save</button>
+                <button type="button" class="cancel-btn" onclick="window.history.back()">Cancel</button>
+                <button type="button" class="delete-btn" onclick="confirmDelete()">Delete Skill</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function confirmDelete() {
+            if (confirm("Are you sure you want to delete this skill?")) {
+                window.location.href = "/skills/<%= skillTreeName %>/delete/<%= skill.id %>"; // TO DO
+            }
+        }
+    </script>
 </body>
 </html>

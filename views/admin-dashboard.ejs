@@ -4,15 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 500px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            background-color: #ffd700;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
+        }
+        .welcome-message {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .admin-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .btn-secondary {
+            background-color: #007BFF;
+        }
+        .btn-secondary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido al Panel de Administración</h1>
-    <p>Usuario: <%= username %></p>
-    
-    <div class="admin-options">
-        <a href="/admin/badges" class="btn btn-primary">Gestionar Insignias</a>
-        <a href="/admin/users" class="btn btn-primary">Gestionar Usuarios</a>
+    <div class="container">
+        <div class="header">Admin Dashboard</div>
+        <p class="welcome-message">Bienvenido al Panel de Administración</p>
+        <p>Usuario: <strong><%= username %></strong></p>
+        <div class="admin-options">
+            <a href="/admin/badges" class="btn btn-primary">Gestionar Insignias</a>
+            <a href="/admin/users" class="btn btn-secondary">Gestionar Usuarios</a>
+        </div>
     </div>
 </body>
 </html>
