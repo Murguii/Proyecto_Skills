@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { isAuthenticated } = require('../middlewares/isAuthenticated');
 
-// Redirigir la ruta raíz (/) a /users/login
+// Ruta para la página de bienvenida
 router.get('/', (req, res) => {
-    res.redirect('/users/login');
-});
+    res.render('welcome');
+  });
 
 // Ruta protegida para renderizar index.ejs
 router.get('/index', isAuthenticated, (req, res) => {
