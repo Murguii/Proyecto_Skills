@@ -9,6 +9,9 @@ const connectDB = require('./config/database');
 const seedBadges = require('./utils/seedBadges');
 const seedSkills = require('./utils/seedSkills'); // Importa la función
 
+const fileUpload = require('express-fileupload');
+
+
 // Importación de routers
 const adminRouter = require('./routes/admin');
 const indexRouter = require('./routes/index'); // Maneja el login
@@ -36,6 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 // Configuración de sesiones
 app.use(session({

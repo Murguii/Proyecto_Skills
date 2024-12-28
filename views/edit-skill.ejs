@@ -100,8 +100,15 @@
                 <label for="score">Skill Score:</label>
                 <input type="number" id="score" name="score" value="<%= skill.score %>" required>
             </div>
+
             <div class="form-group">
-                <label for="icon">Upload Icon (30x30 png):</label>
+                <label for="icon">Current Icon:</label>
+                <div>
+                    <!-- Mostrar el icono actual -->
+                    <img src="<%= skill.icon %>" alt="Skill Icon" style="width: 30px; height: 30px;">
+                </div>
+                <label for="icon">Upload New Icon (30x30 png, optional):</label>
+                <!-- Campo para subir un nuevo icono -->
                 <input type="file" id="icon" name="icon">
             </div>
             <div class="buttons">

@@ -35,32 +35,62 @@ exports.getAddSkillForm = (req, res) => {
     res.render('add-skill');
 };
 
+const path = require('path');
+const fs = require('fs');  // Para verificar la existencia de la carpeta y crearla si no existe
+
 exports.addSkill = async (req, res) => {
-    //const { skillTreeName } = req.params;
-    const { text, description, icon, score, tasks, resources } = req.body;
+    const { text, description, score, tasks, resources } = req.body;
 
     try {
+        let icon = ''; // Inicializa el icono vacío
+
+        // Verifica si se ha subido un nuevo icono
+        if (req.files && req.files.icon) {
+            const uploadedIcon = req.files.icon;
+            const iconsFolder = path.join(__dirname, 'public', 'icons');
+
+            // Verifica si la carpeta existe, si no, la crea
+            if (!fs.existsSync(iconsFolder)) {
+                fs.mkdirSync(iconsFolder);
+            }
+
+            const uploadPath = path.join(iconsFolder, uploadedIcon.name);
+
+            // Mueve el archivo subido a la carpeta pública
+            uploadedIcon.mv(uploadPath, (err) => {
+                if (err) return res.status(500).send(err);
+            });
+
+            icon = `/icons/${uploadedIcon.name}`; // Guarda la ruta del nuevo icono
+        } else {
+            // Si no se sube un nuevo icono, usa un icono predeterminado
+            icon = '/icons/default-icon.png'; // Cambia esto si tienes un icono predeterminado
+        }
+
         // Crear un nuevo skill
         const newSkill = new Skill({
-            id: Date.now(), // Generar un ID único basado en la marca de tiempo
+            id: Date.now(),
             text,
             description,
-            icon,
-            score: parseInt(score, 10), // Convertir puntuación a número
-            tasks: tasks.split('\n').map(task => task.trim()), // Dividir tareas por línea
-            resources: resources.split('\n').map(resource => resource.trim()), // Dividir recursos por línea
-            set: "electronics", // Asociar al conjunto (árbol)
+            icon, // Usa el icono subido
+            score: parseInt(score, 10),
+            tasks: tasks.split('\n').map(task => task.trim()),
+            resources: resources.split('\n').map(resource => resource.trim()),
+            set: "electronics", // Este es el nombre del conjunto
         });
 
         await newSkill.save();
 
-        // Redirigir a la lista de competencias del árbol
-        res.redirect(`/index`);
+        // Redirigir a la lista de competencias
+        res.redirect('/index');
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al añadir la competencia');
     }
 };
+
+
+
 
 exports.viewSkillDetails = async (req, res) => {
     const { skillTreeName, skillID } = req.params;
@@ -127,19 +157,38 @@ exports.getEditSkillForm = async (req, res) => {
 
 exports.updateSkill = async (req, res) => {
     const { skillTreeName, id } = req.params;
-    const { text, description, icon, score, tasks, resources } = req.body;
+    const { text, description, score, tasks, resources } = req.body;
 
     try {
+        let icon = ''; // Inicializa el icono vacío
+
+        // Verifica si se ha subido un nuevo icono
+        if (req.files && req.files.icon) {
+            const uploadedIcon = req.files.icon;
+            const uploadPath = path.join(__dirname, 'public', 'icons', uploadedIcon.name);
+
+            // Mueve el archivo subido a la carpeta pública
+            uploadedIcon.mv(uploadPath, (err) => {
+                if (err) return res.status(500).send(err);
+            });
+
+            icon = `/icons/${uploadedIcon.name}`; // Guarda la ruta del nuevo icono
+        } else {
+            // Si no se sube un nuevo icono, mantiene el icono actual
+            const existingSkill = await Skill.findOne({ id: id, set: skillTreeName });
+            icon = existingSkill.icon; // Mantiene el icono actual si no se sube un nuevo archivo
+        }
+
         // Buscar y actualizar la competencia
         const skill = await Skill.findOneAndUpdate(
             { id: id, set: skillTreeName },
             {
                 text,
                 description,
-                icon,
+                icon, // Actualiza el icono si es necesario
                 score: parseInt(score, 10),
-                tasks: tasks.split('\n').map(task => task.trim()), // Dividir tareas por línea
-                resources: resources.split('\n').map(resource => resource.trim()), // Dividir recursos por línea
+                tasks: tasks.split('\n').map(task => task.trim()),
+                resources: resources.split('\n').map(resource => resource.trim()),
             },
             { new: true } // Devolver el documento actualizado
         );
@@ -149,14 +198,15 @@ exports.updateSkill = async (req, res) => {
         }
 
         // Redirigir a la lista de competencias
-        //res.redirect(`/skills/${skillTreeName}`);
         res.redirect('/index');
-        //res.render('skills-list', { skillTreeName:skillTreeName, skills:skill });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al actualizar la competencia');
     }
 };
+
+
+
 
 exports.submitEvidence = async (req, res) => {
     const { skillTreeName } = req.params;
