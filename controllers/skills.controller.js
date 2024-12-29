@@ -1,6 +1,7 @@
 const Skill = require('../models/skill.model');
 const Evidence = require('../models/evidence.model');
 const userskill = require('../models/userSkill.model');
+const User = require('../models/user.model');
 
 exports.pendingCount = async (req, res) => {
     try {
@@ -311,5 +312,46 @@ exports.getAllSkills = async (req, res) => {
         res.json(skills);
     } catch (error) {
         res.status(500).send('Error al obtener los datos de las habilidades');
+    }
+};
+
+exports.createEvidence = async (req, res) => {
+    const { skillId } = req.params;
+    const { evidence } = req.body;
+
+    try {
+        // Validar los datos enviados
+        if (!skillId || !evidence) {
+            return res.status(400).json({ message: 'Skill ID y evidencia son obligatorios' });
+        }
+
+        const username = req.session.user.username;
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        //const id = parseInt(skillId);
+        const skill = await Skill.findOne({ id: skillId });
+        if (!skill) {
+            return res.status(404).json({ message: 'Habilidad no encontrada' });
+        }
+        // Crear nueva evidencia
+
+        const newEvidence = new userskill({
+            user: user._id, // ID del usuario autenticado
+            skill: skill._id,
+            completed: true,
+            completedAt: new Date(),
+            evidence: evidence,
+            verified: false,
+            verifications: [] // Estado inicial pendiente
+        });
+        console.log('Antes del save');
+        await newEvidence.save();
+
+        res.json({ message: 'Evidencia enviada correctamente', evidence: newEvidence });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };

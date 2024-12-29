@@ -26,7 +26,7 @@ const userSkillSchema = new mongoose.Schema({
         default: false,
         required: true
     },
-    verifications: {
+    verifications: [{
         user: {
             type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
         },
@@ -38,7 +38,7 @@ const userSkillSchema = new mongoose.Schema({
             type: Date,
             required: true
         }
-    }
+    }]
 });
 
 // Middlewares

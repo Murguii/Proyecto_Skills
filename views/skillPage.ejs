@@ -75,12 +75,29 @@
   const skillEvidence = document.getElementById('skillEvidence');
   const submitButton = document.getElementById('submitEvidenceButton');
   const tableBody = document.getElementById('evidenceTableBody');
-
+  const skillId = '<%= skill.id %>'
+  console.log('Valor skillId: ', skillId);
   submitButton.addEventListener('click', () => {
     let textEvidence = skillEvidence.value;
     console.log(textEvidence);
     if(textEvidence){
-      //crear una nueva fila
+      // Enviar la evidencia al servidor
+      fetch(`/skills/createEvidence/${skillId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ evidence: textEvidence })
+      })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Success:', data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+
+    //crear una nueva fila
       let row = document.createElement('tr');
 
       //crear la celda con el nombre del usuario

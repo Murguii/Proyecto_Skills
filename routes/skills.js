@@ -29,6 +29,7 @@ router.get('/', isAuthenticated, skillsController.redirectToDefaultSkill);
 
 router.get('/pending-count', skillsController.pendingCount);
 router.get('/completed-count', skillsController.completedCount);
+router.post('/createEvidence/:skillId', isAuthenticated, skillsController.createEvidence);
 
 // GET /skills/:skillTreeName/add
 router.get('/add', isAdmin, skillsController.getAddSkillForm);
