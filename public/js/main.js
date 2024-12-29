@@ -6,10 +6,13 @@ fetch('/skills/api')
   })
   .catch(error => console.error("Error al cargar el JSON", error));
 
-function createHexagons(skills) {
+async function createHexagons(skills) {
   const container = document.getElementById('hexagon-container');
   const isAdmin = container.getAttribute('adminValue'); //devuelve un string en vez de un booleano
   console.log('Admin value: ', isAdmin);
+
+  const pendingCount = await consultarSinVerificar(); // Pendientes de verificar
+  const completedCount = await consultarVerificados(); // Completados y verificados
   
   skills.forEach(skill => {
     const hexagonWrapper = document.createElement('div');
@@ -33,7 +36,7 @@ function createHexagons(skills) {
     text.setAttribute('fill', 'black');
     text.setAttribute('font-size', '10');
 
-    if (skill.pendingEvidences >= 0){
+    //if (skill.pendingEvidences >= 0){
       const evidenceCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       evidenceCircle.setAttribute('cx', '15'); // Coordenada x del centro
       evidenceCircle.setAttribute('cy', '15'); // Coordenada y del centro
@@ -48,11 +51,32 @@ function createHexagons(skills) {
       evidenceText.setAttribute('fill', 'white'); // Texto blanco
       evidenceText.setAttribute('font-size', '10');
       evidenceText.setAttribute('font-weight', 'bold');
-      evidenceText.textContent = skill.pendingEvidences;
+      evidenceText.textContent = pendingCount || 0;
 
       svg.appendChild(evidenceCircle); // Añadir el círculo al SVG
       svg.appendChild(evidenceText);  // Añadir el texto dentro del círculo
-    }
+    //}
+
+    // Círculo verde a la derecha (completadas)
+  //if (skill.completedEvidences >= 0) {
+    const completedCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    completedCircle.setAttribute('cx', '85'); // Coordenada x del centro (derecha)
+    completedCircle.setAttribute('cy', '15'); // Coordenada y del centro
+    completedCircle.setAttribute('r', '10'); // Radio del círculo
+    completedCircle.setAttribute('fill', 'green'); // Color verde
+
+    const completedText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    completedText.setAttribute('x', '85');
+    completedText.setAttribute('y', '20'); // Ajusta la posición vertical
+    completedText.setAttribute('text-anchor', 'middle');
+    completedText.setAttribute('fill', 'white');
+    completedText.setAttribute('font-size', '10');
+    completedText.setAttribute('font-weight', 'bold');
+    completedText.textContent = completedCount || 0;
+
+    svg.appendChild(completedCircle);
+    svg.appendChild(completedText);
+  //}
 
   
     const lines = skill.text.split("\n\n\n");
@@ -133,3 +157,28 @@ function createHexagons(skills) {
   });
 
 }
+
+async function consultarSinVerificar() {
+  try {
+    // Realiza la consulta con filtros para completed: true y verified: false
+    const count = await fetch('/skills/pending-count');
+    console.log(`Total de elementos con completed=true y verified=false: ${count}`);
+    return count;
+  } catch (error) {
+    console.error('Error al realizar la consulta:', error);
+    throw error; // Maneja el error o propágalo según tu lógica
+  }
+}
+
+async function consultarVerificados() {
+  try {
+    // Realiza la consulta con filtros para completed: true y verified: false
+    const count = await fetch('/skills/completed-count');
+    console.log(`Total de elementos con completed=true y verified=false: ${count}`);
+    return count;
+  } catch (error) {
+    console.error('Error al realizar la consulta:', error);
+    throw error; // Maneja el error o propágalo según tu lógica
+  }
+}
+

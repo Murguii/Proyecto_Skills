@@ -19,11 +19,16 @@ router.get('/:skillTreeName/add', isAuthenticated, (req, res) => {
     res.render('addSkill', { skillTree });
 });
 
+
+
 // GET /skills/
 router.get('/', isAuthenticated, skillsController.redirectToDefaultSkill);
 
 // GET /skills/:skillTreeName
 //router.get('/:skillTreeName', isAuthenticated, skillsController.getSkillsBySet);
+
+router.get('/pending-count', skillController.pendingCount);
+router.get('/completed-count', skillController.completedCount);
 
 // GET /skills/:skillTreeName/add
 router.get('/add', isAdmin, skillsController.getAddSkillForm);

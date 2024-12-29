@@ -1,5 +1,27 @@
 const Skill = require('../models/skill.model');
 const Evidence = require('../models/evidence.model');
+const userskill = require('../models/userSkill.model');
+
+exports.pendingCount = async (req, res) => {
+    try {
+      const count = await userskill.countDocuments({ completed: true, verified: false });
+      res.json({ count });
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+      res.status(500).json({ error: 'Error al realizar la consulta' });
+    }
+  };
+  
+  exports.completedCount = async(req, res) => {
+    try {
+      const count = await userskill.countDocuments({ completed: true, verified: true });
+      res.json({ count });
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+      res.status(500).json({ error: 'Error al realizar la consulta' });
+    }
+  };
+
 
 exports.redirectToDefaultSkill = (req, res) => {
     try {

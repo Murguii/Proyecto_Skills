@@ -22,7 +22,7 @@ const userSkillSchema = new mongoose.Schema({
         required: true
     },
     verified: {
-        type: Date,
+        type: Boolean,
         default: false,
         required: true
     },
