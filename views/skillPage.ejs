@@ -153,49 +153,54 @@
     }
   });
 
-  // Cargar el estado de las checkboxes al cargar la página
-  window.addEventListener('DOMContentLoaded', () => {
-    checkboxes.forEach(checkbox => {
-      const taskId = checkbox.id;
-      const savedState = localStorage.getItem(taskId);
-      if (savedState !== null) {
-        checkbox.checked = savedState === 'true';
-      }
-    });
-
-    // Comprobar si todos están seleccionados después de cargar
-    if (areAllCheckboxesChecked()) {
-      evidenceSection.style.display = 'block';
-      skillEvidence.style.display = 'block';
-      submitButton.style.display = 'block';
+// Cargar el estado de las checkboxes al cargar la página
+window.addEventListener('DOMContentLoaded', () => {
+  checkboxes.forEach(checkbox => {
+    const taskId = checkbox.id;
+    const savedState = localStorage.getItem(taskId);
+    if (savedState !== null) {
+      checkbox.checked = savedState === 'true';
     }
   });
 
+  // Comprobar si todos están seleccionados después de cargar
+  toggleEvidenceSection();
+});
 
-  // Función para comprobar si todos los checkboxes están seleccionados
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      // Guardar estado del checkbox
-      const taskId = checkbox.id;
-      localStorage.setItem(taskId, checkbox.checked);
+// Función para comprobar si todos los checkboxes están seleccionados
+function areAllCheckboxesChecked() {
+  return Array.from(checkboxes).every(checkbox => checkbox.checked);
+}
 
-      if (areAllCheckboxesChecked()) {
-        // Mostrar los elementos
-        evidenceSection.style.display = 'block';
-        skillEvidence.style.display = 'block';
-        submitButton.style.display = 'block';
-
-        // Llamar a la función que lanza el confeti
-        launchConfetti();
-      }
-    });
-  });
-
-  // Comprobar si todos los checkboxes están marcados
-  function areAllCheckboxesChecked() {
-    return Array.from(checkboxes).every(checkbox => checkbox.checked);
+// Función para mostrar u ocultar la sección de evidencias
+function toggleEvidenceSection() {
+  if (areAllCheckboxesChecked()) {
+    evidenceSection.style.display = 'block';
+    skillEvidence.style.display = 'block';
+    submitButton.style.display = 'block';
+  } else {
+    evidenceSection.style.display = 'none';
+    skillEvidence.style.display = 'none';
+    submitButton.style.display = 'none';
   }
+}
 
+// Comprobar cambios en los checkboxes
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    // Guardar estado del checkbox
+    const taskId = checkbox.id;
+    localStorage.setItem(taskId, checkbox.checked);
+
+    // Actualizar visibilidad de la sección de evidencias
+    toggleEvidenceSection();
+
+    if (areAllCheckboxesChecked()) {
+      // Llamar a la función que lanza el confeti
+      launchConfetti();
+    }
+  });
+});
   // Función para lanzar confeti
   function launchConfetti() {
     confetti({
