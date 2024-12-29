@@ -4,26 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Insignia</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            background-color: #6c757d;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
 </head>
 <body>
-    <h1>Editar Insignia</h1>
-    <form action="/admin/badges/edit/<%= badge.name %>" method="POST">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" value="<%= badge.name %>" required><br>
+    <div class="container">
+        <div class="header">Editar Insignia</div>
+        <form action="/admin/badges/edit/<%= badge.name %>" method="POST">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" value="<%= badge.name %>" required>
 
-        <label for="range">Rango:</label>
-        <input type="text" id="range" name="range" value="<%= badge.range %>" required><br>
+            <label for="range">Rango:</label>
+            <input type="text" id="range" name="range" value="<%= badge.range %>" required>
 
-        <label for="bitpoints_min">Puntos Mínimos:</label>
-        <input type="number" id="bitpoints_min" name="bitpoints_min" value="<%= badge.bitpoints_min %>" required><br>
+            <label for="bitpoints_min">Puntos Mínimos:</label>
+            <input type="number" id="bitpoints_min" name="bitpoints_min" value="<%= badge.bitpoints_min %>" required>
 
-        <label for="bitpoints_max">Puntos Máximos:</label>
-        <input type="number" id="bitpoints_max" name="bitpoints_max" value="<%= badge.bitpoints_max %>" required><br>
+            <label for="bitpoints_max">Puntos Máximos:</label>
+            <input type="number" id="bitpoints_max" name="bitpoints_max" value="<%= badge.bitpoints_max %>" required>
 
-        <label for="image_url">URL de Imagen:</label>
-        <input type="text" id="image_url" name="image_url" value="<%= badge.image_url %>" required><br>
+            <label for="image_url">URL de Imagen:</label>
+            <input type="text" id="image_url" name="image_url" value="<%= badge.image_url %>" required>
 
-        <button type="submit">Actualizar</button>
-    </form>
+            <div class="buttons">
+                <button class="back-button" type="button" onclick="window.location.href='/admin/badges'">Volver</button>
+                <button type="submit">Actualizar</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

@@ -121,7 +121,7 @@
     <script>
         function confirmDelete() {
             if (confirm("Are you sure you want to delete this skill?")) {
-                window.location.href = "/skills/<%= skillTreeName %>/delete/<%= skill.id %>"; // TO DO
+                window.location.href = "/skills/<%= skill.set %>/delete/<%= skill.id %>";
             }
         }
     </script>

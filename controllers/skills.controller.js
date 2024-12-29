@@ -279,17 +279,26 @@ exports.deleteSkill = async (req, res) => {
     const { skillTreeName, skillID } = req.params;
 
     try {
-        // Buscar y eliminar la competencia
-        const skill = await Skill.findOneAndDelete({ id: skillID, set: skillTreeName });
+        // Verifica que la habilidad exista antes de eliminar
+        const skill = await Skill.findOne({ id: skillID, set: skillTreeName });
 
         if (!skill) {
             return res.status(404).send('Competencia no encontrada');
         }
 
-        // Redirigir a la lista de competencias
+        // Elimina la habilidad
+        await Skill.findOneAndDelete({ id: skillID, set: skillTreeName });
+
+        // Verifica si la habilidad fue eliminada
+        const checkSkill = await Skill.findOne({ id: skillID, set: skillTreeName });
+        if (checkSkill) {
+            throw new Error(`La habilidad con ID ${skillID} no pudo ser eliminada.`);
+        }
+
+        console.log(`Habilidad con ID ${skillID} eliminada correctamente del árbol ${skillTreeName}`);
         res.redirect(`/skills/${skillTreeName}`);
     } catch (error) {
-        console.error(error);
+        console.error('Error al eliminar la competencia:', error);
         res.status(500).send('Error al eliminar la competencia');
     }
 };
