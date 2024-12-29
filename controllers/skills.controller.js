@@ -125,6 +125,13 @@ exports.viewSkillDetails = async (req, res) => {
             return res.status(404).send('Competencia no encontrada');
         }
 
+        // Verificar que la propiedad 'text' esté definida antes de acceder a ella
+        if (skill && skill.text) {
+            console.log("Texto de la competencia:", skill.text);
+        } else {
+            console.log("No se encontró 'text' en la competencia");
+        }
+
         // Obtener las evidencias asociadas
         const evidences = await Evidence.find({ skill: skillID }).populate('user', 'username');
 

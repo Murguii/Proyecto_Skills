@@ -160,25 +160,31 @@ async function createHexagons(skills) {
 
 async function consultarSinVerificar() {
   try {
-    // Realiza la consulta con filtros para completed: true y verified: false
-    const count = await fetch('/skills/pending-count');
-    console.log(`Total de elementos con completed=true y verified=false: ${count}`);
-    return count;
+      const response = await fetch('http://localhost:3000/skills/pending-count');
+      
+      // Asegúrate de que la respuesta es en formato JSON
+      const data = await response.json();
+
+      console.log('Total de elementos con completed=true y verified=false:', data.count);
+      
+      // Aquí puedes hacer lo que necesites con `data.count`
   } catch (error) {
-    console.error('Error al realizar la consulta:', error);
-    throw error; // Maneja el error o propágalo según tu lógica
+      console.error('Error al consultar los datos de pendientes:', error);
   }
 }
 
 async function consultarVerificados() {
   try {
-    // Realiza la consulta con filtros para completed: true y verified: false
-    const count = await fetch('/skills/completed-count');
-    console.log(`Total de elementos con completed=true y verified=false: ${count}`);
-    return count;
+      const response = await fetch('http://localhost:3000/skills/completed-count');
+      
+      // Asegúrate de que la respuesta es en formato JSON
+      const data = await response.json();
+
+      console.log('Total de elementos con completed=true y verified=true:', data.count);
+      
+      // Aquí puedes hacer lo que necesites con `data.count`
   } catch (error) {
-    console.error('Error al realizar la consulta:', error);
-    throw error; // Maneja el error o propágalo según tu lógica
+      console.error('Error al consultar los datos verificados:', error);
   }
 }
 

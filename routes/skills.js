@@ -27,8 +27,8 @@ router.get('/', isAuthenticated, skillsController.redirectToDefaultSkill);
 // GET /skills/:skillTreeName
 //router.get('/:skillTreeName', isAuthenticated, skillsController.getSkillsBySet);
 
-router.get('/pending-count', skillController.pendingCount);
-router.get('/completed-count', skillController.completedCount);
+router.get('/pending-count', skillsController.pendingCount);
+router.get('/completed-count', skillsController.completedCount);
 
 // GET /skills/:skillTreeName/add
 router.get('/add', isAdmin, skillsController.getAddSkillForm);
