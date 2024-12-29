@@ -14,7 +14,7 @@ async function createHexagons(skills) {
 
   //skills.forEach(skill => {
   for (const skill of skills) {
-    const pendingCount = await consultarSinVerificar(); // Pendientes de verificar
+    const pendingCount = await consultarSinVerificar(skill.id); // Pendientes de verificar
     const completedCount = await consultarVerificados(skill.id); // Completados y verificados
     const hexagonWrapper = document.createElement('div');
     hexagonWrapper.classList.add('svg-wrapper');
@@ -159,15 +159,16 @@ async function createHexagons(skills) {
 
 }
 
-async function consultarSinVerificar() {
+async function consultarSinVerificar(id) {
   try {
-      const response = await fetch('http://localhost:3000/skills/pending-count');
+      const response = await fetch(`http://localhost:3000/skills/pending-count/${id}`);
       
       // Asegúrate de que la respuesta es en formato JSON
       const data = await response.json();
 
-      console.log('Total de elementos con completed=true y verified=false:', data.count);
-      return data.count;
+    const count = String(data.count);
+    //console.log('Total de elementos con completed=true y verified=true:', count);
+    return count;
       // Aquí puedes hacer lo que necesites con `data.count`
   } catch (error) {
       console.error('Error al consultar los datos de pendientes:', error);
@@ -182,7 +183,7 @@ async function consultarVerificados(id) {
       const data = await response.json();
 
       const count = String(data.count);
-      console.log('Total de elementos con completed=true y verified=true:', count);
+      //console.log('Total de elementos con completed=true y verified=true:', count);
       return count;
       // Aquí puedes hacer lo que necesites con `data.count`
   } catch (error) {

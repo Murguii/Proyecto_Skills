@@ -27,7 +27,7 @@ router.get('/', isAuthenticated, skillsController.redirectToDefaultSkill);
 // GET /skills/:skillTreeName
 //router.get('/:skillTreeName', isAuthenticated, skillsController.getSkillsBySet);
 
-router.get('/pending-count', skillsController.pendingCount);
+router.get('/pending-count/:id', skillsController.pendingCount);
 router.get('/completed-count/:id', skillsController.completedCount);
 router.post('/createEvidence/:skillId', isAuthenticated, skillsController.createEvidence);
 router.post('/approveEvidence/:skillId', isAuthenticated, skillsController.approveEvidence);

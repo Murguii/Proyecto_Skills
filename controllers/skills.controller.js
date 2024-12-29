@@ -5,7 +5,12 @@ const User = require('../models/user.model');
 
 exports.pendingCount = async (req, res) => {
     try {
-      const count = await userskill.countDocuments({ completed: true, verified: false });
+        const { id } = req.params;
+        const skill = await Skill.findOne({ id: id });
+        if (!skill) {
+            return res.status(404).json({ message: 'Skill no encontrada' });
+        }
+      const count = await userskill.countDocuments({ skill: skill._id, completed: true, verified: false });
       res.json({ count });
     } catch (error) {
       console.error('Error al realizar la consulta:', error);
@@ -14,10 +19,13 @@ exports.pendingCount = async (req, res) => {
   };
   
   exports.completedCount = async(req, res) => {
-      const id = req.params;
+      const { id } = req.params;
     try {
-        const skill = Skill.findOne({ id: id });
-      const count = await userskill.countDocuments({ skill: skill._id, completed: true, verified: true });
+        const skill = await Skill.findOne({ id: id });
+        if (!skill) {
+            return res.status(404).json({ message: 'Skill no encontrada' });
+        }
+        const count = await userskill.countDocuments({ skill: skill._id, completed: true, verified: true });
       res.json({ count });
     } catch (error) {
       console.error('Error al realizar la consulta:', error);
