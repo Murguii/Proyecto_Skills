@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <!-- Enlazamos el archivo CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h1>Leaderboard</h1>
+
+<!-- Tabla de clasificación -->
+<section>
+    <h2>Clasificación por Medallas</h2>
+
+    <!-- Clasificación para cada rango -->
+    <% leaderboard.forEach(group => { %>
+        <h3><%= group.rangeName %></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Score</th>
+                    <th>Badge</th>
+                    <th>Range</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (group.users.length === 0) { %>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">No users in this range yet.</td>
+                    </tr>
+                <% } else { %>
+                    <% group.users.forEach((user, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.score %></td>
+                            <td>
+                                <img src="/badges/<%= user.badge %>" alt="<%= user.badge %>" style="max-width: 30px;">
+                            </td>
+                            <td><%= group.rangeName %></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    <% }); %>
+</section>
+
+<!-- Tabla de descripción de medallas -->
+<section>
+    <h2>Range Explanations</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rango</th>
+                <th>Badge</th>
+                <th>Required Bitpoints</th>
+            </tr>
+        </thead>
+        <tbody id="badges-table">
+            <!-- Aquí se llenarán las filas dinámicamente -->
+        </tbody>
+    </table>
+</section>
+
+<script>
+    // Función para cargar y mostrar las medallas
+    fetch('/medals.json')  // Accede al archivo medals.json en public
+        .then(response => response.json())
+        .then(badges => {
+            const tableBody = document.getElementById('badges-table');
+            badges.forEach(badge => {
+                const row = document.createElement('tr');
+                const badgeImageUrl = `/badges/${badge.png}`; // Asumiendo que las imágenes están en /badges
+                
+                // Crear celdas de la tabla
+                const rangoCell = document.createElement('td');
+                rangoCell.textContent = badge.rango;
+
+                const imageCell = document.createElement('td');
+                const imgElement = document.createElement('img');
+                imgElement.src = badgeImageUrl;
+                imgElement.alt = badge.rango;
+                imgElement.style.maxWidth = '30px';
+                imageCell.appendChild(imgElement);
+
+                const bitpointsCell = document.createElement('td');
+                bitpointsCell.textContent = `${badge.bitpoints_min} - ${badge.bitpoints_max}`;
+
+                // Agregar las celdas a la fila
+                row.appendChild(rangoCell);
+                row.appendChild(imageCell);
+                row.appendChild(bitpointsCell);
+
+                // Agregar la fila a la tabla
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar las medallas:', error);
+        });
+</script>
+
+</body>
+</html>

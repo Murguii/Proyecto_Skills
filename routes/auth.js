@@ -24,9 +24,15 @@ router.get('/github/callback', passport.authenticate('github', {
 
 // Ruta para cerrar sesión
 router.get('/logout', (req, res) => {
-    req.logout(() => {
-        res.redirect('/');
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error al cerrar sesión:', err);
+            return res.status(500).send('Error al cerrar sesión'); // Asegura que envía una única respuesta
+        }
+        res.clearCookie('connect.sid'); // Limpia la cookie de sesión
+        return res.redirect('/users/login'); // Redirige al login después de cerrar sesión
     });
 });
+
 
 module.exports = router;

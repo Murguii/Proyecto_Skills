@@ -18,15 +18,10 @@ router.post('/badges/delete/:name', isAdmin, adminController.postDeleteBadge);
 // POST /admin/change-password
 router.post('/change-password', isAdmin, adminController.changePassword);
 
-router.get('/dashboard', adminController.dashboard);
+router.get('/dashboard', isAdmin, adminController.dashboard);
 
 router.get('/users', isAdmin, adminController.getUsers);
 
-
-// GET /admin/dashboard
-exports.dashboard = (req, res) => {
-    res.render('admin-dashboard', { username: req.user?.username || 'Admin' });
-};
 
 
 module.exports = router;

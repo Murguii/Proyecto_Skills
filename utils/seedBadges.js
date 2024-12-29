@@ -15,12 +15,9 @@ const seedBadges = async () => {
         // Lee el archivo medals.json
         const badgesData = JSON.parse(fs.readFileSync(badgesFilePath, 'utf8'));
 
-        // Verifica si ya hay insignias en la base de datos
-        const existingBadges = await Badge.find();
-        if (existingBadges.length > 0) {
-            console.log('Las insignias ya están cargadas en la base de datos.');
-            return;
-        }
+        // Purga la colección de insignias
+        await Badge.deleteMany({});
+        console.log('Colección de insignias purgada.');
 
         // Mapea los datos para adaptarlos al esquema Badge y los inserta
         const badges = badgesData.map(badge => ({
@@ -32,7 +29,7 @@ const seedBadges = async () => {
         }));
 
         await Badge.insertMany(badges);
-        console.log('Insignias cargadas exitosamente en la base de datos.');
+        console.log('Insignias recargadas exitosamente en la base de datos.');
     } catch (error) {
         console.error('Error al cargar las insignias:', error);
     }

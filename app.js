@@ -63,6 +63,12 @@ app.use((req, res, next) => {
     next();
 });
 */
+
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    next();
+});
+
 // Rutas
 app.use('/', indexRouter); // Siempre muestra el login
 app.use('/users', usersRouter); // Rutas relacionadas con usuarios
