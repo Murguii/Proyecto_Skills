@@ -176,7 +176,7 @@
     });
   }
 
-  fetch('/skills.json')
+  fetch('/skills/api')
           .then(response => response.json())
           .then(data => {
             console.log(data); //Verificar los datos cargados
@@ -189,7 +189,7 @@
     const container = document.getElementById('hexagon-container-skill');
 
     skills.forEach(skill => {
-      if(skill.id === skillId) {
+      if(skill.id.toString() === skillId.toString()) {
         const hexagonWrapper = document.createElement('div');
         hexagonWrapper.classList.add('svg-wrapper');
         hexagonWrapper.setAttribute('data-id', skill.id);
