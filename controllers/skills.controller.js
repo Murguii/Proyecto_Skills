@@ -415,3 +415,28 @@ exports.approveEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };
+
+
+exports.getEvidences = async (req, res) => {
+    const { skillId } = req.params;
+
+    try {
+
+        const username = req.session.user.username;
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        const skill = await Skill.findOne({ id: skillId });
+        if (!skill) {
+            return res.status(404).json({ message: 'Habilidad no encontrada' });
+        }
+        // Crear nueva evidencia
+        const evidences = await userskill.find({ skill: skill._id, user: user._id, verified: false });
+        res.json({ username: username, evidences: evidences });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al enviar la evidencia' });
+    }
+};

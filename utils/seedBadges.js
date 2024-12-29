@@ -16,8 +16,8 @@ const seedBadges = async () => {
         const badgesData = JSON.parse(fs.readFileSync(badgesFilePath, 'utf8'));
 
         // Purga la colección de insignias
-        await Badge.deleteMany({});
-        console.log('Colección de insignias purgada.');
+       // await Badge.deleteMany({});
+       // console.log('Colección de insignias purgada.');
 
         // Mapea los datos para adaptarlos al esquema Badge y los inserta
         const badges = badgesData.map(badge => ({

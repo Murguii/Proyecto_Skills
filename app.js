@@ -25,8 +25,8 @@ const app = express();
 // Conexión a MongoDB
 connectDB().then(() => {
     // Inicializa las insignias y habilidades al conectar a la base de datos
-    seedBadges();
-    seedSkills();
+    //seedBadges();
+    //seedSkills();
 });
 
 // Configuración de vistas

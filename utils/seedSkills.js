@@ -16,8 +16,8 @@ const seedSkills = async () => {
         const skillsData = JSON.parse(fs.readFileSync(skillsFilePath, 'utf8'));
 
         // Purga la colección de habilidades
-        await Skill.deleteMany({});
-        console.log('Colección de habilidades purgada.');
+        //await Skill.deleteMany({});
+        //console.log('Colección de habilidades purgada.');
 
         // Inserta las habilidades en la base de datos
         await Skill.insertMany(skillsData);
