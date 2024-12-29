@@ -115,6 +115,22 @@
       let acceptButton = document.createElement('button');
       acceptButton.textContent = 'Approve';
       acceptButton.className = 'acceptButton';
+      acceptButton.addEventListener('click', () => {
+        fetch(`/skills/approveEvidence/${skillId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: null
+        })
+                .then(response => response.json())
+                .then(data => {
+                  console.log('Success:', data);
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+      })
 
       let rejectButton = document.createElement('button');
       rejectButton.textContent = 'Reject';

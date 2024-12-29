@@ -14,8 +14,10 @@ exports.pendingCount = async (req, res) => {
   };
   
   exports.completedCount = async(req, res) => {
+      const id = req.params;
     try {
-      const count = await userskill.countDocuments({ completed: true, verified: true });
+        const skill = Skill.findOne({ id: id });
+      const count = await userskill.countDocuments({ skill: skill._id, completed: true, verified: true });
       res.json({ count });
     } catch (error) {
       console.error('Error al realizar la consulta:', error);
@@ -350,6 +352,47 @@ exports.createEvidence = async (req, res) => {
         await newEvidence.save();
 
         res.json({ message: 'Evidencia enviada correctamente', evidence: newEvidence });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al enviar la evidencia' });
+    }
+};
+
+exports.approveEvidence = async (req, res) => {
+    const { skillId } = req.params;
+
+    try {
+        // Validar los datos enviados
+        if (!skillId) {
+            return res.status(400).json({ message: 'Skill ID y evidencia son obligatorios' });
+        }
+
+        const username = req.session.user.username;
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        //const id = parseInt(skillId);
+        const skill = await Skill.findOne({ id: skillId });
+        if (!skill) {
+            return res.status(404).json({ message: 'Habilidad no encontrada' });
+        }
+        // Crear nueva evidencia
+        const existingEvidence = await userskill.findOne({ skill: skill._id, user: user._id });
+        if (!existingEvidence) {
+            return res.status(404).json({ message: 'No se encontró la evidencia para la actualización' });
+        }
+
+        const newEvidence = await userskill.findOneAndUpdate(
+            { skill: skill._id, user: user._id }, // Filtro para encontrar la evidencia correspondiente
+            { $set: { verified: true } },          // Actualiza el campo 'verified' a true
+            { new: true }                          // Devuelve el documento actualizado
+        );
+
+        //const updatedEvidence = await userskill.findOne({ skill: skill._id, user: user._id });
+
+
+        res.json({ message: 'Evidencia actualizada correctamente', evidence: newEvidence });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error al enviar la evidencia' });

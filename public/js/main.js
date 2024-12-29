@@ -11,10 +11,11 @@ async function createHexagons(skills) {
   const isAdmin = container.getAttribute('adminValue'); //devuelve un string en vez de un booleano
   console.log('Admin value: ', isAdmin);
 
-  const pendingCount = await consultarSinVerificar(); // Pendientes de verificar
-  const completedCount = await consultarVerificados(); // Completados y verificados
-  
-  skills.forEach(skill => {
+
+  //skills.forEach(skill => {
+  for (const skill of skills) {
+    const pendingCount = await consultarSinVerificar(); // Pendientes de verificar
+    const completedCount = await consultarVerificados(skill.id); // Completados y verificados
     const hexagonWrapper = document.createElement('div');
     hexagonWrapper.classList.add('svg-wrapper');
     hexagonWrapper.setAttribute('data-id', skill.id);
@@ -136,8 +137,8 @@ async function createHexagons(skills) {
     hexagonWrapper.appendChild(iconsContainer);
     
     container.appendChild(hexagonWrapper);
-  });
-  
+  };
+
   const descriptionBox = document.getElementById('description-box');
   const descriptionTitle = document.getElementById('description-title');
   const descriptionText = document.getElementById('description-text');
@@ -166,22 +167,23 @@ async function consultarSinVerificar() {
       const data = await response.json();
 
       console.log('Total de elementos con completed=true y verified=false:', data.count);
-      
+      return data.count;
       // Aquí puedes hacer lo que necesites con `data.count`
   } catch (error) {
       console.error('Error al consultar los datos de pendientes:', error);
   }
 }
 
-async function consultarVerificados() {
+async function consultarVerificados(id) {
   try {
-      const response = await fetch('http://localhost:3000/skills/completed-count');
+      const response = await fetch(`http://localhost:3000/skills/completed-count/${id}`);
       
       // Asegúrate de que la respuesta es en formato JSON
       const data = await response.json();
 
-      console.log('Total de elementos con completed=true y verified=true:', data.count);
-      
+      const count = String(data.count);
+      console.log('Total de elementos con completed=true y verified=true:', count);
+      return count;
       // Aquí puedes hacer lo que necesites con `data.count`
   } catch (error) {
       console.error('Error al consultar los datos verificados:', error);
