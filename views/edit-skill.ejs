@@ -121,7 +121,15 @@
     <script>
         function confirmDelete() {
             if (confirm("Are you sure you want to delete this skill?")) {
-                window.location.href = "/skills/<%= skill.set %>/delete/<%= skill.id %>";
+                const skillId = '<%= skill.id %>'
+                const skillSet = '<%= skill.set %>'
+                fetch(`/skills/${skillSet}/delete/${skillId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body:  null
+                }).then(() => window.location.href = '/index').catch(error => console.log(error));
             }
         }
     </script>

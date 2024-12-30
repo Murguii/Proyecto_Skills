@@ -61,7 +61,6 @@ router.post('/:skillTreeName/delete/:skillID', isAdmin, skillsController.deleteS
 
 router.get('/:skillTreeName/view/:id', skillsController.viewSkill); //para cargar la página de la skill concreta
 
-
 router.get('/api', skillsController.getAllSkills);
 
 // POST approve and reject evidence

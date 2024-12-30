@@ -55,7 +55,7 @@ exports.getSkillsBySet = async (req, res) => {
         }
 
         res.redirect(`/index`);
-        /*res.render('skills-list', { skillTreeName, skills });*/
+        //res.render('skills-list', { skillTreeName, skills });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al obtener las competencias');
@@ -296,7 +296,8 @@ exports.deleteSkill = async (req, res) => {
         }
 
         console.log(`Habilidad con ID ${skillID} eliminada correctamente del árbol ${skillTreeName}`);
-        res.redirect(`/skills/${skillTreeName}`);
+        //res.redirect(`/skills/${skillTreeName}`);
+        res.redirect('/index');
     } catch (error) {
         console.error('Error al eliminar la competencia:', error);
         res.status(500).send('Error al eliminar la competencia');
