@@ -46,5 +46,6 @@ router.get('/logout', (req, res) => {
 // Ruta para renderizar el leaderboard (protegida)
 router.get('/leaderboard', isAuthenticated, leaderboardController.renderLeaderboard);
 
+router.get('/getUser/:user', usersController.getUser);
 
 module.exports = router;

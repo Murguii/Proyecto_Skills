@@ -83,6 +83,18 @@ exports.getLoginForm = (req, res) => {
     res.render('login'); // Renderiza la vista `login.ejs`
 };
 
+exports.getUser = async (req, res) => {
+    const {user} = req.params;
+    try {
+        const users = await User.findOne({ _id: user})
+            .select('username') // Selecciona solo los campos necesarios
+            //.populate('completedSkills', 'text'); // Opcional: Si quieres mostrar el nombre de las habilidades completadas
 
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al obtener la lista de usuarios');
+    }
+};
 
 

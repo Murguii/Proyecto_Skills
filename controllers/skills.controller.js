@@ -376,9 +376,9 @@ exports.createEvidence = async (req, res) => {
 };
 
 exports.approveEvidence = async (req, res) => {
-    const { skillId } = req.params;
+    const { skillId, user } = req.params;
     const { evidence } = req.body;
-
+    console.log(user);
     try {
         // Validar los datos enviados
         if (!skillId) {
@@ -386,8 +386,9 @@ exports.approveEvidence = async (req, res) => {
         }
 
         const username = req.session.user.username;
-        const user = await User.findOne({ username: username });
-        if (!user) {
+        const userApproves = await User.findOne({ username: username });
+        const userEvidence = await User.findOne({ username: user });
+        if (!userApproves || !userEvidence) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
         //const id = parseInt(skillId);
@@ -396,18 +397,19 @@ exports.approveEvidence = async (req, res) => {
             return res.status(404).json({ message: 'Habilidad no encontrada' });
         }
         // Crear nueva evidencia
-        const existingEvidence = await userskill.findOne({ skill: skill._id, user: user._id });
+        console.log('User id: ', userEvidence._id);
+        const existingEvidence = await userskill.findOne({ skill: skill._id, user: userEvidence._id });
         if (!existingEvidence) {
             return res.status(404).json({ message: 'No se encontró la evidencia para la actualización' });
         }
 
         const newEvidence = await userskill.findOneAndUpdate(
-            { skill: skill._id, user: user._id, evidence: evidence },
+            { skill: skill._id, user: userEvidence._id, evidence: evidence },
             {
                 $set: {verified: true},
                 $push: {
                     verifications: {
-                        user: user._id,
+                        user: userApproves._id,
                         approved: true,
                         verifiedAt: new Date()
                     }
@@ -481,17 +483,13 @@ exports.verifyHexagons = async (req, res) => { //devuelve las ids de las skills 
                 return res.status(404).json({message: 'Evidencias no encontradas'});
             }
             let cont = evidences.length; //total de evidencias a verificar
-            //console.log(cont);
             for (const evidence of evidences) {
-                //console.log(evidence.verifications.length);
                 if (evidence.verifications.length >= 3) { //si esta aprobada por 3 se confirma
                     cont--;
                 } else { //sino hay que ver si alguno de los que ha aprobado la evidencia es un admin
                     const userIds = evidence.verifications.map(verification => verification.user); //recogemos los ids de los usuarios que han aprobado la evidencia
-                    console.log(userIds);
                     for (const user of userIds) {
                         const userBD = await User.findOne({_id: user});
-                        console.log(userBD);
                         if (userBD.admin === true) { //si es admin aprobada
                             cont--;
                             break;
@@ -577,19 +575,21 @@ exports.getEvidences = async (req, res) => {
     const { skillId } = req.params;
 
     try {
-
+        /*
         const username = req.session.user.username;
         const user = await User.findOne({ username: username });
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
+        */
+
         const skill = await Skill.findOne({ id: skillId });
         if (!skill) {
             return res.status(404).json({ message: 'Habilidad no encontrada' });
         }
         // Crear nueva evidencia
-        const evidences = await userskill.find({ skill: skill._id, user: user._id, verified: false });
-        res.json({ username: username, evidences: evidences });
+        const evidences = await userskill.find({ skill: skill._id, verified: false });
+        res.json(evidences);
 
     } catch (error) {
         console.error(error);
