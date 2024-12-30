@@ -79,8 +79,7 @@
   }
 
   submitButton.addEventListener('click', () => {
-    const row = event.target.closest('tr');
-    const textEvidence = row.querySelector('td:nth-child(2)').textContent;
+    let textEvidence = skillEvidence.value;
     console.log(textEvidence);
     if(textEvidence){
       // Enviar la evidencia al servidor
