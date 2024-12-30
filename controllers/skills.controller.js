@@ -467,47 +467,60 @@ exports.rejectEvidence = async (req, res) => {
 };
 
 
-exports.verifyHexagons = async (req, res) => { //devuelve las ids de las skills que se tienen que poner en verde
-
+exports.verifyHexagons = async (req, res) => {
     try {
         let verifiedSkills = [];
 
-        //recoger los ids de las skills que tienen evidencias
-        const skillsId = await  userskill.distinct('skill');
-        if (!skillsId) {
-            return res.status(404).json({ message: 'No se encontró la evidencia para la actualización' });
+        // Recoger los IDs de las skills que tienen evidencias
+        const skillsId = await userskill.distinct('skill');
+        if (!skillsId || skillsId.length === 0) {
+            return res.status(404).json({ message: 'No se encontraron habilidades con evidencias' });
         }
+
         for (const id of skillsId) {
-            const evidences = await userskill.find({skill: id}); //recoger las evidencias de cada skill
-            if (!evidences) {
-                return res.status(404).json({message: 'Evidencias no encontradas'});
+            // console.log("Verificando ID de skill:", id);
+
+            const evidences = await userskill.find({ skill: id }); // Recoger las evidencias de cada skill
+            if (!evidences || evidences.length === 0) {
+                console.warn(`No se encontraron evidencias para el ID de skill: ${id}`);
+                continue; // Pasar al siguiente ID
             }
-            let cont = evidences.length; //total de evidencias a verificar
+
+            let cont = evidences.length; // Total de evidencias a verificar
+
             for (const evidence of evidences) {
-                if (evidence.verifications.length >= 3) { //si esta aprobada por 3 se confirma
+                if (evidence.verifications.length >= 3) {
                     cont--;
-                } else { //sino hay que ver si alguno de los que ha aprobado la evidencia es un admin
-                    const userIds = evidence.verifications.map(verification => verification.user); //recogemos los ids de los usuarios que han aprobado la evidencia
+                } else {
+                    // Verificar si algún aprobador es admin
+                    const userIds = evidence.verifications.map((verification) => verification.user);
                     for (const user of userIds) {
-                        const userBD = await User.findOne({_id: user});
-                        if (userBD.admin === true) { //si es admin aprobada
+                        const userBD = await User.findOne({ _id: user });
+                        if (userBD?.admin) { // Si es admin, se considera aprobada
                             cont--;
                             break;
                         }
                     }
                 }
             }
+
             if (cont === 0) {
-                const skill = await Skill.findOne({_id: id});
+                const skill = await Skill.findOne({ _id: id });
+                if (!skill) {
+                    // console.warn(`Skill no encontrada para el ID: ${id}`);
+                    continue; // Pasar al siguiente ID
+                }
                 verifiedSkills.push(skill.id);
             }
         }
+
         res.json(verifiedSkills);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al enviar la evidencia' });
+        console.error("Error en verifyHexagons:", error);
+        res.status(500).json({ message: 'Error al procesar las evidencias' });
     }
 };
+
 
 /*
 // cambiado
