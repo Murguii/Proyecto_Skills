@@ -488,19 +488,21 @@ exports.verifyHexagons = async (req, res) => { //devuelve las ids de las skills 
                     cont--;
                 } else { //sino hay que ver si alguno de los que ha aprobado la evidencia es un admin
                     const userIds = evidence.verifications.map(verification => verification.user); //recogemos los ids de los usuarios que han aprobado la evidencia
-                    //console.log(userIds);
+                    console.log(userIds);
                     for (const user of userIds) {
-                        const userBD = await userskill.find({_id: user});
+                        const userBD = await User.findOne({_id: user});
                         console.log(userBD);
-                        if (userBD.admin) { //si es admin aprobada
-                            console.log("entra");
+                        if (userBD.admin === true) { //si es admin aprobada
                             cont--;
                             break;
                         }
                     }
                 }
             }
-            if (cont === 0) verifiedSkills.push(id);
+            if (cont === 0) {
+                const skill = await Skill.findOne({_id: id});
+                verifiedSkills.push(skill.id);
+            }
         }
         res.json(verifiedSkills);
     } catch (error) {
