@@ -34,13 +34,13 @@ exports.pendingCount = async (req, res) => {
   };
 
 
-exports.redirectToDefaultSkill = (req, res) => {
+exports.redirectToDefaultSkill = async (req, res) => {
     try {
-        // Renderiza directamente la vista index.ejs
-        res.render('index', { user: req.user }); // Pasa información del usuario si es necesario
+        const skillCount = await Skill.countDocuments({ set: 'electronics' });
+        res.render('index', { user: req.user, skillCount, isAdmin: req.user?.admin });
     } catch (error) {
-        console.error(error);
-        res.status(500).send('Error al cargar la página de inicio');
+        console.error('Error al contar las skills:', error);
+        res.status(500).send('Error interno del servidor');
     }
 };
 
