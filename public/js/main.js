@@ -4,6 +4,7 @@ fetch('/skills/api')
     .then(response => response.json())
     .then(data => {
       createHexagons(data);  // Llamamos a la función que creará los hexágonos
+      verifyHexagons()
     })
     .catch(error => console.error("Error al cargar el JSON", error));
 
@@ -141,6 +142,8 @@ async function createHexagons(skills) {
     hexagonWrapper.appendChild(iconsContainer);
 
     container.appendChild(hexagonWrapper);
+
+
   }
 
   const descriptionBox = document.getElementById('description-box');
@@ -183,6 +186,28 @@ async function consultarVerificados(id) {
     console.error('Error al consultar los datos verificados:', error);
   }
 }
+
+async function verifyHexagons() {
+  try {
+    fetch('/skills/verifyHexagons').then(response => response.json()).then(data => {
+      console.log(data);
+      const hexagons = document.querySelectorAll('.svg-wrapper');
+
+      // Recorrer cada hexágono y verificar si su ID está en los datos recibidos
+      hexagons.forEach(hexagon => {
+        const hexagonId = hexagon.getAttribute('data-id');
+        if (data.includes(hexagonId)) {
+          //const hexagon = wrapper.querySelector('.hexagon');
+          hexagon.classList.add('green'); // Agrega la clase para cambiar el color
+        }
+      });
+    }).catch(error => console.error('Error fetching hexagon data:', error));
+  } catch (error) {
+    console.error('Error hexagonos verdes:', error);
+  }
+}
+
+
 /*
 fetch('/skills/api')
     .then(response => response.json())

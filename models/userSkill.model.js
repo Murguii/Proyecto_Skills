@@ -26,14 +26,14 @@ const userSkillSchema = new mongoose.Schema({
         default: false,
         required: true
     },
-    allEvidencesApproved: { // Nuevo campo
+    /*allEvidencesApproved: { // Nuevo campo
         type: Boolean,
         default: false
     },
     anyEvidenceRejected: {
         type: Boolean,
         default: false
-    },
+    },*/
     verifications: [{
         user: {
             type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true

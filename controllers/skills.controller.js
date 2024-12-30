@@ -374,7 +374,7 @@ exports.createEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };
-/*
+
 exports.approveEvidence = async (req, res) => {
     const { skillId } = req.params;
 
@@ -401,8 +401,17 @@ exports.approveEvidence = async (req, res) => {
         }
 
         const newEvidence = await userskill.findOneAndUpdate(
-            { skill: skill._id, user: user._id }, // Filtro para encontrar la evidencia correspondiente
-            { $set: { verified: true } },          // Actualiza el campo 'verified' a true
+            { skill: skill._id, user: user._id },
+            {
+                $set: {verified: true},
+                $push: {
+                    verifications: {
+                        user: user._id,
+                        approved: true,
+                        verifiedAt: new Date()
+                    }
+                }
+            },
             { new: true }                          // Devuelve el documento actualizado
         );
 
@@ -415,8 +424,52 @@ exports.approveEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };
-*/
 
+exports.verifyHexagons = async (req, res) => { //devuelve las ids de las skills que se tienen que poner en verde
+
+    try {
+        let verifiedSkills = [];
+
+        //recoger los ids de las skills que tienen evidencias
+        const skillsId = await  userskill.distinct('skill');
+        if (!skillsId) {
+            return res.status(404).json({ message: 'No se encontró la evidencia para la actualización' });
+        }
+        for (const id of skillsId) {
+            const evidences = await userskill.find({skill: id}); //recoger las evidencias de cada skill
+            if (!evidences) {
+                return res.status(404).json({message: 'Evidencias no encontradas'});
+            }
+            let cont = evidences.length; //total de evidencias a verificar
+            //console.log(cont);
+            for (const evidence of evidences) {
+                //console.log(evidence.verifications.length);
+                if (evidence.verifications.length >= 3) { //si esta aprobada por 3 se confirma
+                    cont--;
+                } else { //sino hay que ver si alguno de los que ha aprobado la evidencia es un admin
+                    const userIds = evidence.verifications.map(verification => verification.user); //recogemos los ids de los usuarios que han aprobado la evidencia
+                    //console.log(userIds);
+                    for (const user of userIds) {
+                        const userBD = await userskill.find({_id: user});
+                        console.log(userBD);
+                        if (userBD.admin) { //si es admin aprobada
+                            console.log("entra");
+                            cont--;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (cont === 0) verifiedSkills.push(id);
+        }
+        res.json(verifiedSkills);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al enviar la evidencia' });
+    }
+};
+
+/*
 // cambiado
 exports.approveEvidence = async (req, res) => {
     const { skillId, evidenceId } = req.params;
@@ -476,6 +529,8 @@ exports.rejectEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al rechazar la evidencia' });
     }
 };
+*/
+
 exports.getEvidences = async (req, res) => {
     const { skillId } = req.params;
 

@@ -32,6 +32,8 @@ router.get('/completed-count/:id', skillsController.completedCount);
 router.post('/createEvidence/:skillId', isAuthenticated, skillsController.createEvidence);
 router.post('/approveEvidence/:skillId', isAuthenticated, skillsController.approveEvidence);
 router.get('/getEvidences/:skillId', skillsController.getEvidences);
+router.get('/verifyHexagons', skillsController.verifyHexagons);
+
 // GET /skills/:skillTreeName/add
 router.get('/add', isAdmin, skillsController.getAddSkillForm);
 
@@ -62,8 +64,8 @@ router.get('/:skillTreeName/view/:id', skillsController.viewSkill); //para carga
 router.get('/api', skillsController.getAllSkills);
 
 // POST approve and reject evidence
-router.post('/approveEvidence/:skillId/:evidenceId', skillsController.approveEvidence);
-router.post('/rejectEvidence/:skillId/:evidenceId', skillsController.rejectEvidence);
+//router.post('/approveEvidence/:skillId/:evidenceId', skillsController.approveEvidence);
+//router.post('/rejectEvidence/:skillId/:evidenceId', skillsController.rejectEvidence);
 
 
 module.exports = router;

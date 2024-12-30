@@ -79,7 +79,9 @@
   }
 
   submitButton.addEventListener('click', () => {
-    let textEvidence = skillEvidence.value;
+    const row = event.target.closest('tr');
+    const textEvidence = row.querySelector('td:nth-child(2)').textContent;
+    console.log(textEvidence);
     if(textEvidence){
       // Enviar la evidencia al servidor
       fetch(`/skills/createEvidence/${skillId}`, {
@@ -258,7 +260,8 @@
                 acceptButton.textContent = 'Approve';
                 acceptButton.className = 'acceptButton';
                 acceptButton.addEventListener('click', () => {
-                  fetch(`/skills/approveEvidence/${skillId}/${evidence._id}`, {
+                  //fetch(`/skills/approveEvidence/${skillId}/${evidence._id}`, {
+                  fetch(`/skills/approveEvidence/${skillId}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
