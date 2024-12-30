@@ -7,10 +7,8 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const connectDB = require('./config/database');
 const seedBadges = require('./utils/seedBadges');
-const seedSkills = require('./utils/seedSkills'); // Importa la función
-
+const seedSkills = require('./utils/seedSkills');
 const fileUpload = require('express-fileupload');
-
 
 // Importación de routers
 const adminRouter = require('./routes/admin');
@@ -23,10 +21,13 @@ require('./config/passport');
 const app = express();
 
 // Conexión a MongoDB
-connectDB().then(() => {
-    // Inicializa las insignias y habilidades al conectar a la base de datos
-    //seedBadges();
-    //seedSkills();
+connectDB().then(async () => {
+    try {
+        await seedBadges(); // Purgar y recargar las insignias
+        await seedSkills(); // Purgar y recargar las habilidades
+    } catch (error) {
+        console.error('Error al inicializar los datos:', error);
+    }
 });
 
 // Configuración de vistas
@@ -42,27 +43,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 // Configuración de sesiones
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: false, // No crea sesiones vacías
-    store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/skillsbd'
+app.use(
+    session({
+        secret: 'your-secret-key',
+        resave: false,
+        saveUninitialized: false, // No crea sesiones vacías
+        store: MongoStore.create({
+            mongoUrl: 'mongodb://localhost:27017/skillsbd',
+        }),
     })
-}));
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-/*
-// Middleware para manejar mensajes flash
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    next();
-});
-*/
 
 app.use((req, res, next) => {
     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
@@ -79,14 +72,17 @@ app.use('/skills', skillsRouter); // Rutas relacionadas con habilidades
 app.use((req, res, next) => {
     res.status(404).render('error', {
         message: 'Página no encontrada',
-        error: {}
+        error: {},
     });
 });
 
 // Manejo de errores generales
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.render('error', { message: err.message, error: req.app.get('env') === 'development' ? err : {} });
+    res.render('error', {
+        message: err.message,
+        error: req.app.get('env') === 'development' ? err : {},
+    });
 });
 
 module.exports = app;
