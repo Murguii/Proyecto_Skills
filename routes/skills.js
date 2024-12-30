@@ -31,6 +31,7 @@ router.get('/pending-count/:id', skillsController.pendingCount);
 router.get('/completed-count/:id', skillsController.completedCount);
 router.post('/createEvidence/:skillId', isAuthenticated, skillsController.createEvidence);
 router.post('/approveEvidence/:skillId', isAuthenticated, skillsController.approveEvidence);
+router.post('/rejectEvidence/:skillId', isAuthenticated, skillsController.rejectEvidence);
 router.get('/getEvidences/:skillId', skillsController.getEvidences);
 router.get('/verifyHexagons', skillsController.verifyHexagons);
 

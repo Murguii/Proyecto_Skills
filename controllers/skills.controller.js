@@ -426,6 +426,45 @@ exports.approveEvidence = async (req, res) => {
     }
 };
 
+exports.rejectEvidence = async (req, res) => {
+    const { skillId } = req.params;
+    const { evidence } = req.body;
+
+    try {
+        // Validar los datos enviados
+        if (!skillId) {
+            return res.status(400).json({ message: 'Skill ID y evidencia son obligatorios' });
+        }
+
+        const username = req.session.user.username;
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        //const id = parseInt(skillId);
+        const skill = await Skill.findOne({ id: skillId });
+        if (!skill) {
+            return res.status(404).json({ message: 'Habilidad no encontrada' });
+        }
+        // Crear nueva evidencia
+        const existingEvidence = await userskill.findOne({ skill: skill._id, user: user._id });
+        if (!existingEvidence) {
+            return res.status(404).json({ message: 'No se encontró la evidencia para la actualización' });
+        }
+
+        const deletedEvidence = await userskill.deleteOne({ skill: skill._id, user: user._id, evidence: evidence });
+
+        //const updatedEvidence = await userskill.findOne({ skill: skill._id, user: user._id });
+
+
+        res.json({ message: 'Evidencia actualizada correctamente', evidence: deletedEvidence });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al enviar la evidencia' });
+    }
+};
+
+
 exports.verifyHexagons = async (req, res) => { //devuelve las ids de las skills que se tienen que poner en verde
 
     try {

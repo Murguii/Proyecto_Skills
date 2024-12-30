@@ -282,16 +282,19 @@
                 rejectButton.textContent = 'Reject';
                 rejectButton.className = 'rejectButton';
                 rejectButton.addEventListener('click', () => {
-                  fetch(`/skills/rejectEvidence/${skillId}/${evidence._id}`, {
+                  const row = event.target.closest('tr');
+                  const evidenceText = row.querySelector('td:nth-child(2)').textContent;
+                  fetch(`/skills/rejectEvidence/${skillId}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
                     },
-                    body: null
+                    body: JSON.stringify({ evidence: evidenceText })
                   })
                           .then(response => response.json())
                           .then(data => {
                             console.log('Success:', data);
+                            row.remove();
                             loadEvidencesInTable(); // Recargar la tabla después del rechazo
                           })
                           .catch((error) => {
