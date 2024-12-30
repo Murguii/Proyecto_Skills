@@ -259,13 +259,14 @@
                 acceptButton.textContent = 'Approve';
                 acceptButton.className = 'acceptButton';
                 acceptButton.addEventListener('click', () => {
-                  //fetch(`/skills/approveEvidence/${skillId}/${evidence._id}`, {
+                  const row = event.target.closest('tr');
+                  const evidenceText = row.querySelector('td:nth-child(2)').textContent;
                   fetch(`/skills/approveEvidence/${skillId}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
                     },
-                    body: null
+                    body: JSON.stringify({ evidence: evidenceText })
                   })
                           .then(response => response.json())
                           .then(data => {

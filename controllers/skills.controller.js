@@ -377,6 +377,7 @@ exports.createEvidence = async (req, res) => {
 
 exports.approveEvidence = async (req, res) => {
     const { skillId } = req.params;
+    const { evidence } = req.body;
 
     try {
         // Validar los datos enviados
@@ -401,7 +402,7 @@ exports.approveEvidence = async (req, res) => {
         }
 
         const newEvidence = await userskill.findOneAndUpdate(
-            { skill: skill._id, user: user._id },
+            { skill: skill._id, user: user._id, evidence: evidence },
             {
                 $set: {verified: true},
                 $push: {
