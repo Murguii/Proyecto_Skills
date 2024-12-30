@@ -88,7 +88,15 @@ h1 {
   stroke: black;
   stroke-width: 1px;
   transform-origin: center;
-  transition: transform 0.3s ease;
+  transition: fill 0.3s ease;
+}
+
+.hexagon.green {
+  fill: green; /* Color verde cuando todas las evidencias están aprobadas */
+}
+
+.hexagon.white {
+  fill: white; /* Color blanco cuando no todas las evidencias están aprobadas */
 }
 
 /* Efecto de hover en el wrapper que agranda el hexágono */

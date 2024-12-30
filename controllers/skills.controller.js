@@ -374,7 +374,7 @@ exports.createEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };
-
+/*
 exports.approveEvidence = async (req, res) => {
     const { skillId } = req.params;
 
@@ -415,8 +415,67 @@ exports.approveEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };
+*/
 
+// cambiado
+exports.approveEvidence = async (req, res) => {
+    const { skillId, evidenceId } = req.params;
 
+    try {
+        const evidence = await userskill.findById(evidenceId);
+        if (!evidence) {
+            return res.status(404).json({ message: 'Evidencia no encontrada' });
+        }
+
+        evidence.verified = true;
+        evidence.rejected = false;
+        await evidence.save();
+
+        // Verificar si hay alguna evidencia rechazada y contar las aprobadas
+        const allEvidences = await userskill.find({ skill: skillId, user: evidence.user });
+        const anyRejected = allEvidences.some(evidence => evidence.rejected);
+        const approvedCount = allEvidences.filter(evidence => evidence.verified).length;
+
+        await userskill.updateMany(
+            { skill: skillId, user: evidence.user },
+            { $set: { anyEvidenceRejected: anyRejected, approvedEvidenceCount: approvedCount } }
+        );
+
+        res.json({ message: 'Evidencia aprobada correctamente', evidence });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al aprobar la evidencia' });
+    }
+};
+exports.rejectEvidence = async (req, res) => {
+    const { skillId, evidenceId } = req.params;
+
+    try {
+        const evidence = await userskill.findById(evidenceId);
+        if (!evidence) {
+            return res.status(404).json({ message: 'Evidencia no encontrada' });
+        }
+
+        evidence.verified = false;
+        evidence.rejected = true;
+        await evidence.save();
+
+        // Verificar si hay alguna evidencia rechazada y contar las aprobadas
+        const allEvidences = await userskill.find({ skill: skillId, user: evidence.user });
+        const anyRejected = allEvidences.some(evidence => evidence.rejected);
+        const approvedCount = allEvidences.filter(evidence => evidence.verified).length;
+
+        await userskill.updateMany(
+            { skill: skillId, user: evidence.user },
+            { $set: { anyEvidenceRejected: anyRejected, approvedEvidenceCount: approvedCount } }
+        );
+
+        res.json({ message: 'Evidencia rechazada correctamente', evidence });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al rechazar la evidencia' });
+    }
+};
 exports.getEvidences = async (req, res) => {
     const { skillId } = req.params;
 

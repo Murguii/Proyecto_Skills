@@ -67,7 +67,6 @@
   <a href="/index">Back to Home</a>
 </footer>
 <script>
-
   //recoger los elementos que deben aparecer cuando se seleccionan todos los checkboxes
   const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
   const evidenceSection = document.getElementById('provideEvidenceHeader');
@@ -97,78 +96,63 @@
               .catch((error) => {
                 console.error('Error:', error);
               });
-  /*
-    //crear una nueva fila
-      let row = document.createElement('tr');
-
-      //crear la celda con el nombre del usuario
-      let userData = document.createElement('td');
-      userData.textContent = 'nombre del usuario';
-
-      //crear la celda con el texto de la evidencia
-      let evidenceData = document.createElement('td');
-      evidenceData.textContent = textEvidence;
-
-
-   */
 
       loadEvidencesInTable();
-
-
 
       //dejamos vacio el input text de las evidencias
       skillEvidence.value = '';
     }
   });
 
-// Cargar el estado de las checkboxes al cargar la página
-window.addEventListener('DOMContentLoaded', () => {
-  checkboxes.forEach(checkbox => {
-    const taskId = checkbox.id;
-    const savedState = localStorage.getItem(taskId);
-    if (savedState !== null) {
-      checkbox.checked = savedState === 'true';
-    }
-  });
+  // Cargar el estado de las checkboxes al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    checkboxes.forEach(checkbox => {
+      const taskId = checkbox.id;
+      const savedState = localStorage.getItem(taskId);
+      if (savedState !== null) {
+        checkbox.checked = savedState === 'true';
+      }
+    });
 
-  // Comprobar si todos están seleccionados después de cargar
-  toggleEvidenceSection();
-});
-
-// Función para comprobar si todos los checkboxes están seleccionados
-function areAllCheckboxesChecked() {
-  return Array.from(checkboxes).every(checkbox => checkbox.checked);
-}
-
-// Función para mostrar u ocultar la sección de evidencias
-function toggleEvidenceSection() {
-  if (areAllCheckboxesChecked()) {
-    evidenceSection.style.display = 'block';
-    skillEvidence.style.display = 'block';
-    submitButton.style.display = 'block';
-  } else {
-    evidenceSection.style.display = 'none';
-    skillEvidence.style.display = 'none';
-    submitButton.style.display = 'none';
-  }
-}
-
-// Comprobar cambios en los checkboxes
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    // Guardar estado del checkbox
-    const taskId = checkbox.id;
-    localStorage.setItem(taskId, checkbox.checked);
-
-    // Actualizar visibilidad de la sección de evidencias
+    // Comprobar si todos están seleccionados después de cargar
     toggleEvidenceSection();
-
-    if (areAllCheckboxesChecked()) {
-      // Llamar a la función que lanza el confeti
-      launchConfetti();
-    }
   });
-});
+
+  // Función para comprobar si todos los checkboxes están seleccionados
+  function areAllCheckboxesChecked() {
+    return Array.from(checkboxes).every(checkbox => checkbox.checked);
+  }
+
+  // Función para mostrar u ocultar la sección de evidencias
+  function toggleEvidenceSection() {
+    if (areAllCheckboxesChecked()) {
+      evidenceSection.style.display = 'block';
+      skillEvidence.style.display = 'block';
+      submitButton.style.display = 'block';
+    } else {
+      evidenceSection.style.display = 'none';
+      skillEvidence.style.display = 'none';
+      submitButton.style.display = 'none';
+    }
+  }
+
+  // Comprobar cambios en los checkboxes
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      // Guardar estado del checkbox
+      const taskId = checkbox.id;
+      localStorage.setItem(taskId, checkbox.checked);
+
+      // Actualizar visibilidad de la sección de evidencias
+      toggleEvidenceSection();
+
+      if (areAllCheckboxesChecked()) {
+        // Llamar a la función que lanza el confeti
+        launchConfetti();
+      }
+    });
+  });
+
   // Función para lanzar confeti
   function launchConfetti() {
     confetti({
@@ -190,7 +174,6 @@ checkboxes.forEach(checkbox => {
           })
           .catch(error => console.error("Error al cargar el JSON", error));
 
-
   function createOneHexagon(skills, skillId) {
     const container = document.getElementById('hexagon-container-skill');
 
@@ -209,6 +192,10 @@ checkboxes.forEach(checkbox => {
         const hexagon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
         hexagon.setAttribute('points', '50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5');
         hexagon.classList.add('hexagon');
+
+        if (skill.allEvidencesApproved) {
+          hexagon.setAttribute('fill', 'green'); // Cambia el color a verde
+        }
 
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
         text.setAttribute('x', '50%');
@@ -262,6 +249,7 @@ checkboxes.forEach(checkbox => {
                 const evidenceColumn = document.createElement('td');
                 evidenceColumn.textContent = evidence.evidence; // Asegúrate de que 'description' es una propiedad de la evidencia
                 row.appendChild(evidenceColumn);
+
                 //crear la celda donde estarán los botones de aceptar y rechazar
                 let actionData = document.createElement('td');
                 actionData.className = 'buttonTd';
@@ -270,7 +258,7 @@ checkboxes.forEach(checkbox => {
                 acceptButton.textContent = 'Approve';
                 acceptButton.className = 'acceptButton';
                 acceptButton.addEventListener('click', () => {
-                  fetch(`/skills/approveEvidence/${skillId}`, {
+                  fetch(`/skills/approveEvidence/${skillId}/${evidence._id}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
@@ -280,28 +268,45 @@ checkboxes.forEach(checkbox => {
                           .then(response => response.json())
                           .then(data => {
                             console.log('Success:', data);
+                            loadEvidencesInTable(); // Recargar la tabla después de la aprobación
                           })
                           .catch((error) => {
                             console.error('Error:', error);
                           });
-                })
+                });
 
                 let rejectButton = document.createElement('button');
                 rejectButton.textContent = 'Reject';
                 rejectButton.className = 'rejectButton';
+                rejectButton.addEventListener('click', () => {
+                  fetch(`/skills/rejectEvidence/${skillId}/${evidence._id}`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: null
+                  })
+                          .then(response => response.json())
+                          .then(data => {
+                            console.log('Success:', data);
+                            loadEvidencesInTable(); // Recargar la tabla después del rechazo
+                          })
+                          .catch((error) => {
+                            console.error('Error:', error);
+                          });
+                });
 
-                //añadimos los botones a la celda anterior
+                // Añadir los botones a la celda
                 actionData.appendChild(acceptButton);
                 actionData.appendChild(rejectButton);
                 row.appendChild(actionData);
 
-                //añadimos la fila a la tabla
+                // Añadir la fila a la tabla
                 tableBody.appendChild(row);
               });
             })
             .catch(error => console.error('Error al cargar las evidencias:', error));
   }
-
 </script>
 </body>
 </html>

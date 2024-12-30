@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSkillSchema = new mongoose.Schema({
     skill: {
-         type:  mongoose.Schema.Types.ObjectId, ref: 'Skill' ,
+        type: mongoose.Schema.Types.ObjectId, ref: 'Skill',
         required: true
     },
     user: {
@@ -26,6 +26,14 @@ const userSkillSchema = new mongoose.Schema({
         default: false,
         required: true
     },
+    allEvidencesApproved: { // Nuevo campo
+        type: Boolean,
+        default: false
+    },
+    anyEvidenceRejected: {
+        type: Boolean,
+        default: false
+    },
     verifications: [{
         user: {
             type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
@@ -40,14 +48,5 @@ const userSkillSchema = new mongoose.Schema({
         }
     }]
 });
-
-// Middlewares
-/*
-estudianteSchema.pre('save', function(next) {
-    this.nombre = this.nombre.charAt(0).toUpperCase() + this.nombre.slice(1);
-    next();
-}); */
-
-
 
 module.exports = mongoose.model('UserSkill', userSkillSchema);

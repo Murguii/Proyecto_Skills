@@ -60,4 +60,10 @@ router.get('/:skillTreeName/view/:id', skillsController.viewSkill); //para carga
 
 
 router.get('/api', skillsController.getAllSkills);
+
+// POST approve and reject evidence
+router.post('/approveEvidence/:skillId/:evidenceId', skillsController.approveEvidence);
+router.post('/rejectEvidence/:skillId/:evidenceId', skillsController.rejectEvidence);
+
+
 module.exports = router;
