@@ -67,56 +67,27 @@
   <a href="/index">Back to Home</a>
 </footer>
 <script>
-  //recoger los elementos que deben aparecer cuando se seleccionan todos los checkboxes
   const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
   const evidenceSection = document.getElementById('provideEvidenceHeader');
   const skillEvidence = document.getElementById('skillEvidence');
   const submitButton = document.getElementById('submitEvidenceButton');
   const tableBody = document.getElementById('evidenceTableBody');
-  const skillId = '<%= skill.id %>'
-  window.onload = function () {
-    loadEvidencesInTable();
-  }
+  const skillId = '<%= skill.id %>';
 
-  submitButton.addEventListener('click', () => {
-    let textEvidence = skillEvidence.value;
-    console.log(textEvidence);
-    if(textEvidence){
-      // Enviar la evidencia al servidor
-      fetch(`/skills/createEvidence/${skillId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ evidence: textEvidence })
-      })
-              .then(response => response.json())
-              .then(data => {
-                console.log('Success:', data);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
+  // Cargar el estado inicial de los checkboxes desde el servidor
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch(`/skills/getSelectedTasks/${skillId}`);
+      const { selectedTasks } = await response.json();
 
-      loadEvidencesInTable();
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = selectedTasks.includes(checkbox.id);
+      });
 
-      //dejamos vacio el input text de las evidencias
-      skillEvidence.value = '';
+      toggleEvidenceSection();
+    } catch (error) {
+      console.error('Error al cargar los selectedTasks:', error);
     }
-  });
-
-  // Cargar el estado de las checkboxes al cargar la página
-  window.addEventListener('DOMContentLoaded', () => {
-    checkboxes.forEach(checkbox => {
-      const taskId = checkbox.id;
-      const savedState = localStorage.getItem(taskId);
-      if (savedState !== null) {
-        checkbox.checked = savedState === 'true';
-      }
-    });
-
-    // Comprobar si todos están seleccionados después de cargar
-    toggleEvidenceSection();
   });
 
   // Función para comprobar si todos los checkboxes están seleccionados
@@ -137,35 +108,34 @@
     }
   }
 
-  // Comprobar cambios en los checkboxes
+  // Escuchar cambios en los checkboxes
   checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      // Guardar estado del checkbox
-      const taskId = checkbox.id;
-      localStorage.setItem(taskId, checkbox.checked);
-
-      // Actualizar visibilidad de la sección de evidencias
+    checkbox.addEventListener('change', async () => {
       toggleEvidenceSection();
 
+      const selectedTasks = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.id);
+
+      try {
+        await fetch(`/skills/updateSelectedTasks/${skillId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ selectedTasks })
+        });
+
+        console.log('Selected tasks updated successfully.');
+      } catch (error) {
+        console.error('Error al actualizar los selectedTasks:', error);
+      }
+
       if (areAllCheckboxesChecked()) {
-        // Llamar a la función que lanza el confeti
         launchConfetti();
       }
     });
   });
-
-  // Función para lanzar confeti
-  function launchConfetti() {
-    confetti({
-      particleCount: 200,  // Número de partículas
-      spread: 360,         // Ángulo de dispersión
-      origin: { y: 0.5 },  // Partículas desde el centro vertical
-      zIndex: 1000,        // Asegura que el confetti esté por encima de otros elementos
-      ticks: 100,          // Duración del confetti
-      gravity: 0.5,        // Gravedad de las partículas
-      scalar: 1.2          // Tamaño de las partículas
-    });
-  }
 
   fetch('/skills/api')
           .then(response => response.json())
@@ -233,91 +203,103 @@
     });
   }
 
-  async function loadEvidencesInTable(){
-
-    fetch(`/skills/getEvidences/${skillId}`)
-            .then(response => response.json())
-            .then(data => {
-              const tableBody = document.getElementById('evidenceTableBody');
-              tableBody.innerHTML = ''; // Limpia cualquier fila existente
-
-              data.forEach(evidence => {
-                const row = document.createElement('tr');
-
-                const userColumn = document.createElement('td');
-                fetch(`/users/getUser/${evidence.user}`).then( response => response.json())
-            .then( user => {
-              userColumn.textContent = user.username; // Asegúrate de que 'user' es una propiedad de la evidencia
-                row.appendChild(userColumn);
-              const evidenceColumn = document.createElement('td');
-              evidenceColumn.textContent = evidence.evidence; // Asegúrate de que 'description' es una propiedad de la evidencia
-              row.appendChild(evidenceColumn);
-
-              //crear la celda donde estarán los botones de aceptar y rechazar
-              let actionData = document.createElement('td');
-              actionData.className = 'buttonTd';
-
-              let acceptButton = document.createElement('button');
-              acceptButton.textContent = 'Approve';
-              acceptButton.className = 'acceptButton';
-              acceptButton.addEventListener('click', () => {
-                const row = event.target.closest('tr');
-                const evidenceText = row.querySelector('td:nth-child(2)').textContent;
-                const userText = row.querySelector('td:nth-child(1)').textContent;
-                fetch(`/skills/approveEvidence/${skillId}/${userText}`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({ evidence: evidenceText })
-                })
-                        .then(response => response.json())
-                        .then(data => {
-                          console.log('Success:', data);
-                          loadEvidencesInTable(); // Recargar la tabla después de la aprobación
-                        })
-                        .catch((error) => {
-                          console.error('Error:', error);
-                        });
-              });
-
-              let rejectButton = document.createElement('button');
-              rejectButton.textContent = 'Reject';
-              rejectButton.className = 'rejectButton';
-              rejectButton.addEventListener('click', () => {
-                const row = event.target.closest('tr');
-                const evidenceText = row.querySelector('td:nth-child(2)').textContent;
-                const userText = row.querySelector('td:nth-child(1)').textContent;
-                fetch(`/skills/rejectEvidence/${skillId}/${userText}`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({ evidence: evidenceText })
-                })
-                        .then(response => response.json())
-                        .then(data => {
-                          console.log('Success:', data);
-                          row.remove();
-                          loadEvidencesInTable(); // Recargar la tabla después del rechazo
-                        })
-                        .catch((error) => {
-                          console.error('Error:', error);
-                        });
-              });
-
-              // Añadir los botones a la celda
-              actionData.appendChild(acceptButton);
-              actionData.appendChild(rejectButton);
-              row.appendChild(actionData);
-
-              // Añadir la fila a la tabla
-              tableBody.appendChild(row);
-            });
-              })
-                      .catch(error => console.error('Error al cargar las evidencias:', error));
-            });
+  // Función para lanzar confeti
+  function launchConfetti() {
+    confetti({
+      particleCount: 200,
+      spread: 360,
+      origin: { y: 0.5 },
+      zIndex: 1000,
+      ticks: 100,
+      gravity: 0.5,
+      scalar: 1.2
+    });
   }
+
+  // Cargar evidencias en la tabla
+  async function loadEvidencesInTable() {
+    try {
+      const response = await fetch(`/skills/getEvidences/${skillId}`);
+      const data = await response.json();
+      tableBody.innerHTML = '';
+
+      data.forEach(evidence => {
+        const row = document.createElement('tr');
+
+        const userColumn = document.createElement('td');
+        fetch(`/users/getUser/${evidence.user}`)
+          .then(response => response.json())
+          .then(user => {
+            userColumn.textContent = user.username;
+          });
+
+        row.appendChild(userColumn);
+
+        const evidenceColumn = document.createElement('td');
+        evidenceColumn.textContent = evidence.evidence;
+        row.appendChild(evidenceColumn);
+
+        const actionData = document.createElement('td');
+        actionData.className = 'buttonTd';
+
+        const acceptButton = document.createElement('button');
+        acceptButton.textContent = 'Approve';
+        acceptButton.className = 'acceptButton';
+        acceptButton.addEventListener('click', async () => {
+          try {
+            const evidenceText = row.querySelector('td:nth-child(2)').textContent;
+            const userText = row.querySelector('td:nth-child(1)').textContent;
+            await fetch(`/skills/approveEvidence/${skillId}/${userText}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ evidence: evidenceText })
+            });
+
+            loadEvidencesInTable();
+          } catch (error) {
+            console.error('Error al aprobar la evidencia:', error);
+          }
+        });
+
+        const rejectButton = document.createElement('button');
+        rejectButton.textContent = 'Reject';
+        rejectButton.className = 'rejectButton';
+        rejectButton.addEventListener('click', async () => {
+          try {
+            const evidenceText = row.querySelector('td:nth-child(2)').textContent;
+            const userText = row.querySelector('td:nth-child(1)').textContent;
+            await fetch(`/skills/rejectEvidence/${skillId}/${userText}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ evidence: evidenceText })
+            });
+
+            row.remove();
+            loadEvidencesInTable();
+          } catch (error) {
+            console.error('Error al rechazar la evidencia:', error);
+          }
+        });
+
+        actionData.appendChild(acceptButton);
+        actionData.appendChild(rejectButton);
+        row.appendChild(actionData);
+
+        tableBody.appendChild(row);
+      });
+    } catch (error) {
+      console.error('Error al cargar las evidencias:', error);
+    }
+  }
+
+  window.onload = function () {
+    loadEvidencesInTable();
+  };
 </script>
+
 </body>
 </html>

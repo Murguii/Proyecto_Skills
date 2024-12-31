@@ -312,27 +312,40 @@ exports.getSkills = (req, res) => {
 // Para cargar la página de la skill concreta
 exports.viewSkill = async (req, res) => {
     const { skillTreeName, id } = req.params;
-
-    // Verificar si el usuario está autenticado
-    if (!req.user) {
-        return res.status(401).json({ message: 'User not authenticated' });
-    }
-
-    const userId = req.user._id;
+    const userId = req.user._id; // ID del usuario autenticado
 
     try {
+        // Buscar la habilidad en la base de datos usando el ID
         const skill = await Skill.findOne({ id: id });
 
         if (!skill) {
             return res.status(404).json({ message: 'Skill not found' });
         }
 
-        let userSkill = await UserSkill.findOne({ user: userId, skill: skill._id });
+        // Verificar que la habilidad tenga el campo `text`
+        if (!skill.text) {
+            return res.status(400).json({ message: 'Skill text is required but not found in the database.' });
+        }
 
+        // Obtener el nombre del usuario
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Verificar que el usuario tenga un nombre
+        if (!user.username) {
+            return res.status(400).json({ message: 'User name is required but not found in the database.' });
+        }
+
+        // Verificar si ya existe una relación entre el usuario y la habilidad
+        let userSkill = await UserSkill.findOne({ user: user.username, skill: skill.text });
+
+        // Si no existe, la creamos
         if (!userSkill) {
             userSkill = new UserSkill({
-                skill: skill._id,
-                user: userId,
+                skill: skill.text, // Guardar el campo `text` de la habilidad
+                user: user.username, // Guardar el nombre del usuario
                 completed: false,
                 completedAt: null,
                 evidence: '',
@@ -344,13 +357,72 @@ exports.viewSkill = async (req, res) => {
             await userSkill.save();
         }
 
+        // Renderizar la página de habilidad
         res.render('skillPage', { skill, userSkill });
     } catch (error) {
-        console.error(error);
+        console.error('Error en viewSkill:', error);
         res.status(500).json({ message: 'Server error', error });
     }
 };
 
+
+
+exports.updateSelectedTasks = async (req, res) => {
+    const { skillId } = req.params;
+    const { selectedTasks } = req.body;
+
+    if (!req.user) {
+        return res.status(401).json({ message: 'Usuario no autenticado.' });
+    }
+
+    const userId = req.user._id;
+
+    try {
+        if (!Array.isArray(selectedTasks)) {
+            return res.status(400).json({ message: 'selectedTasks debe ser un array' });
+        }
+
+        // Obtener el texto de la habilidad
+        const skill = await Skill.findOne({ id: skillId });
+        if (!skill || !skill.text) {
+            return res.status(404).json({ message: 'Habilidad no encontrada o no tiene texto definido.' });
+        }
+
+        // Obtener el nombre del usuario
+        const user = await User.findById(userId);
+        if (!user || !user.username) {
+            return res.status(404).json({ message: 'Usuario no encontrado o no tiene nombre definido.' });
+        }
+
+        // Buscar el registro en UserSkill basado en el nombre del usuario y el texto de la habilidad
+        let userSkill = await UserSkill.findOne({ user: user.username, skill: skill.text });
+
+        if (!userSkill) {
+            // Si no existe, creamos el registro
+            userSkill = new UserSkill({
+                skill: skill.text, // Guardar el texto de la habilidad
+                user: user.username, // Guardar el nombre del usuario
+                selectedTasks,
+                completed: false,
+                verified: false,
+                evidence: '',
+                completedAt: null,
+                verifications: [],
+            });
+        } else {
+            // Actualizamos el campo selectedTasks
+            userSkill.selectedTasks = selectedTasks;
+        }
+
+        // Guardamos los cambios
+        await userSkill.save();
+
+        res.status(200).json({ message: 'selectedTasks actualizado correctamente', selectedTasks });
+    } catch (error) {
+        console.error('Error al actualizar selectedTasks:', error);
+        res.status(500).json({ message: 'Error del servidor', error });
+    }
+};
 
 
 exports.getAllSkills = async (req, res) => {
@@ -402,6 +474,44 @@ exports.createEvidence = async (req, res) => {
         res.status(500).json({ message: 'Error al enviar la evidencia' });
     }
 };
+
+exports.getSelectedTasks = async (req, res) => {
+    const { skillId } = req.params;
+
+    if (!req.user) {
+        return res.status(401).json({ message: 'Usuario no autenticado.' });
+    }
+
+    const userId = req.user._id;
+
+    try {
+        // Obtener el texto de la habilidad
+        const skill = await Skill.findOne({ id: skillId });
+        if (!skill || !skill.text) {
+            return res.status(404).json({ message: 'Habilidad no encontrada o no tiene texto definido.' });
+        }
+
+        // Obtener el nombre del usuario
+        const user = await User.findById(userId);
+        if (!user || !user.username) {
+            return res.status(404).json({ message: 'Usuario no encontrado o no tiene nombre definido.' });
+        }
+
+        // Buscar el registro en UserSkill basado en el nombre del usuario y el texto de la habilidad
+        const userSkill = await UserSkill.findOne({ user: user.username, skill: skill.text });
+
+        if (!userSkill) {
+            return res.status(404).json({ message: 'Relación UserSkill no encontrada para el usuario y habilidad proporcionados.' });
+        }
+
+        // Devolver las selectedTasks
+        res.status(200).json({ selectedTasks: userSkill.selectedTasks });
+    } catch (error) {
+        console.error('Error al obtener selectedTasks:', error);
+        res.status(500).json({ message: 'Error del servidor', error });
+    }
+};
+
 
 exports.approveEvidence = async (req, res) => {
     const { skillId, user } = req.params;
