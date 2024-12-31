@@ -1,6 +1,7 @@
 const Skill = require('../models/skill.model');
 const Evidence = require('../models/evidence.model');
 const userskill = require('../models/userSkill.model');
+const UserSkill = require('../models/userSkill.model');
 const User = require('../models/user.model');
 
 exports.pendingCount = async (req, res) => {
@@ -308,23 +309,49 @@ exports.getSkills = (req, res) => {
     res.render('skills', { user: req.user }); // Renderiza las habilidades disponibles
 };
 
-//para cargar la página de la skill concreta
+// Para cargar la página de la skill concreta
 exports.viewSkill = async (req, res) => {
     const { skillTreeName, id } = req.params;
 
+    // Verificar si el usuario está autenticado
+    if (!req.user) {
+        return res.status(401).json({ message: 'User not authenticated' });
+    }
+
+    const userId = req.user._id;
+
     try {
-        // Buscar la habilidad en la base de datos en vez del ¿¿json??
-        const skill = await Skill.findOne({id: id });
+        const skill = await Skill.findOne({ id: id });
 
         if (!skill) {
             return res.status(404).json({ message: 'Skill not found' });
         }
 
-        res.render('skillPage', { skill });
+        let userSkill = await UserSkill.findOne({ user: userId, skill: skill._id });
+
+        if (!userSkill) {
+            userSkill = new UserSkill({
+                skill: skill._id,
+                user: userId,
+                completed: false,
+                completedAt: null,
+                evidence: '',
+                verified: false,
+                selectedTasks: [],
+                verifications: []
+            });
+
+            await userSkill.save();
+        }
+
+        res.render('skillPage', { skill, userSkill });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+
 
 exports.getAllSkills = async (req, res) => {
     try {

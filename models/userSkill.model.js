@@ -15,25 +15,21 @@ const userSkillSchema = new mongoose.Schema({
     },
     completedAt: {
         type: Date,
-        required: true
+        default: null // Opcional: permite valores nulos inicialmente
     },
     evidence: {
         type: String,
-        required: true
+        default: '' // Opcional: evita el error si está vacío
     },
     verified: {
         type: Boolean,
         default: false,
         required: true
     },
-    /*allEvidencesApproved: { // Nuevo campo
-        type: Boolean,
-        default: false
+    selectedTasks: {
+        type: [String],
+        default: []
     },
-    anyEvidenceRejected: {
-        type: Boolean,
-        default: false
-    },*/
     verifications: [{
         user: {
             type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true

@@ -1,6 +1,7 @@
 // Middleware para verificar si el usuario está autenticado
 module.exports.isAuthenticated = (req, res, next) => {
     if (req.session && req.session.user) {
+        req.user = req.session.user; // Asigna el usuario autenticado a req.user
         return next(); // Si el usuario está autenticado, permite el acceso
     }
     res.redirect('/users/login'); // Si no está autenticado, redirige al login

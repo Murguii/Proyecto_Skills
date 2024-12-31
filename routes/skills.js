@@ -59,7 +59,7 @@ router.post('/:skillTreeName/submit-evidence', isAuthenticated, skillsController
 // POST /skills/:skillTreeName/delete/:skillID
 router.post('/:skillTreeName/delete/:skillID', isAdmin, skillsController.deleteSkill);
 
-router.get('/:skillTreeName/view/:id', skillsController.viewSkill); //para cargar la página de la skill concreta
+router.get('/:skillTreeName/view/:id', isAuthenticated, skillsController.viewSkill);
 
 router.get('/api', skillsController.getAllSkills);
 
